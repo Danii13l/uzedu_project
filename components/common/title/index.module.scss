@@ -1,0 +1,6 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+.title{
+  @include fs_lh_fw_fcolor(32px,39px,600,$text)
+}

@@ -1,0 +1,273 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+.h_inner {
+  padding: 8px 0;
+}
+
+.h_top {
+  @include df_jc_ai(center, center);
+  padding: 5.5px;
+  margin-bottom: 16px;
+
+}
+
+.h_top_links {
+  @include fs_lh_fw_fcolor(12px, 15px, 400, $text2);
+  letter-spacing: 0.04em;
+  padding: 0 10px;
+  margin-right: 8px;
+}
+
+
+.setting {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 100px;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  @include df_jc_ai(center, center);
+  margin: 0 8px 0 16px;
+  cursor: pointer;
+  position: relative;
+}
+
+.s_inner {
+  position: absolute;
+  background: #fff;
+  top: 25px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.s_item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+}
+
+.s_item_font {
+  .s_item_inner {
+    display: flex;
+    align-items: center;
+
+    div {
+      padding: 5px;
+      font-size: 12px;
+      margin: 0 5px;
+      color: #fff;
+    }
+
+    div:last-child {
+      font-size: 16px;
+      filter: none;
+    }
+  }
+}
+
+.s_item_inner {
+  display: flex;
+  align-items: center;
+
+  div {
+    padding: 5px;
+    background-color: $main;
+    margin: 0 5px;
+    color: #fff;
+  }
+
+  div:last-child {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+}
+
+
+.h_bottom {
+  @include df_jc_ai(space-between, center);
+}
+
+.logo {
+  background: $main;
+  padding: 10px 11px;
+  border-radius: 10px;
+}
+
+.logo_wrapper {
+  width: 48px;
+  height: 40px;
+  position: relative;
+}
+
+.h_bot_main_links_wrap {
+  @include df_jc_ai(center, center);
+
+
+}
+
+.h_bot_main_link_wrap {
+  margin-right: 24px;
+  position: relative;
+  padding: 5px;
+  transition: .4s;
+
+  &.active {
+
+
+    &:hover {
+      border-radius: 0 0 5px 5px;
+      box-shadow: 0 2px 0 0 $main;
+
+      .h_bot_sublinks_wrap {
+        display: block;
+      }
+    }
+  }
+}
+
+.h_bot_main_link {
+  @include fs_lh_fw_fcolor(16px, 20px, 400, $text);
+  cursor: pointer;
+}
+
+
+.h_bot_sublinks_wrap {
+  position: absolute;
+  padding-top: 40px;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 200%;
+  z-index: 1;
+}
+
+
+.h_bot_sublinks_list {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+
+}
+
+.h_bot_sublink_a {
+  @include fs_lh_fw_fcolor(12px, 15px, 400, $text2);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.burger_search_wrap {
+  @include df_jc_ai(stretch, center);
+}
+
+
+.search, .burger {
+  cursor: pointer;
+  position: relative;
+}
+
+.search_form {
+  position: absolute;
+  right: 0;
+  top: -3px;
+  z-index: 1;
+  width: 0;
+  transition: .5s;
+
+
+  input {
+    width: 100%;
+    padding: 5px 20px 5px 5px;
+    border-radius: 5px;
+  }
+
+  .close_search {
+    width: 0;
+  }
+
+  &.active_form {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    width: 300px;
+    transition: .5s;
+
+    input {
+      width: 100%;
+      padding: 5px 20px 5px 5px;
+      border-radius: 5px;
+    }
+
+    .close_search {
+      width: 12px;
+    }
+  }
+}
+
+
+.close_search {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 2px;
+
+}
+
+.burger {
+  margin-left: 25px;
+}
+
+
+//language
+.lang {
+  position: relative;
+}
+
+.img_lang_wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.view {
+  @include df_jc_ai(center, center);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 100px;
+  padding: 0 8px;
+  height: 24px;
+  position: relative;
+
+  button {
+    margin-right: 4px;
+    background: transparent;
+    @include fs_lh_fw_fcolor(12px, 15px, 400, $text2);
+  }
+}
+
+.locales {
+  padding: 3px 0;
+  background: rgba(255, 255, 255, 0.5);
+  @include fs_lh_fw_fcolor(10px, 15px, 400, $text2);
+  border-radius: 10px;
+  position: absolute;
+  top: 25px;
+
+  a {
+    color: $text2;
+    margin-right: 2px;
+
+  }
+
+  a:last-child {
+    margin-right: 0;
+
+  }
+
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+}

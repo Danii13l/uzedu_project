@@ -1,0 +1,28 @@
+@mixin fs_lh_fw_fcolor($s,$h,$w,$c) {
+  font-size: $s;
+  line-height: $h;
+  font-weight: $w;
+  color: $c;
+}
+
+@mixin df_jc_ai($jc,$ai) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+@mixin dg_tc_tr_gg($tc,$tr,$gg) {
+  display: grid;
+  grid-template-columns:$tc;
+  grid-template-rows:$tr;
+  grid-gap: $gg;
+}
+
+@mixin cut_text($num) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
+}
+

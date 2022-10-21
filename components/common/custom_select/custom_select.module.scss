@@ -1,0 +1,102 @@
+@import "styles/variables.module.scss";
+@import "styles/mixins.module.scss";
+
+.labeltext {
+  margin-bottom: 4px;
+  display: block;
+  @include fsize_lheight_fwieght_color(14px, 19px, 400, $text2);
+}
+
+.select {
+  position: relative;
+}
+
+.select_wrapper {
+  position: relative;
+}
+
+.main_input {
+  padding: 9px 40px 9px 16px;
+}
+
+.main_input,
+.input {
+  background: $white;
+  border-radius: 100px;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+
+  @include fsize_lheight_fwieght_color(14px, 19px, 400, $accent);
+  text-align: left;
+
+  transition: 0.5s;
+
+  &.second {
+    background-color: $background-grey;
+    border: 1px solid $light;
+  }
+
+  &.autoheight {
+    padding: 0 40px 0 16px;
+    height: 34px;
+  }
+
+  &.lang {
+    @include fsize_lheight_fwieght_color(18px, 18px, 400, $text2);
+    text-align: right;
+    padding: 0 40px 0 10px;
+  }
+}
+
+.img_wrapper {
+  @include width_height(9px, 7px);
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+
+  &.lang {
+    @include width_height(15px, 15px);
+  }
+}
+
+.list {
+  position: absolute;
+  cursor: pointer;
+  margin-top: 5px;
+  width: 100%;
+  display: none;
+  &.open {
+    display: block;
+  }
+}
+
+.list_item {
+  width: 100%;
+}
+
+.input {
+  &:hover {
+    background-color: $light;
+  }
+  z-index: 4;
+}
+
+.label {
+  display: block;
+  border-radius: 100px;
+  padding: 10px 40px 10px 16px;
+  cursor: pointer;
+  width: inherit;
+  &.lang {
+    @include fsize_lheight_fwieght_color(16px, 16px, 400, $text2);
+  }
+
+}
+
+.radio {
+  display: none;
+
+}

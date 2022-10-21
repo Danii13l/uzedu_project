@@ -1,0 +1,43 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+
+.button {
+  border-radius: 6px;
+  padding: 12px;
+  @include df_jc_ai(center, center);
+  display: block;
+  width: 100%;
+}
+
+.main {
+  @include fs_lh_fw_fcolor(16px, 20px, 500, $text);
+  background: $accent;
+
+
+}
+
+.second {
+  @include fs_lh_fw_fcolor(16px, 20px, 400, $text);
+  background: #ffffff;
+  transition: .4s;
+  border: 1px solid $accent;
+
+  &:hover {
+    background: $accent;
+  }
+}
+
+.third {
+  @include fs_lh_fw_fcolor(16px, 20px, 500, #fff);
+  background: $main;
+
+  span {
+    position: relative;
+    display: inline-block;
+    width: 26px;
+    height: 14px;
+    top: 1px;
+    margin-left: 10px;
+  }
+}
