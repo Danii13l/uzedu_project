@@ -1,4 +1,5 @@
 import '../styles/for_libraries/top_selections.scss';
+import "styles/for_libraries/opinions.scss";
 import '../styles/globals.scss'
 
 import "swiper/css";

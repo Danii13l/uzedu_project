@@ -1,6 +1,11 @@
 @import "styles/variables.module";
 @import "styles/mixins.module";
 
+
+.header {
+  position: relative;
+}
+
 .h_inner {
   padding: 8px 0;
 }
@@ -105,7 +110,6 @@
 .h_bot_main_links_wrap {
   @include df_jc_ai(center, center);
 
-
 }
 
 .h_bot_main_link_wrap {
@@ -114,48 +118,57 @@
   padding: 5px;
   transition: .4s;
 
-  &.active {
-
-
-    &:hover {
-      border-radius: 0 0 5px 5px;
-      box-shadow: 0 2px 0 0 $main;
-
-      .h_bot_sublinks_wrap {
-        display: block;
-      }
-    }
+  &:hover {
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 0 0 $main;
   }
+
 }
+
 
 .h_bot_main_link {
   @include fs_lh_fw_fcolor(16px, 20px, 400, $text);
   cursor: pointer;
+  position: relative;
 }
 
-
-.h_bot_sublinks_wrap {
+.h_bot_main_link_active {
   position: absolute;
-  padding-top: 40px;
-  top: 0;
+  height: 100px;
+  width: 100%;
   left: 0;
-  display: none;
-  width: 200%;
-  z-index: 1;
 }
 
+
+.sublinks_wrap {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  background: #E9EBF2;
+  margin: 0 auto;
+  filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
+  border-radius: 0 0 20px 20px;
+
+}
 
 .h_bot_sublinks_list {
-  background: #fff;
-  padding: 10px;
-  border-radius: 10px;
+  display: grid;
+  max-width: 940px;
+  grid-column-gap: 50px;
+  margin: 0 auto;
+  padding: 32px 0;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+.h_bot_sublink_li {
+  margin-bottom: 16px;
 
 }
 
 .h_bot_sublink_a {
-  @include fs_lh_fw_fcolor(12px, 15px, 400, $text2);
-  display: block;
-  margin-bottom: 5px;
+  @include fs_lh_fw_fcolor(14px, 24px, 400, $text);
 }
 
 .burger_search_wrap {

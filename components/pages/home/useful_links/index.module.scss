@@ -1,0 +1,49 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+.useful{
+  padding-top: 32px;
+}
+
+.useful_title{
+  @include fs_lh_fw_fcolor(24px, 29px, 500, $text);
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.item{
+  background: #FFFFFF;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.useful_inner {
+  @include dg_tc_tr_gg(repeat(4, 1fr), auto, 16px)
+}
+
+.item_content {
+  @include df_jc_ai(stretch, center);
+  margin-bottom: 16px;
+}
+
+.item_img_wrapper {
+  position: relative;
+  width: 64px;
+  min-width: 63px;
+  height: 64px;
+  margin-right: 16px;
+}
+
+.item_text {
+  @include fs_lh_fw_fcolor(16px, 20px, 400, $text);
+}
+
+.item_link_wr{
+  @include df_jc_ai(center, center);
+}
+
+.item_link{
+  @include fs_lh_fw_fcolor(16px, 20px, 500, $text);
+  display: inline-block;;
+}

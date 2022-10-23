@@ -1,0 +1,50 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+.stat_item {
+  margin-bottom: 32px;
+
+}
+
+.stat_title {
+  @include fs_lh_fw_fcolor(24px, 29px, 500, $text);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.stat_content {
+  background: #F8F9FB;
+  backdrop-filter: blur(10px);
+  border-radius: 1000px;
+  padding: 16px 32px;
+}
+
+.stat_content_inner {
+  background-color: #E9EBF2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1px;
+
+  &.stat_content_inner2 {
+
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+.stat_content_item {
+  background: #F8F9FB;
+  text-align: center;
+  padding: 16px;
+  @include df_jc_ai(center, center);
+  flex-direction: column;
+}
+
+.stat_content_num {
+  @include fs_lh_fw_fcolor(32px, 39px, 700, $main);
+  margin-bottom: 4px;
+}
+
+.stat_content_text {
+  @include fs_lh_fw_fcolor(16px, 24px, 400, $text2);
+}

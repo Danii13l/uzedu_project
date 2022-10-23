@@ -1,0 +1,90 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+.footer {
+  background: $main;
+  padding: 64px 0;
+}
+
+.f_inner {
+  display: grid;
+  grid-template-columns: minmax(280px, 346px) minmax(200px, 207px) minmax(200px, 207px)  minmax(280px, 360px);
+  grid-gap: 30px;
+  justify-content: space-between;
+  @include fs_lh_fw_fcolor(14px, 20px, 400, #F8F9FB);
+
+  a {
+    @include fs_lh_fw_fcolor(14px, 20px, 400, #F8F9FB);
+  }
+
+}
+
+.f_items {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.f_items_first {
+  p {
+    margin-top: 32px;
+  }
+}
+
+
+.f_items_second {
+  a {
+    margin-bottom: 32px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.ministry {
+  @include fs_lh_fw_fcolor(16px, 20px, 400, #F8F9FB);
+}
+
+.social {
+  display: flex;
+  margin-top: 32px;
+}
+
+.social_item {
+  @include df_jc_ai(center, center);
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  margin-right: 16px;
+}
+
+
+
+.f_items_third{
+  align-items: end;
+}
+
+
+.info_items {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  text-align: end;
+}
+
+.info_title{
+  @include fs_lh_fw_fcolor(16px, 20px, 700, #FFF);
+  margin-bottom: 32px;
+}
+
+.inf_img_wr {
+  @include df_jc_ai(center, center);
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  margin-left: 16px;
+}

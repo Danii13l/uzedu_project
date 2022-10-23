@@ -9,8 +9,8 @@ import {useTranslation} from "next-i18next";
 import {Container} from "@/components/common/container/Container";
 import {Language} from "@/components/common/header/language_select/Language";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../assets/redux/store";
-import {setBAndW} from "../../../assets/redux/slices/blackWhite";
+
+import {setBAndW} from "assets/redux/slices/blackWhite";
 
 
 const headerTopLinks = [
@@ -118,14 +118,23 @@ export const Header: FC = (): JSX.Element => {
     const {t} = useTranslation();
 
     const [hoverValue, setHoverValue] = useState<number | undefined>(undefined);
+    const [activeMenu, setActiveMenu] = useState<boolean>(false);
     const [searchInput, setSearchInput] = useState(false);
     const [settingView, setSettingView] = useState(false);
 
 
     const dispatch = useDispatch();
 
-    const handleMouseOver = useCallback((value: number) => {
+    const handleMouseOverIndex = useCallback((value: number) => {
         return () => setHoverValue(value);
+    }, []);
+
+    const handleMouseOver = useCallback(() => {
+        return () => setActiveMenu(true);
+    }, []);
+
+    const handleMouseOut = useCallback(() => {
+        return () => setActiveMenu(false);
     }, []);
 
     const handleSearch = (val: boolean) => {
@@ -161,7 +170,8 @@ export const Header: FC = (): JSX.Element => {
                     }
 
                     <div className={s.setting} data-setview={"setting_view"}>
-                        <Image  data-setview={"setting_view"} src={"/images/header/eye.svg"} width={18} height={12} onClick={handleSettingView}/>
+                        <Image data-setview={"setting_view"} src={"/images/header/eye.svg"} width={18} height={12}
+                               onClick={handleSettingView}/>
 
                         {settingView && <div className={s.s_inner} data-setview={"setting_view"}>
                             <div className={s.s_item} data-setview={"setting_view"}>
@@ -194,24 +204,25 @@ export const Header: FC = (): JSX.Element => {
                         {
                             headerBottomLinks.map(item => {
                                 return <div key={item.id}
-                                            onMouseOver={handleMouseOver(item.id)}
-                                            className={`${s.h_bot_main_link_wrap} ${hoverValue === item.id ? s.active : ""}`}>
+
+                                            className={s.h_bot_main_link_wrap}>
                                     {
                                         item.id !== 2 && <>
-                                            <p className={s.h_bot_main_link}>{t(item.text)}</p>
-                                            <div className={s.h_bot_sublinks_wrap}>
-                                                <ul className={s.h_bot_sublinks_list}>
-                                                    {item.sublinks.map(item => {
-                                                        return <li key={item.id} className={s.h_bot_sublink_li}>
-                                                            <Link href={item.link}>
-                                                                <a className={s.h_bot_sublink_a}>
-                                                                    {t(item.text)}
-                                                                </a>
-                                                            </Link>
-                                                        </li>
-                                                    })}
-                                                </ul>
-                                            </div>
+                                            <p onMouseOver={() => {
+                                                setActiveMenu(true)
+                                                setHoverValue(item.id)
+                                            }
+                                            }
+
+                                               onMouseLeave={handleMouseOut()}
+                                               className={s.h_bot_main_link}>{t(item.text)}
+
+                                                {
+                                                    hoverValue && <div className={s.h_bot_main_link_active}></div>
+                                                }
+                                            </p>
+
+
                                         </>
                                     }
 
@@ -249,5 +260,26 @@ export const Header: FC = (): JSX.Element => {
                 </div>
             </div>
         </Container>
+
+        {
+            activeMenu && <div className={s.sublinks_wrap} onMouseOver={() => setActiveMenu(true)}
+                               onMouseLeave={() => setActiveMenu(false)}>
+                <Container>
+                    <ul className={s.h_bot_sublinks_list}>
+                        {headerBottomLinks[hoverValue ? hoverValue - 1 : 0].sublinks.map(item => {
+                            return <li key={item.id} className={s.h_bot_sublink_li}>
+                                <Link href={item.link}>
+                                    <a className={s.h_bot_sublink_a}>
+                                        {t(item.text)}
+                                    </a>
+                                </Link>
+                            </li>
+                        })
+                        }
+                    </ul>
+                </Container>
+            </div>
+        }
+
     </header>
 }
