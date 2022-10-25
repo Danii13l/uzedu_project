@@ -66,7 +66,7 @@ const usefulLinks = [
         text: "home:virtualpresident"
     },
 
-]
+];
 
 export const UsefulLinks: FC = (): JSX.Element => {
     const {t} = useTranslation();
@@ -78,7 +78,7 @@ export const UsefulLinks: FC = (): JSX.Element => {
                 <div className={s.useful_inner}>
                     {
                         usefulLinks.map(item => {
-                            return <div className={s.item}>
+                            return <div className={s.item} key={item.id}>
                                 <div className={s.item_content}>
                                     <div className={s.item_img_wrapper}>
                                         <Image src={item.img} layout={"fill"} objectFit={"cover"} quality={100}/>
@@ -90,11 +90,11 @@ export const UsefulLinks: FC = (): JSX.Element => {
                                     <a className={s.item_link} href={item.link}>{item.linkText}</a>
                                 </div>
 
-                            </div>
+                            </div>;
                         })
                     }
                 </div>
             </Container>
         </SectionWrapper>
-    </div>
-}
+    </div>;
+};

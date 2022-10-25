@@ -58,5 +58,5 @@ export const Statistics: FC = (): JSX.Element => {
                 </div>
             </Container>
         </SectionWrapper>
-    </div>
-}
+    </div>;
+};

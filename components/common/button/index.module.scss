@@ -19,7 +19,7 @@
 
 .second {
   @include fs_lh_fw_fcolor(16px, 20px, 400, $text);
-  background: #ffffff;
+  background: transparent;
   transition: .4s;
   border: 1px solid $accent;
 

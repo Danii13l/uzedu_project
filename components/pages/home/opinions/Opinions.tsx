@@ -1,7 +1,7 @@
 import {FC} from "react";
 import Image from "next/image";
 
-import {Navigation} from "swiper";
+import {Navigation, Pagination} from "swiper";
 import {Swiper, SwiperSlide} from "swiper/react";
 
 import {useTranslation} from "next-i18next";
@@ -15,7 +15,7 @@ const blockquotes = [
         id: 1,
         name: "Дэниел Розенблюм",
         who: "посол США в Узбекистане",
-        text: "«Качественное образование — мощный драйвер развития и один из самых действенных инструментов сокращения бедности и улучшения здоровья, гендерного равенства, мира и стабильности. Когда дети учатся и преуспевают, они вырастают во взрослых, которые меняют свою жизнь и свою страну»."
+        text: "« Качественное образование — мощный драйвер развития и один из самых действенных инструментов сокращения бедности и улучшения здоровья, гендерного равенства, мира и стабильности. Когда дети учатся и преуспевают, они вырастают во взрослых, которые меняют свою жизнь и свою страну»."
     },
     {
         id: 2,
@@ -38,7 +38,7 @@ export const Opinions: FC = (): JSX.Element => {
                 <Swiper
                     modules={[Navigation]}
                     navigation
-                    spaceBetween={0}
+                    spaceBetween={20}
                     slidesPerView={1}
                 >
                     {
@@ -46,25 +46,25 @@ export const Opinions: FC = (): JSX.Element => {
                             return <SwiperSlide key={item.id}>
                                 <div className={"opinions__slide"}>
                                     <div className={"opinions__quote"}>
-                                        <Image src={"/images/home/quote.svg"} width={66} height={50}/>
+                                        <Image src={"/images/home/quote.svg"} layout={"fill"}/>
                                     </div>
                                     <h6 className={"opinions__name"}>{item.name}</h6>
                                     <p className={"opinions__who"}>{item.who}</p>
                                     <p className={"opinions__text"}>{item.text}</p>
 
                                     <div className={"opinions__quote_bottom"}>
-                                        <Image src={"/images/home/quote.svg"} width={66} height={50}/>
+                                        <Image src={"/images/home/quote.svg"} layout={"fill"}/>
                                     </div>
 
                                     <div className={"opinions__slide_shadow"}></div>
                                     <div className={"opinions__slide_bg"}></div>
                                 </div>
-                            </SwiperSlide>
+                            </SwiperSlide>;
                         })
                     }
 
                 </Swiper>
             </Container>
         </SectionWrapper>
-    </div>
-}
+    </div>;
+};

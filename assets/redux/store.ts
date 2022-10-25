@@ -1,12 +1,14 @@
-import {configureStore} from '@reduxjs/toolkit'
+import {configureStore} from '@reduxjs/toolkit';
 
-import blackWhiteReducer from './slices/blackWhite'
+import blackWhiteReducer from './slices/blackWhite';
+import sideBarMenuReducer from './slices/sidebarMenu';
 
 export const store = configureStore({
     reducer: {
-        blackWhite: blackWhiteReducer
+        blackWhite: blackWhiteReducer,
+        sidebarMenu: sideBarMenuReducer
     },
-})
+});
 
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

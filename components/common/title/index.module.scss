@@ -4,3 +4,16 @@
 .title{
   @include fs_lh_fw_fcolor(32px,39px,600,$text)
 }
+
+
+@media (max-width: 1000px) {
+  .title{
+    @include fs_lh_fw_fcolor(28px,35px,600,$text)
+  }
+}
+
+@media (max-width: 768px) {
+  .title{
+    @include fs_lh_fw_fcolor(25px,34px,600,$text)
+  }
+}

@@ -10,5 +10,5 @@ export const Selection: FC = (): JSX.Element => {
             <TopSelections/>
             <BottomSelections/>
         </SectionWrapper>
-    </div>
-}
+    </div>;
+};

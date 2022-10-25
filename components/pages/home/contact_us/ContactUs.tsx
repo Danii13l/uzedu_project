@@ -7,11 +7,14 @@ import {Title} from "@/components/common/title/Title";
 import {TextInput} from "@/components/common/input/TextInput";
 import {PhoneInput} from "@/components/common/input/PhoneInput";
 import {TextArea} from "@/components/common/input/TextArea";
+import {Button} from "@/components/common/button/Button";
+import {Container} from "@/components/common/container/Container";
 
 import {useTranslation} from "next-i18next";
 
 import {FormikProps, useFormik} from "formik";
 import {ContactUsInt, ContactUsSchema} from "assets/validation_form/contact_us";
+
 
 export const ContactUs: FC = (): JSX.Element => {
 
@@ -31,56 +34,67 @@ export const ContactUs: FC = (): JSX.Element => {
 
     return <div className={s.contact}>
         <SectionWrapper>
-            <form className={s.form}>
+            <Container>
+                <form className={s.form}>
 
-                <div className={s.title_wrapper}>
-                    <Title title={t("home:contactus")}/>
-                    <p className={s.subtitle}>{t("home:wewillcontact")}</p>
-                </div>
-
-                <TextInput
-                    labelText={t("common:name")}
-                    name="username"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    isError={formik.errors.username}
-                    isTouched={formik.touched.username}
-                    value={formik.values.username}
-                    place={t("common:howcallyou")}
-                />
-                <div className={s.email_phone_wr}>
-                    <PhoneInput
-                        name="phone"
-                        labelText={t("common:phonen")}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        isError={formik.errors.phone}
-                        isTouched={formik.touched.phone}
-                        value={formik.values.phone}
-                    />
+                    <div className={s.title_wrapper}>
+                        <Title title={t("home:contactus")}/>
+                        <p className={s.subtitle}>{t("home:wewillcontact")}</p>
+                    </div>
 
                     <TextInput
-                        labelText={t("common:email")}
-                        name="email"
+                        labelText={t("common:name")}
+                        name="username"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        isError={formik.errors.email}
-                        isTouched={formik.touched.email}
-                        value={formik.values.email}
-                        place={"example@mail.com"}
+                        isError={formik.errors.username}
+                        isTouched={formik.touched.username}
+                        value={formik.values.username}
+                        place={t("common:howcallyou")}
                     />
-                </div>
+                    <div className={s.email_phone_wr}>
+                        <PhoneInput
+                            name="phone"
+                            labelText={t("common:phonen")}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            isError={formik.errors.phone}
+                            isTouched={formik.touched.phone}
+                            value={formik.values.phone}
+                        />
+
+                        <TextInput
+                            labelText={t("common:email")}
+                            name="email"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            isError={formik.errors.email}
+                            isTouched={formik.touched.email}
+                            value={formik.values.email}
+                            place={"example@mail.com"}
+                        />
+                    </div>
 
 
-                <TextArea name={"question"}
-                          labelText={t("common:comment")}
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          isError={formik.errors.question}
-                          isTouched={formik.touched.question}
-                          value={formik.values.question}
-                          place={"Ваш вопрос"}/>
-            </form>
+                    <TextArea name={"question"}
+                              labelText={t("common:comment")}
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                              isError={formik.errors.question}
+                              isTouched={formik.touched.question}
+                              value={formik.values.question}
+                              place={"Ваш вопрос"}/>
+
+
+                    <div className={s.submit_wrapper}>
+                        <div className={s.submit}>
+                            <Button classN={"main"}>Отправить</Button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </Container>
         </SectionWrapper>
-    </div>
-}
+    </div>;
+};

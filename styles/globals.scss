@@ -44,6 +44,29 @@ body {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+
+
+  scrollbar-color: $main $main;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 1px;
+    background: rgba(255, 255, 255, 0);
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background:transparent;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $main;
+  }
+
+  /* Handle on hover */
+
 }
 
 input,

@@ -1,9 +1,6 @@
 @import "styles/variables.module";
 @import "styles/mixins.module";
 
-.useful{
-  padding-top: 32px;
-}
 
 .useful_title{
   @include fs_lh_fw_fcolor(24px, 29px, 500, $text);
@@ -46,4 +43,25 @@
 .item_link{
   @include fs_lh_fw_fcolor(16px, 20px, 500, $text);
   display: inline-block;;
+}
+
+
+
+@media (max-width: 1200px) {
+  .useful_inner {
+    @include dg_tc_tr_gg(repeat(3, 1fr), auto, 16px)
+  }
+}
+
+@media (max-width: 900px) {
+  .useful_inner {
+    @include dg_tc_tr_gg(repeat(2, 1fr), auto, 16px)
+  }
+}
+
+
+@media (max-width: 600px) {
+  .useful_inner {
+    @include dg_tc_tr_gg(1fr, auto, 16px)
+  }
 }

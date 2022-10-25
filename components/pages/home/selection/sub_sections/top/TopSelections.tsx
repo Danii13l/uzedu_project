@@ -1,9 +1,9 @@
 import {FC} from "react";
+import Image from "next/image";
 
 
 import {Container} from "@/components/common/container/Container";
 import {Button} from "@/components/common/button/Button";
-import Image from "next/image";
 
 
 import {Pagination} from "swiper";
@@ -13,16 +13,9 @@ import {Swiper, SwiperSlide} from "swiper/react";
 const fakeSlider = [
     {id: 1, text: "Базы данных", subtext: "Системы народного образования", img: "/images/home/laptop_book.png"},
     {id: 2, text: "Базы данных", subtext: "Системы народного образования", img: "/images/home/laptop_book.png"},
-]
+];
 
-const cardStyles = {
-    "swiper": {
-        "swiper-pagination": {
-            background: "red"
-        }
-    },
 
-};
 
 export const TopSelections: FC = (): JSX.Element => {
     return <div className={"topSelections"}>
@@ -31,14 +24,16 @@ export const TopSelections: FC = (): JSX.Element => {
                 <div className={"topSelections__inner_left"}>
                     <div className={"topSelections__l_inner"}>
                         <div className={"topSelections__l_img_wrap"}>
-                            <Image src={"/images/home/call_center.svg"} width={48} height={48}/>
+                            <Image src={"/images/home/call_center.svg"} width={48} height={48} alt={"call_center"}/>
                         </div>
                         <div className={"topSelections__l_content"}>
                             <p>Телефон доверия</p>
                             <a href={"tel:+998712020909"}>(71) 202 09 09</a>
                         </div>
                     </div>
-                    <Button classN={"main"}>Оценить</Button>
+                    <div className={"topSelections__l_btn"}>
+                        <Button classN={"main"}>Оценить</Button>
+                    </div>
                 </div>
                 <div className={"topSelections__right"}>
                     <div className={"topSelections__slider"}>
@@ -47,7 +42,7 @@ export const TopSelections: FC = (): JSX.Element => {
                             pagination={{
                                 clickable: true,
                             }}
-                            spaceBetween={0}
+                            spaceBetween={10}
                             slidesPerView={1}
                         >
                             {
@@ -66,7 +61,7 @@ export const TopSelections: FC = (): JSX.Element => {
                                                 <Button classN={"main"}>Подробнее</Button>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
+                                    </SwiperSlide>;
                                 })
                             }
 
@@ -76,5 +71,5 @@ export const TopSelections: FC = (): JSX.Element => {
                 </div>
             </div>
         </Container>
-    </div>
-}
+    </div>;
+};

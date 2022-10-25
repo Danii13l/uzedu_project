@@ -1,4 +1,4 @@
-import type {GetServerSideProps, NextPage} from 'next'
+import type {GetServerSideProps, NextPage} from 'next';
 
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 
@@ -33,7 +33,7 @@ const Home: NextPage = (): JSX.Element => {
             <Statistics/>
             <UsefulLinks/>
         </Layout>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

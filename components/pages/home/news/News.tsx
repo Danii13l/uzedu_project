@@ -40,13 +40,13 @@ const allNews = [
         date: new Date(),
         title: "В текущем учебном году 11380 выпускников были награждены золотыми и серебряными медалями"
     }
-]
+];
 
 const offers = [
     {id: 1, title: "home:appeals", text: "home:appealstext", link: "#", img: "/images/home/offer_1.svg"},
     {id: 2, title: "home:giveidea", text: "home:appealstext", link: "#", img: "/images/home/offer_2.svg"},
     {id: 3, title: "home:receptionschedule", text: "home:receptiontext", link: "#", img: "/images/home/offers_3.svg"},
-]
+];
 
 export const News: FC = (): JSX.Element => {
 
@@ -81,7 +81,7 @@ export const News: FC = (): JSX.Element => {
 
                                             <p className={s.news_item_title}>{item.title}</p>
                                         </div>
-                                    </div>
+                                    </div>;
                                 })
                             }
                         </div>
@@ -103,10 +103,10 @@ export const News: FC = (): JSX.Element => {
                                         </p>
 
                                         <Link href={item.link}>
-                                            <a><Button classN={"third"}>{t("buttons:go")}</Button></a>
+                                            <a className={s.o_item_btn}><Button classN={"third"}>{t("buttons:go")}</Button></a>
                                         </Link>
                                         <div className={s.o_item_border}></div>
-                                    </div>
+                                    </div>;
                                 })
                             }
                             <div className={s.news_socials}>
@@ -151,5 +151,5 @@ export const News: FC = (): JSX.Element => {
                 </div>
             </Container>
         </SectionWrapper>
-    </div>
-}
+    </div>;
+};

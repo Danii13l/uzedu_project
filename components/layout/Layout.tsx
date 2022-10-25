@@ -1,13 +1,14 @@
 import React, {FC} from "react";
 import Head from "next/head";
 
-import s from './index.module.scss'
+import s from './index.module.scss';
 
-import {Header} from "../common/header/Header";
-import {Footer} from "../common/footer/Footer";
-import {useBlackAndWhite} from "../../assets/hooks/useBlackAndWhite";
+import {RootState} from "assets/redux/store";
 import {useSelector} from "react-redux";
-import {RootState} from "../../assets/redux/store";
+
+import {Header} from "@/components/common/header/Header";
+import {Footer} from "@/components/common/footer/Footer";
+import {SidebarMenu} from "@/components/common/sidebar_menu/SidebarMenu";
 
 interface LayoutInt {
     title: string;
@@ -17,7 +18,7 @@ interface LayoutInt {
 
 export const Layout: FC<LayoutInt> = ({title, contentDesc, children}): JSX.Element => {
 
-    const {bAndw} = useSelector(({blackWhite}: RootState) => blackWhite)
+    const {bAndw} = useSelector(({blackWhite}: RootState) => blackWhite);
 
 
     return <div className={`${s.layout} ${bAndw ? s.black : ""}`}>
@@ -26,7 +27,8 @@ export const Layout: FC<LayoutInt> = ({title, contentDesc, children}): JSX.Eleme
             <meta name="description" content={contentDesc}/>
         </Head>
         <Header/>
+        <SidebarMenu/>
         <main>{children}</main>
         <Footer/>
-    </div>
-}
+    </div>;
+};

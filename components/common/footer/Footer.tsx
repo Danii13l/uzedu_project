@@ -17,7 +17,7 @@ const footerLinks = [
     {id: 5, link: "#", text: "footer:appealscitizens"},
     {id: 6, link: "#", text: "footer:opendata"},
     {id: 7, link: "#", text: "footer:sitemap"}
-]
+];
 
 export const Footer: FC = (): JSX.Element => {
 
@@ -70,16 +70,16 @@ export const Footer: FC = (): JSX.Element => {
                         footerLinks.slice(0, 4).map(item => {
                             return <Link href={item.link} key={item.id}>
                                 <a>{t(item.text)}</a>
-                            </Link>
+                            </Link>;
                         })
                     }
                 </div>
-                <div className={`${s.f_items} ${s.f_items_second}`}>
+                <div className={`${s.f_items} ${s.f_items_second} ${s.f_items_second_secon}`}>
                     {
                         footerLinks.slice(4).map(item => {
                             return <Link href={item.link} key={item.id}>
                                 <a>{t(item.text)}</a>
-                            </Link>
+                            </Link>;
                         })
                     }
                 </div>
@@ -110,5 +110,5 @@ export const Footer: FC = (): JSX.Element => {
                 </div>
             </div>
         </Container>
-    </footer>
-}
+    </footer>;
+};
