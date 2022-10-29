@@ -1,53 +1,81 @@
 @import "styles/variables.module.scss";
 @import "styles/mixins.module.scss";
 
-.label{
-  @include fs_lh_fw_fcolor(16px,24px,400,$text);
+.label {
+  @include fs_lh_fw_fcolor(16px, 24px, 400, $text);
   display: block;
   margin-bottom: 8px;
 }
 
-.input,.textarea{
+.input, .textarea {
   background: rgba(233, 235, 242, 0.5);
   border-radius: 10px;
   width: 100%;
   padding: 16px;
-  @include fs_lh_fw_fcolor(16px,24px,400,$text);
-  &::placeholder{
-    @include fs_lh_fw_fcolor(16px,24px,400,$text2);
+  overflow: hidden;
+  @include fs_lh_fw_fcolor(16px, 24px, 400, $text);
+
+  &::placeholder {
+    @include fs_lh_fw_fcolor(16px, 24px, 400, $text2);
   }
 
-  &.errorInput{
+  &.errorInput {
     background: rgba(255, 0, 0, 0.35);
+  }
+
+  &.admin {
+    padding: 8px;
+
   }
 }
 
 
-.phone_wrapper{
+.phone_wrapper {
   position: relative;
-  input{
+
+  input {
     padding-left: 54px;
     letter-spacing: 2px;
   }
 
 }
 
-.number_ex{
+.number_ex {
   position: absolute;
   top: 50%;
   left: 16px;
   transform: translateY(-50%);
-  @include fs_lh_fw_fcolor(16px,24px,400,$text2);
+  @include fs_lh_fw_fcolor(16px, 24px, 400, $text2);
 }
 
-.textarea{
+.textarea {
   resize: vertical;
   min-height: 56px;
   height: 56px;
   max-height: 300px;
 }
 
-.error{
+.error {
   color: rgba(255, 0, 0, 0.56);
   margin-top: 5px;
+}
+
+.label_file {
+  @include df_jc_ai(center, center);
+
+  width: 258px;
+  height: 42px;
+  background: $accent;
+  border-radius: 6px;
+  cursor: pointer;
+
+  span {
+    @include fs_lh_fw_fcolor(16px, 20px, 400, $text);
+    display: block;
+    margin-right: 10px;
+  }
+}
+
+.file_input {
+  display: none;
 }

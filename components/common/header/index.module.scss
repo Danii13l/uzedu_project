@@ -93,6 +93,7 @@
 
 .h_bottom {
   @include df_jc_ai(space-between, center);
+  position: relative;
 }
 
 .logo {
@@ -151,7 +152,7 @@
   z-index: 1;
   background: #E9EBF2;
   margin: 0 auto;
-  filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
+  border: 1px solid rgba(131, 138, 151, 0.15);
   border-radius: 0 0 20px 20px;
   transition: .5s;
   pointer-events: none;
@@ -190,7 +191,6 @@
 
 .search, .burger {
   cursor: pointer;
-  position: relative;
 }
 
 .search_form {
@@ -202,7 +202,9 @@
   overflow: hidden;
   position: absolute;
   right: -2px;
-  bottom: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+
   width: 0;
   transition: .6s;
 
@@ -216,8 +218,7 @@
 }
 
 .active_form {
-  width: 320px;
-
+  width: 90%;
 }
 
 .search_form_img_left, .search_form_img_right {
@@ -321,14 +322,18 @@
     }
   }
 
-  .burger_search_wrap{
+  .burger_search_wrap {
 
     justify-content: end;
   }
 
-.burger{
-  margin-left: 15px;
-}
+  .burger {
+    margin-left: 15px;
+  }
+
+  .active_form {
+    width: 101%;
+  }
 
 }
 

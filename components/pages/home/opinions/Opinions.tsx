@@ -10,6 +10,9 @@ import {Title} from "@/components/common/title/Title";
 import {SectionWrapper} from "@/components/common/section_wrapper/SectionWrapper";
 import {Container} from "@/components/common/container/Container";
 
+
+import {cutText} from "assets/function/cutText";
+
 const blockquotes = [
     {
         id: 1,
@@ -36,8 +39,11 @@ export const Opinions: FC = (): JSX.Element => {
                 </div>
 
                 <Swiper
-                    modules={[Navigation]}
+                    modules={[Navigation,Pagination]}
                     navigation
+                    pagination={{
+                        clickable: true,
+                    }}
                     spaceBetween={20}
                     slidesPerView={1}
                 >
@@ -50,7 +56,7 @@ export const Opinions: FC = (): JSX.Element => {
                                     </div>
                                     <h6 className={"opinions__name"}>{item.name}</h6>
                                     <p className={"opinions__who"}>{item.who}</p>
-                                    <p className={"opinions__text"}>{item.text}</p>
+                                    <p className={"opinions__text"}> {cutText(item.text, 392)}</p>
 
                                     <div className={"opinions__quote_bottom"}>
                                         <Image src={"/images/home/quote.svg"} layout={"fill"}/>

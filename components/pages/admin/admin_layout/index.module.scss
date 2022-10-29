@@ -1,0 +1,60 @@
+@import "styles/variables.module.scss";
+@import "styles/mixins.module.scss";
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax( 300px, 300px) minmax(1079px, 100%);
+  min-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.aside {
+  background-color: $main;
+  padding: 32px 0;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90.6deg, $main 0%, $text 100%);
+}
+
+
+.links_wrapper{
+  padding: 15px;
+  @include fs_lh_fw_fcolor(18px,20px,400,#fff);
+}
+
+.page_name{
+  margin-bottom:10px;
+  cursor: pointer;
+}
+
+
+.page_link{
+  display: block;
+  margin-left: 10px;
+  margin-bottom:7px;
+  @include fs_lh_fw_fcolor(16px,20px,400,#fff)
+}
+
+.active{
+
+}
+
+.not_active{
+  display: none;
+}
+
+.page_name{
+
+}
+
+
+
+
+.content {
+  padding: 20px 20px 20px 64px;
+  grid-column: 1fr;
+}

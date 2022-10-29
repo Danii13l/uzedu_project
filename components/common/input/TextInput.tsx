@@ -1,8 +1,8 @@
 import {FC} from "react";
 
-import { InputInt } from "assets/interfaces/inputInterface";
+import {InputInt} from "assets/interfaces/inputInterface";
 
-import styles from "./index.module.scss";
+import s from "./index.module.scss";
 
 export const TextInput: FC<InputInt> = ({
                                             name,
@@ -12,24 +12,25 @@ export const TextInput: FC<InputInt> = ({
                                             onBlur,
                                             isError,
                                             isTouched,
-                                            place
+                                            place,
+                                            isAdmin
                                         }): JSX.Element => {
     return (
         <div>
-            {labelText && <label className={styles.label}>{labelText}</label>}
+            {labelText && <label className={s.label}>{labelText}</label>}
             <input
                 type="text"
                 name={name}
-                className={`${styles.input} ${
-                    isError && isTouched ? styles.errorInput : ""
-                }`}
+                className={`${s.input} ${
+                    isError && isTouched ? s.errorInput : ""
+                }  ${isAdmin ? s.admin : ""}`}
                 value={value}
                 onChange={onChange}
                 onBlur={onBlur}
                 autoComplete="on"
                 placeholder={place ? place : ""}
             />
-            {isError && isTouched && <p className={styles.error}>{isError}</p>}
+            {isError && isTouched && <p className={s.error}>{isError}</p>}
         </div>
     );
 };

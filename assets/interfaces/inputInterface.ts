@@ -14,4 +14,5 @@ export interface InputInt {
   isError?: string;
   isTouched?: boolean;
   place?: string;
+  isAdmin?:boolean
 }
