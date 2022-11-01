@@ -1,0 +1,16 @@
+@import 'styles/variables.module';
+@import 'styles/mixins.module';
+
+
+.link {
+  @include df_jc_ai(center, center);
+  background: rgba(82, 83, 102, 0.05);
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 111px;
+
+  span {
+    margin-right: 8px;
+    @include fs_lh_fw_fcolor(16px,16px,400,$main)
+  }
+}

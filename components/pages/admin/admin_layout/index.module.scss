@@ -1,60 +1,76 @@
-@import "styles/variables.module.scss";
-@import "styles/mixins.module.scss";
+@import "styles/variables.module";
+@import "styles/mixins.module";
 
 .layout {
-  display: grid;
-  grid-template-columns: minmax( 300px, 300px) minmax(1079px, 100%);
-  min-width: 1440px;
-  width: 100%;
-  margin: 0 auto;
+  display: flex;
+  background: #F5F5F5;
 }
 
 
-.aside {
-  background-color: $main;
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
   padding: 32px 0;
+  background-color: $main;
+  align-items: baseline;
   min-height: 100vh;
   position: sticky;
   top: 0;
   bottom: 0;
-  background: linear-gradient(90.6deg, $main 0%, $text 100%);
+  min-width: 300px;
+  width: 300px;
+  z-index: 1;
 }
 
+.logo {
 
-.links_wrapper{
-  padding: 15px;
-  @include fs_lh_fw_fcolor(18px,20px,400,#fff);
-}
+  position: relative;
 
-.page_name{
-  margin-bottom:10px;
-  cursor: pointer;
-}
-
-
-.page_link{
+  border-radius: 10px;
   display: block;
-  margin-left: 10px;
-  margin-bottom:7px;
-  @include fs_lh_fw_fcolor(16px,20px,400,#fff)
+  margin: 0 auto 40px;
 }
 
-.active{
-
+.links_img_wrapper {
+  min-width: 32px;
+  max-width: 32px;
+  height: 32px;
+  position: relative;
+  margin-right: 16px;
 }
 
-.not_active{
-  display: none;
+.links {
+  display: block;
+  width: 100%;
+
+  &.active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  padding: 16px 32px;
+  @include df_jc_ai(stretch, center);
+
 }
-
-.page_name{
-
-}
-
-
-
 
 .content {
-  padding: 20px 20px 20px 64px;
-  grid-column: 1fr;
+  background: #F5F5F5;
+  width: 100%;
 }
+
+.content_top {
+  @include df_jc_ai(space-between, center);
+  background: #fff;
+  padding: 15px 32px;
+  position: relative;
+}
+
+.content_top_text {
+  text-transform: uppercase;
+
+}
+
+.content_inner {
+  padding: 32px;
+}
+

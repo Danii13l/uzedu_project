@@ -4,6 +4,9 @@ import s from "./index.module.scss";
 
 import {useRouter} from "next/router";
 import Link from "next/link";
+import Head from "next/head";
+import Image from "next/image";
+import {Exit} from "@/components/common/exit/Exit";
 
 const links = [
     {
@@ -62,29 +65,42 @@ export const AdminLayout: FC<HeaderLinksInt> = ({
     };
 
     return (
-        <div className={s.layout}>
-            <aside className={s.aside}>
+        <>
+            <Head>
+                <title>{"hello"}</title>
+            </Head>
+            <div className={s.layout}>
+                <div className={s.navbar}>
+                    <Link href={"/"}>
+                        <a className={s.logo}>
+                            <Image src={"/images/common/logo.svg"} width={80} height={80}/>
+                        </a>
+                    </Link>
+                    {/*{*/}
+                    {/*    links.map(item => {*/}
+                    {/*        return <Link href={item.link} key={item.id}>*/}
+                    {/*            <a className={`${s.links} ${pathname === item.link ? s.active : ""}`}>*/}
 
-                {
-                    links.map(item => {
-                        return <div key={item.text} className={s.links_wrapper}>
-                            <p className={s.page_name} onClick={handleActivePage(item.id)}>{item.text}</p>
-                            <div className={activePage === item.id ? "" : s.not_active}>
-                                {
-                                    item.subref.map(subitems => {
-                                        return <Link key={subitems.text} href={subitems.ref}><a
-                                            className={s.page_link}>{subitems.text}</a></Link>;
-                                    })
-                                }
-                            </div>
-                        </div>;
-                    })
+                    {/*            /!*<span className={s.links_img_wrapper}>*!/*/}
+                    {/*            /!*    <Image src={item.img} layout={"fill"} objectFit={"cover"}/>*!/*/}
+                    {/*            /!*</span>*!/*/}
 
-                }
+                    {/*                <span>{item.text}</span>*/}
+                    {/*            </a>*/}
+                    {/*        </Link>*/}
+                    {/*    })*/}
+                    {/*}*/}
+                </div>
+                <div className={s.content}>
+                    <div className={s.content_top}>
+                        <p className={s.content_top_text}>{"helllo"}</p>
 
-            </aside>
-
-            <div className={s.content}>{children}</div>
-        </div>
-    );
+                        <Exit/>
+                    </div>
+                    <div className={s.content_inner}>
+                        {children}
+                    </div>
+                </div>
+            </div>
+        </>);
 };
