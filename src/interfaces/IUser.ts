@@ -1,0 +1,7 @@
+export interface IUser {
+    _id?: string;
+    name: string;
+    password: string;
+    isAdmin: boolean;
+    token?: string;
+}

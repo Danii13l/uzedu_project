@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
-    "@types/yup": "^0.32.0",
     "formik": "^2.2.9",
     "next": "12.3.1",
     "next-i18next": "^12.1.0",
@@ -20,7 +19,15 @@
     "react-redux": "^8.0.4",
     "sass": "^1.55.0",
     "swiper": "^8.4.4",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "next-connect": "^0.12.2",
+    "serverless-mysql": "^1.5.4",
+    "jsonwebtoken": "^8.5.1",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/formidable": "^2.0.5",
+    "bcryptjs": "^2.4.3",
+    "formidable": "^2.0.1"
   },
   "devDependencies": {
     "@types/node": "18.11.0",
