@@ -20,8 +20,7 @@ handler.get(async (req, res) => {
       const subMenuArray: ISubMenu[] = [];
       subMenu.forEach((s: any) => {
         if (m.id === s.menuId) {
-            const isGallery = s.isGallery === 1 ? true : false;
-            subMenuArray.push({id:s.id,name:s.name,isGallery:isGallery});
+            subMenuArray.push({id:s.id,name:s.name,typeOfForm:s.typeOfForm});
         }
       });
       m.subMenu = subMenuArray;
@@ -31,7 +30,6 @@ handler.get(async (req, res) => {
       menu,
     });
   } catch (err: any) {
-    console.log(err.message);
 
     res.status(500).json({ message: err });
     return;

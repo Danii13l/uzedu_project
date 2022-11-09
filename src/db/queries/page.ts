@@ -4,7 +4,7 @@ export const getById = "SELECT * FROM pages where id = ?";
 export const updatePage =
   "UPDATE pages SET title = ?, title_ru = ?, title_uz = ?, description = ?, description_ru = ?, description_uz = ?, images = ?, videos = ?, files = ? WHERE id = ?";
 export const getEnPageQuery =
-  "SELECT id, menu_id as menuId, sub_menu_id as subMenuId, title, description, images, videos, files";
+  "SELECT id, menu_id as menuId, sub_menu_id as subMenuId, title, description, images, videos, files  FROM pages WHERE menu_id = ? AND sub_menu_id = ?";
 export const getRuPageQuery =
   "SELECT id, menu_id as menuId, sub_menu_id as subMenuId, title_ru as title, description_ru as description, images, videos, files FROM pages WHERE menu_id = ? AND sub_menu_id = ?";
 export const getUzPageQuery =

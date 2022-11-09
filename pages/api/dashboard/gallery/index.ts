@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
-import { IncomingForm } from "formidable";
+import formidable, { IncomingForm } from "formidable";
 import { isAuth } from "src/utils/auth";
 import { RemoveImage, uploadImage } from "src/utils/upload";
 import { IImage } from "src/interfaces/IImage";
@@ -25,31 +25,31 @@ handler
       let galleries: any = await excuteQuery({
         query: fullQuery,
       });
+      if(galleries.length === 0){
+          res.status(200).json([]);
+      }
       galleries = JSON.parse(JSON.stringify(galleries));
-      galleries = galleries.map((i: any) => {
-        let obj = JSON.parse(i.image);
-        if (obj) {
-          i.image = obj[0].url;
-        }
-        return i;
-      });
+      galleries.map((p: any) => {
+          p.images = JSON.parse(p.images);
+        });
       res.status(200).json(galleries);
-    } catch (err) {
-      res.status(500).json({ message: err });
+    } catch (err:any) {    
+      res.status(500).json({ message: err.message });
       return;
     }
   })
   .post(async (req, res) => {
     try {
+      const form = formidable({ multiples: true });
       const imagesURLArray: IImage[] = [];
       const data: any = await new Promise((resolve, reject) => {
-        const form = new IncomingForm();
         form.parse(req, (err, fields, files) => {
           if (err) return reject(err);
           resolve({ fields, files });
         });
       });
-      const { ...images } = data.files;
+
+     const {images} = data.files;
       if (!images) {
         res.status(400).json({ message: "image required" });
       }
