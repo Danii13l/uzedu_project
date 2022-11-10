@@ -1,0 +1,32 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+.bread {
+  @include df_jc_ai(stretch, center);
+  margin-bottom: 32px;
+
+  a, div {
+    @include fs_lh_fw_fcolor(14px, 15px, 400, $text2);
+  }
+
+
+  .submenu:last-child {
+    color: $main;
+  }
+}
+
+
+.submenu {
+  @include df_jc_ai(stretch, center);
+
+}
+
+.circle {
+  width: 5px;
+  min-width: 5px;
+  height: 5px;
+  background: $text2;
+  margin: 0 8px;
+  display: block;
+  border-radius: 50%;
+}

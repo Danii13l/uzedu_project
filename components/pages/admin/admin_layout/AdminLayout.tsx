@@ -1,67 +1,28 @@
 import React, {FC, useState} from "react";
-
-import s from "./index.module.scss";
-
-import {useRouter} from "next/router";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
+
+import s from "./index.module.scss";
+
 import {Exit} from "@/components/common/exit/Exit";
 
-const links = [
-    {
+import {useGetMenu} from "assets/hooks/fetching/useGetMenu";
+import {useTranslation} from "next-i18next";
 
-        id: 1, text: "Министерство", subref: [
-            {id: 1, ref: "/admin/ministry/about", text: "О Министерстве"},
-            {id: 2, ref: "/admin/ministry/leaders", text: "Руководство"},
-        ]
-    },
-    {
-        id: 2, text: "Документы", subref: []
-    },
-    {
-        id: 3, text: "Образование", subref: [
-            {id: 1, ref: "/admin/education/statistics", text: "Статистика"},
-            {id: 2, ref: "/admin/education/analyticaldata", text: "Аналитические данные"},
-        ]
-    },
-    {
-        id: 4, text: "Деятельность", subref: [
-            {id: 1, ref: "/admin/activities/registerserv", text: "Реестр государственных услуг"},
-            {id: 2, ref: "/admin/activities/projecte", text: "Проект \"Электронное правительство\""},
-        ]
-    },
-    {
-        id: 5, text: "Информационная служба", subref: [
-            {id: 1, ref: "/admin/informationService/ministrynews", text: "Новости министерства"},
-            {id: 2, ref: "/admin/informationService/pressreleases", text: "Пресс-релизы"},
-        ]
-    },
-    {
-        id: 6, text: "Открытые данные", subref: [
-            {id: 1, ref: "/admin/opendata/openbudget", text: "Открытый бюджет"},
-            {id: 2, ref: "/admin/opendata/opendatadp", text: "Открытые данные (УП-6247)"},
-        ]
-    },
-];
 
-interface HeaderLinksInt {
-    headerLinks?: { ref: string; text: string }[];
-    active?: number;
-    children: React.ReactNode;
-}
+export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subNamePage: string | null }> = ({
+                                                                                                                 children,
+                                                                                                                 namePage,
+                                                                                                                 subNamePage
+                                                                                                             }): JSX.Element => {
+    const {menu} = useGetMenu();
 
-export const AdminLayout: FC<HeaderLinksInt> = ({
-                                                    headerLinks,
-                                                    active,
-                                                    children,
-                                                }): JSX.Element => {
-    const {pathname} = useRouter();
-
-    const [activePage, setActivePage] = useState(1);
+    const [activeMenu, setActiveMenu] = useState(0);
+    const {t} = useTranslation();
 
     const handleActivePage = (num: number) => {
-        return () => setActivePage(num);
+        return () => setActiveMenu(num);
     };
 
     return (
@@ -71,30 +32,50 @@ export const AdminLayout: FC<HeaderLinksInt> = ({
             </Head>
             <div className={s.layout}>
                 <div className={s.navbar}>
-                    <Link href={"/"}>
+                    <Link href={"/admin"}>
                         <a className={s.logo}>
-                            <Image src={"/images/common/logo.svg"} width={80} height={80}/>
+                            <Image src={"/images/common/logo.svg"} width={80} height={80} alt={"logo"}/>
                         </a>
                     </Link>
-                    {/*{*/}
-                    {/*    links.map(item => {*/}
-                    {/*        return <Link href={item.link} key={item.id}>*/}
-                    {/*            <a className={`${s.links} ${pathname === item.link ? s.active : ""}`}>*/}
 
-                    {/*            /!*<span className={s.links_img_wrapper}>*!/*/}
-                    {/*            /!*    <Image src={item.img} layout={"fill"} objectFit={"cover"}/>*!/*/}
-                    {/*            /!*</span>*!/*/}
 
-                    {/*                <span>{item.text}</span>*/}
-                    {/*            </a>*/}
-                    {/*        </Link>*/}
-                    {/*    })*/}
-                    {/*}*/}
+                    <Link href={"/admin/home_page"}>
+                        <a className={`${s.home_link} ${activeMenu === 0 ? s.active : ""}`}
+                           onClick={handleActivePage(0)}>{t(`admin:homepage`)}</a>
+                    </Link>
+                    {
+                        menu && menu.map(item => {
+                            return <div className={`${s.menu_item}  ${activeMenu === item.id ? s.active : ""}`}
+                                        key={item.id}>
+
+                                <h6 className={s.menu_title} onClick={handleActivePage(item.id)}>
+                                    {t(`header:${item.name}`)}
+                                </h6>
+                                <ul className={`${s.menu_list}  ${activeMenu === item.id ? s.active : ""}`}>
+
+
+                                    {
+                                        item.subMenu.map(subitem => {
+                                            return <li key={subitem.id} onClick={handleActivePage(item.id)}>
+                                                <Link
+                                                    href={`/admin/pages/${item.name}/${item.id}/${subitem.name}/${subitem.id}/${subitem.isGallery ? "gallery" : "pageform"}`}>
+                                                    <a className={s.menu_links}>{t(`header:${subitem.name}`)}</a>
+                                                </Link>
+                                            </li>;
+                                        })
+                                    }
+                                </ul>
+                            </div>;
+                        })
+                    }
                 </div>
+
                 <div className={s.content}>
                     <div className={s.content_top}>
-                        <p className={s.content_top_text}>{"helllo"}</p>
-
+                        <p className={s.content_top_text}>
+                            <span>{namePage}</span>
+                            {subNamePage && <span className={s.subname}>{subNamePage}</span>}
+                        </p>
                         <Exit/>
                     </div>
                     <div className={s.content_inner}>

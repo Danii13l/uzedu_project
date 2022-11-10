@@ -1,6 +1,9 @@
-import '../styles/for_libraries/top_selections.scss';
+import 'styles/for_libraries/top_selections.scss';
 import "styles/for_libraries/opinions.scss";
-import '../styles/globals.scss';
+import "styles/for_libraries/inputs.scss";
+import 'styles/globals.scss';
+
+import "styles/page_inner.scss";
 
 import "swiper/css";
 import "swiper/css/navigation";

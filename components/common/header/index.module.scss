@@ -4,11 +4,11 @@
 
 .header {
   position: relative;
-  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(25, 38, 64, 0.1);
 }
 
 .h_inner {
-  padding: 8px 0;
+  padding: 8px 0 16px 0;
 }
 
 .h_top {
@@ -106,6 +106,7 @@
   width: 48px;
   height: 40px;
   position: relative;
+  display: block;
 }
 
 .h_bot_main_links_wrap {
@@ -139,7 +140,7 @@
 
 .h_bot_main_link_active {
   position: absolute;
-  height: 100px;
+  height: 56px;
   width: 100%;
   left: 0;
 }
@@ -149,7 +150,7 @@
   position: absolute;
   right: 0;
   left: 0;
-  z-index: 1;
+  z-index: 5;
   background: #E9EBF2;
   margin: 0 auto;
   border: 1px solid rgba(131, 138, 151, 0.15);

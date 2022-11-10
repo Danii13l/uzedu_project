@@ -1,236 +1,144 @@
 import {FC} from "react";
-import Image from "next/image";
 
-import {FieldArray, Form, Formik,} from "formik";
+import {useRouter} from "next/router";
+
+import {FieldArray, Form, Formik} from "formik";
 
 import s from './index.module.scss';
 
+import {initialValuesIint} from "assets/interfaces/pageFormInt";
+import {getInitValuePageForm} from "assets/function/getInitValuePageForm";
+import { FieldArrayValue} from "assets/constants/pageForm";
+
 import {Button} from "@/components/common/button/Button";
 import {InputsFormik} from "@/components/common/input/InputsFormik";
-import {FileInput} from "@/components/common/input/FileInput";
+import {InputsBlock} from "@/components/pages/admin/form_items/InputsBlock";
+import {InputsBlockMain} from "@/components/pages/admin/form_items/InputsBlockMain";
+import {InputsWrapper} from "@/components/pages/admin/form_items/InputsWrapper";
+import {FieldArrayWrapper} from "@/components/pages/admin/form_items/FieldArrayWrapper";
+import {FormActions} from "@/components/pages/admin/form_items/FormActions";
+import {PreviewImage} from "@/components/pages/admin/form_items/PreviewImage";
 
 
-const languages = [
-    "Русский язык",
-    "Узбекский язык",
-    "Английский язык"
-];
-
-
-interface initialValuesIint {
-    titleRu: string,
-    titleUz: string,
-    title: string,
-    descriptionRu: string,
-    descriptionUz: string
-    description: string,
-    videos: {
-        "title": string,
-        "titleRu": string,
-        "titleUz": string,
-        "url": string
-    }[],
-    images: {
-        "title": string,
-        "titleRu": string,
-        "titleUz": string,
-        "url": string
-    }[],
-    files: {
-        "title": string,
-        "titleRu": string,
-        "titleUz": string,
-        "url": File,
-    }[]
-}
-
-
-const initialValues: initialValuesIint = {
-    titleRu: "",
-    titleUz: "",
-    title: "",
-    descriptionRu: "",
-    descriptionUz: "",
-    description: "",
-    videos: [],
-    images: [],
-    files: []
-};
-
-const f = {
-    title: "",
-    titleRu: "",
-    titleUz: "",
-    url: ""
-}
-
-
-export const PageForm: FC = (): JSX.Element => {
+export const PageForm: FC<{ data: initialValuesIint | null }> = ({data}): JSX.Element => {
+    const {query: {slug}} = useRouter();
 
     return (
         <div className={s.form}>
+            <FormActions data={data}/>
             <Formik
-                initialValues={initialValues}
-                onSubmit={(val) => {
-                    console.log(val);
+                initialValues={{
+                    ...getInitValuePageForm(data),
+                    menuId: slug ? +slug[1] : 0,
+                    subMenuId: slug ? +slug[3] : 0
                 }}
+                enableReinitialize={true}
+                onSubmit={async (val) => {
+                    console.log(val);
+
+                    // try {
+                    //     if (!data) {
+                    //         await myAxios.post("/api/dashboard/page", JSON.stringify(val), {
+                    //             headers: {
+                    //                 'Content-Type': 'application/json'
+                    //             }
+                    //         });
+                    //     } else {
+                    //         await myAxios.put(`/api/dashboard/page?id=${data?.id}`, {...val, id: data?.id});
+                    //     }
+                    //     await push("/admin");
+                    // } catch (err) {
+                    //     console.log(err);
+                    // }
+                }}
+
             >
-                {({values, setFieldValue, handleSubmit, handleChange}) => (
+                {({values, setFieldValue, handleSubmit}) => (
                     <Form onSubmit={handleSubmit}>
-
-                        <div className={s.section}>
-                            <h5 className={s.sub_title}>Заголовок Страницы</h5>
-                            {
-                                ["titleRu", "titleUz", "title"].map((item, i) => {
-                                    return <div key={i} className={s.input_wrapper}>
-                                        <InputsFormik name={item} label={languages[i]}/>
-                                    </div>;
-                                })
-                            }
-                        </div>
+                        <InputsBlockMain title={"Заголовок страницы"} arr={["titleRu", "titleUz", "title"]}/>
+                        <InputsBlockMain title={"Описание страницы"}
+                                         arr={["descriptionRu", "descriptionUz", "description"]} textarea={true}/>
 
 
-                        <div className={s.section}>
-                            <h5 className={s.sub_title}>Описание Страницы</h5>
-                            {
-                                ["descriptionRu", "descriptionUz", "description"].map((item, i) => {
-                                    return <div key={i} className={s.input_wrapper}>
-                                        <InputsFormik name={item} label={languages[i]} textarea/>
-                                    </div>;
-                                })
-                            }
-                        </div>
-
-
-                        <div className={s.section}>
-                            <h5 className={s.sub_title}>Видео</h5>
+                        <InputsWrapper title={"Видео"}>
                             <FieldArray
                                 name="videos"
                                 render={({push, remove}) => (
                                     <div>
                                         {values?.videos.map((video, index) => (
                                             <div key={index} className={s.fieldArray_wr}>
-                                                <div className={s.fieldArray_box}>
-                                                    <InputsFormik name={`videos[${index}].title`}
-                                                                  label={"Заголовок на английском"}/>
-                                                    <InputsFormik name={`videos[${index}].titleRu`}
-                                                                  label={"Заголовок на русском"}/>
-                                                    <InputsFormik name={`videos[${index}].titleUz`}
-                                                                  label={"Заголовок на узбекском"}/>
-                                                    <InputsFormik name={`videos.${index}.url`} label={"Ссылка"}/>
-                                                </div>
-
-                                                <div onClick={() => remove(index)} className={s.fieldArray_btn}>
-                                                    <Button classN={"second"}>Удалить</Button>
-                                                </div>
-
+                                                <FieldArrayWrapper deleteFun={() => remove(index)}>
+                                                    <InputsBlock index={index} type={"videos"} title={"Заголовок"}
+                                                                 value={["title", "titleRu", "titleUz"]}/>
+                                                    <InputsFormik name={`videos[${index}].url`} label={"Ссылка"}/>
+                                                </FieldArrayWrapper>
                                             </div>
                                         ))}
+
                                         <div className={s.fieldArray_btn_add} onClick={() =>
-                                            push(f)}>
+                                            push(FieldArrayValue)}>
                                             <Button classN={"main"}>Добавить видео</Button>
                                         </div>
-
                                     </div>
                                 )}
                             />
-                        </div>
+                        </InputsWrapper>
 
-
-                        <div className={s.section}>
-                            <h5 className={s.sub_title}>Фотографии</h5>
+                        <InputsWrapper title={"Фотографии"}>
                             <FieldArray
                                 name="images"
                                 render={({push, remove}) => (
                                     <div>
                                         {values?.images.map((image, index) => (
-                                            <div key={index} className={s.fieldArray_wr}>
-                                                <div className={s.fieldArray_box}>
-                                                    <InputsFormik name={`images[${index}].title`}
-                                                                  label={"Заголовок на английском"}/>
-                                                    <InputsFormik name={`images[${index}].titleRu`}
-                                                                  label={"Заголовок на русском"}/>
-                                                    <InputsFormik name={`images[${index}].titleUz`}
-                                                                  label={"Заголовок на узбекском"}/>
-
-                                                    {
-                                                        values?.images[index]?.url &&
-                                                        <div className={s.img_wrapper}>
-                                                            <Image
-                                                                src={URL.createObjectURL(values?.images[index]?.url as any)}
-                                                                width={100}
-                                                                height={100}
-                                                                style={{borderRadius: "10px", overflow: "hidden"}}
-                                                                objectFit={"contain"}
-                                                            />
-                                                        </div>}
-                                                    <FileInput labelText={"Загрузить"}
-                                                               name={`images[${index}].url`}
-                                                               changeFun={(ev: any) => setFieldValue(`images[${index}].url`, ev.target.files[0])}/>
-
-
-                                                </div>
-
-
-                                                <div onClick={() => remove(index)} className={s.fieldArray_btn}>
-                                                    <Button classN={"second"}>Удалить</Button>
-                                                </div>
-
-                                            </div>
+                                            <FieldArrayWrapper deleteFun={() => remove(index)} key={index}>
+                                                <InputsBlock index={index} type={"images"} title={"Заголовок"}
+                                                             value={["title", "titleRu", "titleUz"]}/>
+                                                <PreviewImage condit={values?.images[index]["url"]}
+                                                              imgUrl={values?.images[index]["url"]}
+                                                              formikSetFun={setFieldValue}
+                                                              valueToDelete={values?.images[index]["url"]}
+                                                              valueToSave={`images[${index}].url`}
+                                                />
+                                            </FieldArrayWrapper>
                                         ))}
                                         <div className={s.fieldArray_btn_add} onClick={() =>
-                                            push(f)}>
+                                            push(FieldArrayValue)}>
                                             <Button classN={"main"}>Добавить Фотографию</Button>
                                         </div>
 
                                     </div>
                                 )}
                             />
-                        </div>
+                        </InputsWrapper>
 
-                        <div className={s.section}>
-                            <h5 className={s.sub_title}>Файлы</h5>
+
+                        <InputsWrapper title={"Файлы"}>
                             <FieldArray
                                 name="files"
                                 render={({push, remove}) => (
                                     <div>
                                         {values?.files.map((fileF, index) => (
-                                            <div key={index} className={s.fieldArray_wr}>
-                                                <div className={s.fieldArray_box}>
-                                                    <InputsFormik name={`files[${index}].title`}
-                                                                  label={"Заголовок на английском"}/>
-                                                    <InputsFormik name={`files[${index}].titleRu`}
-                                                                  label={"Заголовок на русском"}/>
-                                                    <InputsFormik name={`files[${index}].titleUz`}
-                                                                  label={"Заголовок на узбекском"}/>
-                                                    {
-                                                        fileF?.url &&
-                                                        //@ts-ignore
-                                                        <p className={s.choosen_file}>Файл: <span>{fileF.url?.name}</span>
-                                                        </p>
-                                                    }
-                                                    <FileInput labelText={"Загрузить"}
-                                                               name={`files[${index}].url`}
-                                                               changeFun={(ev: any) => setFieldValue(`files[${index}].url`, ev.target.files[0])}/>
-
-
-                                                </div>
-                                                <div onClick={() => remove(index)} className={s.fieldArray_btn}>
-                                                    <Button classN={"second"}>Удалить</Button>
-                                                </div>
-
-                                            </div>
+                                            <FieldArrayWrapper deleteFun={() => remove(index)} key={index}>
+                                                <InputsBlock index={index} type={"files"} title={"Заугаловок"}
+                                                             value={["title", "titleRu", "titleUz"]}/>
+                                                <PreviewImage condit={values?.files[index]["url"]}
+                                                              imgUrl={values?.files[index]["url"]}
+                                                              formikSetFun={setFieldValue}
+                                                              valueToSave={`files[${index}].url`}
+                                                              valueToDelete={values?.files[index]["url"]}
+                                                              isFile={true}
+                                                />
+                                            </FieldArrayWrapper>
                                         ))}
                                         <div className={s.fieldArray_btn_add} onClick={() =>
-                                            push(f)}>
+                                            push(FieldArrayValue)}>
                                             <Button classN={"main"}>Добавить файл</Button>
                                         </div>
 
                                     </div>
                                 )}
                             />
-                        </div>
-
+                        </InputsWrapper>
 
                         <div className={s.submit}>
                             <Button classN={"main"} submit={true}>Отправить</Button>

@@ -1,0 +1,32 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+.page {
+  padding: 32px 0;
+}
+
+.inner {
+
+}
+
+.title {
+  @include fs_lh_fw_fcolor(32px, 39px, 700, $text);
+}
+
+.youtube {
+  max-width: 908px;
+  margin: 0 auto;
+
+}
+
+.youtube_title {
+  @include fs_lh_fw_fcolor(24px, 34px, 700, $text);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.youtube_video {
+  max-width: 720px;
+  height: 405px;
+  margin: 0 auto;
+}

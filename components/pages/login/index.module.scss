@@ -1,0 +1,32 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+.login {
+  @include df_jc_ai(center, center);
+  height: 100vh;
+
+}
+
+
+.form {
+  width: 600px;
+
+  background: #FFFFFF;
+  border-radius: 50px;
+  margin: auto auto;
+  padding: 32px;
+}
+
+.title {
+  @include fs_lh_fw_fcolor(25px, 20px, 500, $main);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.input_wr{
+  margin-bottom: 20px;
+}
+
+.submit{
+  margin-top: 40px;
+}

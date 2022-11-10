@@ -5,7 +5,7 @@
   "statesymbol": "Davlat ramzlari",
   "addressofcitizen": "Fuqarolarning murojaatlari",
   "ministry": "Vazirlik",
-  "aboutminstry": "О МинистерствеUZ",
+  "aboutministry": "О МинистерствеUZ",
   "leaders": "РуководствоUZ",
   "centraloffice": "Центральный аппарат министерстваUZ",
   "teradmin": "Территориальные управленияUZ",
@@ -55,7 +55,7 @@
   "infographics": "ИнфографикаUZ",
   "opendata": "Ochiq ma'lumotlar",
   "openbudget": "Открытый бюджетUZ",
-  "opendataDP": "Открытые данные (УП-6247)UZ",
+  "opendatadp": "Открытые данные (УП-6247)UZ",
   "setofopendata": "Набор открытыхUZ"
 }
 

@@ -18,7 +18,7 @@ handler.post(async (req, res) => {
             values: [login],
         });
         if (userData.length === 0) {
-            return res.status(404).end('Tour not found');
+            return res.status(401).end('user not found');
         }
         const user: IUser = userData[0];
         if (user && bcrypt.compareSync(password, user.password)) { 

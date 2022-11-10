@@ -5,7 +5,7 @@
   "statesymbol": "State symbols",
   "addressofcitizen": "Appeals of citizens",
   "ministry": "Ministry",
-  "aboutminstry": "About Ministry",
+  "aboutministry": "About Ministry",
   "leaders": "Administration",
   "centraloffice": "Сentral office of the ministry",
   "teradmin": "Territorial management",
@@ -55,7 +55,7 @@
   "infographics": "infographics",
   "opendata": "Open Data",
   "openbudget": "Open Budget",
-  "opendataDP": "Open data (DP-6247)",
+  "opendatadp": "Open data (DP-6247)",
   "setofopendata": "Set of open data"
 }
 

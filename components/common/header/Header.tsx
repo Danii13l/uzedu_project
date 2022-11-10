@@ -9,13 +9,12 @@ import {useTranslation} from "next-i18next";
 import {Container} from "@/components/common/container/Container";
 import {Language} from "@/components/common/header/language_select/Language";
 
+import {headerTopLinks} from "assets/constants/header_links";
+import {useDispatch} from "react-redux";
 
 import {setBAndW} from "assets/redux/slices/blackWhite";
-
-import {headerBottomLinks, headerTopLinks} from "assets/constants/header_links";
-
-import {useDispatch, useSelector} from "react-redux";
 import {setIsOpenMenu} from "assets/redux/slices/sidebarMenu";
+import {useGetMenu} from "assets/hooks/fetching/useGetMenu";
 
 
 export const Header: FC = (): JSX.Element => {
@@ -26,24 +25,24 @@ export const Header: FC = (): JSX.Element => {
     const [searchInput, setSearchInput] = useState(false);
     const [settingView, setSettingView] = useState(false);
 
+    const {menu} = useGetMenu();
 
     const dispatch = useDispatch();
 
-    const handleMouseOverIndex = useCallback((value: number) => {
-        return () => setHoverValue(value);
+    const handleMouseOverMenu = useCallback((value: number) => {
+        return () => {
+            setActiveMenu(true);
+            setHoverValue(value);
+        }
     }, []);
 
-    const handleMouseOver = useCallback(() => {
-        return () => setActiveMenu(true);
-    }, []);
-
-    const handleMouseOut = useCallback(() => {
+    const handleMouseOutMenu = useCallback(() => {
         return () => setActiveMenu(false);
     }, []);
 
-    const handleSearch = (val: boolean) => {
+    const handleSearch = useCallback((val: boolean) => {
         return () => setSearchInput(val);
-    };
+    }, []);
 
     const handleBlackAndWhite = useCallback((val: boolean) => {
         return () => dispatch(setBAndW(val));
@@ -54,10 +53,14 @@ export const Header: FC = (): JSX.Element => {
     }, []);
 
 
+    const menuVal = useCallback((val: typeof menu) => {
+        return val && val[hoverValue ? hoverValue - 1 : 0]
+    }, [hoverValue]);
+
+
     useEffect(() => {
         document.addEventListener("click", (ev: any) => {
             if (!ev.target.dataset.setview) setSettingView(false);
-
         });
     }, []);
 
@@ -127,37 +130,36 @@ export const Header: FC = (): JSX.Element => {
                     </div>
 
                     <div className={s.logo}>
-                        <div className={s.logo_wrapper}><Image src={'/images/common/logo.svg'} layout={"fill"}
-                                                               objectFit={"cover"}/></div>
+                        <Link href={"/"}>
+                            <a className={s.logo_wrapper}>
+                                <Image src={'/images/common/logo.svg'} layout={"fill"} objectFit={"cover"}/>
+                            </a>
+                        </Link>
                     </div>
 
 
                     <div className={s.h_bot_main_links_wrap}>
                         {
-                            headerBottomLinks.map(item => {
+                            menu && menu.map(item => {
                                 return <div key={item.id}
 
                                             className={s.h_bot_main_link_wrap}>
                                     {
                                         item.id !== 2 && <>
-                                            <p onMouseOver={() => {
-                                                setActiveMenu(true);
-                                                setHoverValue(item.id);
-                                            }
-                                            }
-                                               onMouseLeave={handleMouseOut()}
-                                               className={s.h_bot_main_link}>{t(item.text)}
+                                            <p onMouseOver={handleMouseOverMenu(item.id)}
+                                               onMouseLeave={handleMouseOutMenu()}
+                                               className={s.h_bot_main_link}>{t(`header:${item.name}`)}
 
                                                 {
-                                                    hoverValue && <div className={s.h_bot_main_link_active}></div>
+                                                    hoverValue && <span className={s.h_bot_main_link_active}></span>
                                                 }
                                             </p>
                                         </>
                                     }
 
                                     {
-                                        item.id === 2 && <Link href={item.link}>
-                                            <a className={s.h_bot_main_link}>{t(item.text)}</a>
+                                        item.id === 2 && <Link href={`/sub_pages/${item.name}`}>
+                                            <a className={s.h_bot_main_link}>{t(`header:${item.name}`)}</a>
                                         </Link>
                                     }
                                 </div>;
@@ -197,11 +199,12 @@ export const Header: FC = (): JSX.Element => {
                  onMouseLeave={() => setActiveMenu(false)}>
                 <Container>
                     <ul className={s.h_bot_sublinks_list}>
-                        {headerBottomLinks[hoverValue ? hoverValue - 1 : 0].sublinks.map(item => {
-                            return <li key={item.id} className={s.h_bot_sublink_li}>
-                                <Link href={item.link}>
-                                    <a className={s.h_bot_sublink_a}>
-                                        {t(item.text)}
+                        {menu && menuVal(menu)?.subMenu.map((item) => {
+                            return <li key={item.id} className={s.h_bot_sublink_li} onClick={handleMouseOutMenu()}>
+                                <Link
+                                    href={`/sub_pages/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}`}>
+                                    <a className={s.h_bot_sublink_a} >
+                                        {t(`header:${item.name}`)}
                                     </a>
                                 </Link>
                             </li>;

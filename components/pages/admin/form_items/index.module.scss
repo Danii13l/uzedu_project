@@ -1,0 +1,124 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+
+.img_wrapper {
+  width: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100px;
+  position: relative;
+}
+
+.delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+
+
+.inputs_wrapper {
+  border: 2px solid rgba(33, 61, 136, 0.52);
+  margin-bottom: 25px;
+  padding: 32px;
+  border-radius: 10px;
+}
+
+.inputs_wrapper_title{
+  @include fs_lh_fw_fcolor(20px, 25px, 400, $text);
+  margin-bottom: 16px;
+  text-align: center;
+  border-bottom: 1px solid $main;
+  display: inline-block;
+  padding-bottom: 1px;
+}
+
+.input_wrapper {
+  margin-bottom: 10px;
+}
+
+
+
+.fieldArray_wr {
+  box-shadow: 1px 1px 3px 0 #213d88;
+  padding: 16px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+
+.fieldArray_box {
+  @include dg_tc_tr_gg(1fr, auto, 20px);
+  align-items: end;
+}
+
+.fieldArray_btn {
+  width: 30%;
+  margin: 20px auto 0;
+}
+
+.fieldArray_btn_add {
+  width: 30%;
+  margin: 0 auto;
+}
+
+
+
+.actions_button {
+  @include df_jc_ai(space-between, center);
+  margin-bottom: 20px;
+
+}
+
+.toggle_method {
+  display: inline-block;
+  border: 1px solid $main;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.toggle_item {
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+
+  &.active {
+    background: $main;
+    color: #FFFFFF;
+  }
+
+  &.block {
+    pointer-events: none;
+  }
+}
+
+.delete_page{
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(255, 0, 0, 0.58);
+  color: #fff;
+}
+
+.choosen_file {
+  position: relative;
+  padding: 7px 5px;
+  @include df_jc_ai(space-between, center);
+  background: $main;
+
+  .delete {
+    left: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  border-radius: 8px;
+  @include fs_lh_fw_fcolor(20px, 25px, 400, #fff);
+
+  span {
+    @include fs_lh_fw_fcolor(18px, 25px, 400, #fff);
+  }
+}

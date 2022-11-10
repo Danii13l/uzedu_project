@@ -124,6 +124,8 @@ handler
         query: getById,
         values: [id],
       });
+
+
       if (pages.length === 0) {
         return res.status(404).end("Page not found");
       }

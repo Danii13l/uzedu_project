@@ -1,0 +1,132 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+.page_inner {
+
+}
+
+.page_container {
+  max-width: 907px;
+  margin: 0 auto;
+}
+
+.page_titles {
+  @include fs_lh_fw_fcolor(24px, 34px, 700, $text);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.page_inner_link {
+
+}
+
+
+.page_download_wr {
+  text-align: center;
+  p{
+    margin-bottom: 8px;
+  }
+  margin-bottom: 32px;
+}
+
+
+.page_inner_link_download {
+  @include fs_lh_fw_fcolor(16px, 20px, 400, $text);
+  background: $accent;
+  border-radius: 6px;
+  @include df_jc_ai(center, center);
+  margin: 0 auto;
+  padding: 11px;
+  width: 260px;
+  text-align: center;
+
+  img {
+    margin-left: 10px;
+  }
+}
+
+.page_inner_text_wr {
+}
+
+.page_img_wrapper {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.page_img_shadow{
+  width: 98%;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(135.93deg, #A9F261 0%, #213D88 101.68%);
+  border-radius: 10px;
+  transform: matrix(1, 0, 0, -1, 0, 0);
+  top: 18px;
+  left: 18px;
+}
+
+.page_img {
+
+  width: 98%;
+  max-height: 490px;
+  object-fit: cover;
+  z-index: 1;
+  position: relative;
+  border-radius: 10px;
+}
+
+.video_wrapper {
+  max-width: 908px;
+  margin: 0 auto;
+  margin-bottom: 32px;
+}
+
+.video_box {
+  max-width: 720px;
+  height: 405px;
+  margin: 0 auto;
+}
+
+.page_inner_text {
+  @include fs_lh_fw_fcolor(16px, 24px, 400, #4D576D);
+  margin-bottom: 32px;
+}
+
+.table_wrapper {
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+
+.table {
+  background: #F8F9FB;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.table_item {
+  padding: 16px 32px;
+  border-bottom: 1px solid #E9EBF2;
+  &:last-child{border: none}
+}
+
+.table_title {
+  @include fs_lh_fw_fcolor(16px, 24px, 500, $text2);
+
+}
+
+.table_text {
+  @include fs_lh_fw_fcolor(16px, 24px, 400, $text);
+  margin-top: 8px;
+  span {
+    display: block;
+  }
+}
+
+.table_link {
+  @include fs_lh_fw_fcolor(16px, 24px, 400, $main);
+  border-bottom: 1px solid $main;
+  margin-top: 8px;
+  display: inline-block;
+}
+

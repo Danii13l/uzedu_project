@@ -18,39 +18,68 @@
   position: sticky;
   top: 0;
   bottom: 0;
-  min-width: 300px;
-  width: 300px;
+  min-width: 350px;
+  width: 350px;
   z-index: 1;
 }
 
 .logo {
-
   position: relative;
-
   border-radius: 10px;
   display: block;
   margin: 0 auto 40px;
 }
 
-.links_img_wrapper {
-  min-width: 32px;
-  max-width: 32px;
-  height: 32px;
-  position: relative;
-  margin-right: 16px;
-}
+.menu_item {
 
-.links {
-  display: block;
+  padding: 16px;
   width: 100%;
 
   &.active {
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(90.6deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
+    backdrop-filter: blur(10px);
+
+    .menu_title {
+      @include fs_lh_fw_fcolor(18px, 20px, 500, $main);
+
+    }
+
+    .menu_links {
+      @include fs_lh_fw_fcolor(16px, 20px, 400, $main);
+    }
   }
+}
 
-  padding: 16px 32px;
-  @include df_jc_ai(stretch, center);
+.menu_title,.home_link {
+  @include fs_lh_fw_fcolor(18px, 20px, 400, #fff);
+  cursor: pointer;
+}
 
+.menu_list {
+  display: none;
+
+
+  &.active {
+    display: block;
+  }
+}
+
+.home_link{
+  padding: 15px;
+  display: block;
+  width: 100%;
+  &.active{
+    background: linear-gradient(90.6deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
+    backdrop-filter: blur(10px);
+    color: $main;
+  }
+}
+
+.menu_links {
+  @include fs_lh_fw_fcolor(16px, 20px, 400, #fff);
+  margin-top: 10px;
+  display: block;
+  margin-left: 10px;
 }
 
 .content {
@@ -68,6 +97,15 @@
 .content_top_text {
   text-transform: uppercase;
 
+
+  span {
+    display: inline-block;
+    padding: 5px 10px 5px 10px;
+  }
+}
+
+.subname{
+  border-left: 2px solid $main;
 }
 
 .content_inner {

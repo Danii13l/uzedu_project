@@ -58,7 +58,7 @@ export const SidebarMenu: FC = (): JSX.Element | null => {
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <rect width="24" height="24" rx="12" fill="#E9EBF2"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                    <path fillRule="evenodd" clipRule="evenodd"
                                           d="M8.25 7.75L7.75 8.25L11.5 12L7.75 15.75L8.25 16.25L12 12.5L15.75 16.25L16.25 15.75L12.5 12L16.25 8.25L15.75 7.75L12 11.5L8.25 7.75Z"
                                           fill="#192640"/>
                                 </svg>

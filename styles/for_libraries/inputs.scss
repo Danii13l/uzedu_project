@@ -1,0 +1,30 @@
+@import "styles/variables.module.scss";
+@import "styles/mixins.module.scss";
+
+
+
+.formik_input, .formik_textarea {
+  background: rgba(233, 235, 242, 0.5);
+  border-radius: 10px;
+  width: 100%;
+  padding: 8px;
+  overflow: hidden;
+  @include fs_lh_fw_fcolor(16px, 24px, 400, $text);
+
+  &::placeholder {
+    @include fs_lh_fw_fcolor(16px, 24px, 400, $text2);
+  }
+
+  &.errorInput {
+    background: rgba(255, 0, 0, 0.35);
+  }
+
+}
+
+
+.formik_textarea {
+  resize: vertical;
+  min-height: 56px;
+  height: 56px;
+
+}

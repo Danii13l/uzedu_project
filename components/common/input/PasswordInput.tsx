@@ -33,7 +33,7 @@ export const PasswordInput: FC<InputInt> = ({
         {showPassword ? (
           <span className={styles.img_password_wrapper}>
             <Image
-              src="/images/inputs/open_eye.svg"
+              src="/images/input/open_eye.svg"
               onClick={() => setShowPassword(!showPassword)}
               alt="eye"
               layout="fill"
@@ -42,7 +42,7 @@ export const PasswordInput: FC<InputInt> = ({
         ) : (
           <span className={styles.img_password_wrapper}>
             <Image
-              src="/images/inputs/closed_eye.svg"
+              src="/images/input/close_eye.svg"
               onClick={() => setShowPassword(!showPassword)}
               alt="eye"
               layout="fill"
