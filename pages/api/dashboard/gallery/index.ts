@@ -85,7 +85,7 @@ handler
       return;
     }
   })
-  .put(async (req, res) => {
+.put(async (req, res) => {
     const data: any = await new Promise((resolve, reject) => {
       const form = new IncomingForm();
       form.parse(req, (err, fields, files) => {
