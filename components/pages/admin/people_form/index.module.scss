@@ -1,0 +1,10 @@
+@import "styles/variables.module";
+@import "styles/mixins.module";
+
+.isBoss {
+  @include df_jc_ai(stretch, center);
+  p{
+    margin-right: 10px;
+  }
+
+}

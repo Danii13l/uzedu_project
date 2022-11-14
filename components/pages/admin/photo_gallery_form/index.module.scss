@@ -1,0 +1,48 @@
+@import "styles/variables.module.scss";
+@import "styles/mixins.module.scss";
+
+.load_wr {
+  margin-bottom: 30px;
+}
+
+.label_file {
+  @include df_jc_ai(center, center);
+
+  width: 258px;
+  height: 42px;
+  background: $accent;
+  border-radius: 6px;
+  cursor: pointer;
+
+
+
+  span {
+    @include fs_lh_fw_fcolor(16px, 20px, 400, $text);
+    display: block;
+    margin-right: 10px;
+  }
+}
+
+.file_input {
+  display: none;
+}
+
+.images_wr {
+  margin-bottom: 50px;
+  @include dg_tc_tr_gg(repeat(auto-fill, minmax(130px, 130px)), auto, 20px);
+}
+
+.img_wr {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  width: 130px;
+  height: 130px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

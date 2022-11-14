@@ -6,7 +6,11 @@ import {myAxios} from "assets/axios/myAxios";
 import {useRouter} from "next/router";
 
 
-export const FormActions: FC<{ data: any }> = ({data}): JSX.Element => {
+export const FormActions: FC<{ data: any, typeOfPage: string, deleteType: string }> = ({
+                                                                                           data,
+                                                                                           typeOfPage,
+                                                                                           deleteType
+                                                                                       }): JSX.Element => {
     const [methodForm, setMethodForm] = useState<"POST" | "PUT">("POST");
     const {push} = useRouter();
 
@@ -28,15 +32,16 @@ export const FormActions: FC<{ data: any }> = ({data}): JSX.Element => {
     };
 
 
-    return   <div className={s.actions_button}>
+    return <div className={s.actions_button}>
         <div className={s.toggle_method}>
                 <span className={`${s.toggle_item} ${methodForm === "POST" ? s.active : ""} ${data ? s.block : ""}`}
                       onClick={handleMethodForm("POST")}>Создать</span>
             <span className={`${s.toggle_item} ${methodForm === "PUT" ? s.active : ""} ${!data ? s.block : ""}`}
                   onClick={handleMethodForm("PUT")}>Редактировать</span>
         </div>
+        <p className={s.actions_typeOfPage}>{typeOfPage}</p>
 
-        {data && <button onClick={handleDeletePage} type={"button"} className={s.delete_page}>Удалить
-            страницу</button>}
+        {data &&
+            <button onClick={handleDeletePage} type={"button"} className={s.delete_page}>Удалить {deleteType}</button>}
     </div>;
 };

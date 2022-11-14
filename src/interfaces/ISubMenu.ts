@@ -1,6 +1,8 @@
+import { FormType } from "./IFormType";
+
 export interface ISubMenu{
     id:number;
     menuId?:number;
     name:string;
-    isGallery:boolean;
+    typeOfForm:FormType;
 }

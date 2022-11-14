@@ -39,9 +39,9 @@ export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subN
                     </Link>
 
 
-                    <Link href={"/admin/home_page"}>
-                        <a className={`${s.home_link} ${activeMenu === 0 ? s.active : ""}`}
-                           onClick={handleActivePage(0)}>{t(`admin:homepage`)}</a>
+                    <Link href={"/admin/pages/home_page/0/home/0/HOME"}>
+                        <h6 className={`${s.home_link} ${activeMenu === 0 ? s.active : ""}`}
+                            onClick={handleActivePage(0)}>{t(`admin:homepage`)}</h6>
                     </Link>
                     {
                         menu && menu.map(item => {
@@ -58,7 +58,7 @@ export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subN
                                         item.subMenu.map(subitem => {
                                             return <li key={subitem.id} onClick={handleActivePage(item.id)}>
                                                 <Link
-                                                    href={`/admin/pages/${item.name}/${item.id}/${subitem.name}/${subitem.id}/${subitem.isGallery ? "gallery" : "pageform"}`}>
+                                                    href={`/admin/pages/${item.name}/${item.id}/${subitem.name}/${subitem.id}/${subitem?.typeOfForm}`}>
                                                     <a className={s.menu_links}>{t(`header:${subitem.name}`)}</a>
                                                 </Link>
                                             </li>;

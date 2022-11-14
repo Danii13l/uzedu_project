@@ -19,6 +19,8 @@ handler
   .get(async (req, res) => {
     try {
       const { lang, menuId, subMenuId } = req.query;
+      console.log("lang",lang);
+      
       let pages: any = await excuteQuery({
         query:
           lang === "ru"
@@ -39,21 +41,21 @@ handler
       const page = pages[0];
       for (const image of page.images) {
         if (image.title && lang) {
-          image.title = lang === "ru" ? image.titleRu : image.titleUz;
+          image.title = lang === "ru" ? image.titleRu : lang === "uz" ? image.titleUz : image.title;
           delete image.titleRu;
           delete image.titleUz;
         }
       }
       for (const video of page.videos) {
         if (video.title && lang) {
-          video.title = lang === "ru" ? video.titleRu : video.titleUz;
+          video.title = lang === "ru" ? video.titleRu : lang === "uz" ? video.titleUz : video.title;
           delete video.titleRu;
           delete video.titleUz;
         }
       }
       for (const file of page.files) {
         if (file.title && lang) {
-          file.title = lang === "ru" ? file.titleRu : file.titleUz;
+          file.title = lang === "ru" ? file.titleRu : lang === "uz" ? file.titleUz : file.title;
           delete file.titleRu;
           delete file.titleUz;
         }
@@ -63,8 +65,6 @@ handler
         page,
       });
     } catch (err: any) {
-      console.log(err.message);
-
       res.status(500).json({ message: err });
       return;
     }

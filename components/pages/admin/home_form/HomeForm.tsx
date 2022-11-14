@@ -20,6 +20,7 @@ import {
     statisticNumber,
     statisticNumberTitles, valuePushOpinions, valuePushSlider, valuePushUsefulLinks
 } from "assets/constants/homeForm";
+import {FormWrapper} from "@/components/pages/admin/form_items/FormWrapper";
 
 
 export const HomeForm: FC<{ data: HomePageInt | null }> = ({data}): JSX.Element => {
@@ -27,8 +28,8 @@ export const HomeForm: FC<{ data: HomePageInt | null }> = ({data}): JSX.Element 
 
 
     return (
-        <div className={s.form}>
-            <FormActions data={data}/>
+    <FormWrapper>
+            <FormActions data={data} typeOfPage={"Главная страница"} deleteType={"главную страницу"}/>
             <Formik
                 initialValues={getInitValueHomeForm(data)}
                 enableReinitialize={true}
@@ -201,6 +202,6 @@ export const HomeForm: FC<{ data: HomePageInt | null }> = ({data}): JSX.Element 
                     </Form>
                 )}
             </Formik>
-        </div>
+    </FormWrapper>
     );
 };
