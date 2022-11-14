@@ -10,3 +10,5 @@ export const fullQuery =
   "SELECT id, title, title_ru as titleRu, title_uz as titleUz, description, description_ru as descriptionRu, description_uz as descriptionUz, images FROM galleries";
 export const enQuery =
   "SELECT id, title, description, images FROM galleries";
+export const deleteById = "DELETE FROM galleries WHERE id=?";
+export const getGalaryById = "SELECT id, images FROM galleries WHERE id=?";

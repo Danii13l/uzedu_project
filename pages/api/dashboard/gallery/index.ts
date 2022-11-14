@@ -48,10 +48,9 @@ handler
           resolve({ fields, files });
         });
       });
-
      const {images} = data.files;
       if (!images) {
-        res.status(400).json({ message: "image required" });
+        return res.status(400).json({ message: "image required" });
       }
       let arr = Object.keys(images).map((k) => images[k]);
       if (arr.length > 0) {
