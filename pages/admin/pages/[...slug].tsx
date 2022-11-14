@@ -51,21 +51,21 @@ const AdminPages: NextPage = (): JSX.Element => {
     return (
         <AdminLayout namePage={slug ? t(`header:${slug[0]}`) : ""} subNamePage={slug ? t(`header:${slug[2]}`) : ""}>
             <div>
-                {/*{(() => {*/}
-                {/*    switch (slug && slug[4]) {*/}
-                {/*        case 'PAGE':*/}
-                {/*            return <PageForm data={data}/>;*/}
-                {/*        case 'PHOTOS':*/}
-                {/*            return <GalleryForm/>;*/}
-                {/*        case 'VIDEOS':*/}
-                {/*            return <div>Video</div>;*/}
-                {/*        default:*/}
-                {/*            return <HomeForm data={data}/>;*/}
-                {/*    }*/}
-                {/*})()}*/}
+                {(() => {
+                   switch (slug && slug[4]) {
+                       case 'PAGE':
+                           return <PageForm data={data}/>;
+                       case 'PHOTOS':
+                           return <GalleryForm/>;
+                       case 'VIDEOS':
+                           return <div>Video</div>;
+                       default:
+                           return <HomeForm data={data}/>;
+                   }
+                })()}
                 {/*<PeopleForm />*/}
                 {/*<VideoGallery/>*/}
-                <InfoForm/>
+                {/* <InfoForm/> */}
             </div>
         </AdminLayout>
     );
