@@ -1,0 +1,66 @@
+@import "styles/variables.module.scss";
+@import "styles/mixins.module.scss";
+
+
+.title_wr {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.subtitle {
+    margin-top: 8px;
+    @include fs_lh_fw_fcolor(16px, 24px, 400, $text2);
+}
+
+
+.img_wr {
+    min-width: 250px;
+    max-width: 1143px;
+    position: relative;
+    height: 674px;
+    margin: 0 auto;
+}
+
+.btn {
+    margin: 32px auto 0;
+    max-width: 205px;
+}
+
+.modal_map {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.231);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+    display: none;
+
+
+    &.active {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: minmax(250px, 1300px);
+    }
+}
+
+.modal_inner {
+    height: 90vh;
+    background: #FFFFFF;
+}
+
+.modal_top {
+    padding: 32px 32px 0 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal_top_img_wr {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+}

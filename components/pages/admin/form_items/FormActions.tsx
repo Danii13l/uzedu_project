@@ -1,18 +1,21 @@
-import {FC, useEffect, useState} from "react";
+import { FC, useEffect, useState } from "react";
 import s from "./index.module.scss";
 
-import {myAxios} from "assets/axios/myAxios";
+import { myAxios } from "assets/axios/myAxios";
 
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 
-export const FormActions: FC<{ data: any, typeOfPage: string, deleteType: string }> = ({
-                                                                                           data,
-                                                                                           typeOfPage,
-                                                                                           deleteType
-                                                                                       }): JSX.Element => {
+export const FormActions: FC<{ isDelete: boolean; data?: any; typeOfPage: string; deleteType?: string; pushTo?: string; deleteFetch?: string }> = ({
+    data,
+    typeOfPage,
+    deleteType,
+    deleteFetch,
+    pushTo,
+    isDelete
+}): JSX.Element => {
     const [methodForm, setMethodForm] = useState<"POST" | "PUT">("POST");
-    const {push} = useRouter();
+    const { push } = useRouter();
 
     useEffect(() => {
         setMethodForm(data ? "PUT" : "POST");
@@ -25,8 +28,8 @@ export const FormActions: FC<{ data: any, typeOfPage: string, deleteType: string
 
     const handleDeletePage = async () => {
         try {
-            await myAxios.delete(`/api/dashboard/page/${data?.id}`);
-            await push("/admin");
+            await myAxios.delete(`/api/${deleteFetch}/${data?.id}`);
+            pushTo && await push(pushTo);
         } catch (err) {
         }
     };
@@ -34,14 +37,14 @@ export const FormActions: FC<{ data: any, typeOfPage: string, deleteType: string
 
     return <div className={s.actions_button}>
         <div className={s.toggle_method}>
-                <span className={`${s.toggle_item} ${methodForm === "POST" ? s.active : ""} ${data ? s.block : ""}`}
-                      onClick={handleMethodForm("POST")}>Создать</span>
+            <span className={`${s.toggle_item} ${methodForm === "POST" ? s.active : ""} ${data ? s.block : ""}`}
+                onClick={handleMethodForm("POST")}>Создать</span>
             <span className={`${s.toggle_item} ${methodForm === "PUT" ? s.active : ""} ${!data ? s.block : ""}`}
-                  onClick={handleMethodForm("PUT")}>Редактировать</span>
+                onClick={handleMethodForm("PUT")}>Редактировать</span>
         </div>
         <p className={s.actions_typeOfPage}>{typeOfPage}</p>
 
-        {data &&
+        {data && isDelete &&
             <button onClick={handleDeletePage} type={"button"} className={s.delete_page}>Удалить {deleteType}</button>}
     </div>;
 };
