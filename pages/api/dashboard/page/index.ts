@@ -36,7 +36,6 @@ handler
           p.videos = JSON.parse(p.videos);
           p.files = JSON.parse(p.files);
         });
-
         const page = pages[0];
         for (const image of page.images) {
           if (image.title && lang) {
