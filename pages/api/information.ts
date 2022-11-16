@@ -2,18 +2,25 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
 import excuteQuery from "src/db/mydb";
-import {
-  getAllStatistics,
-} from "src/db/queries/statistic";
+import { enInformationQuery, fullInformationQuery, ruInformationQuery, uzInformationQuery } from "src/db/queries/information";
 const handler = nc<NextApiRequest, NextApiResponse>();
+
 handler.get(async (req, res) => {
   try {
-    const data = await excuteQuery({
-      query: getAllStatistics,
+    const { lang, type } = req.query;
+    const query =
+    lang === "ru"
+      ? ruInformationQuery
+      : lang === "uz"
+      ? uzInformationQuery
+      : lang === "en"
+      ? enInformationQuery
+      : fullInformationQuery;
+   const data = await excuteQuery({
+      query: query,values:[type]
     });
-    const statistic = data[0]
     res.status(200).json({
-      statistic,
+      data,
     });
   } catch (err: any) {
     res.status(500).json({ message: err });

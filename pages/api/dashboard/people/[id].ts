@@ -2,9 +2,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
 import excuteQuery from "src/db/mydb";
+import { deletePeopelById, getAllById } from "src/db/queries/people";
 import { isAuth } from "src/utils/auth";
 const handler = nc<NextApiRequest, NextApiResponse>();
-import { deleteById, getGalaryById } from "src/db/queries/gallery";
+
 import { RemoveImage } from "src/utils/upload";
 
 handler
@@ -12,25 +13,21 @@ handler
   .delete(async (req, res) => {
     try {
       const id = req.query.id;
-      let pages: any = await excuteQuery({
-        query: getGalaryById,
+      let people: any = await excuteQuery({
+        query: getAllById,
         values: [id],
       });
-      if (pages.length === 0) {
-        return res.status(404).end("Galary not found");
+      if (people.length === 0) {
+        return res.status(404).end("People not found");
       }
-      let images = JSON.parse(JSON.stringify(pages[0].images));
-      images = JSON.parse(images);
 
       await excuteQuery({
-        query: deleteById,
+        query: deletePeopelById,
         values: [id],
       }).then(() => {
-        if (images.length > 0) {
-          for (let i = 0; i < images.length; i++) {
-            const url = "public" + images[i].url;
-            RemoveImage(url);
-          }
+        if (people[0].url) {
+          const url = "public" + people[0].url;
+          RemoveImage(url);
         }
       });
       return res.status(200).json({ message: "was successfully removed" });
@@ -41,21 +38,16 @@ handler
   })
   .get(async (req, res) => {
     try {
-
       const id = req.query.id;
-      let gallery: any = await excuteQuery({
-        query: getGalaryById,
+      let people: any = await excuteQuery({
+        query: getAllById,
         values: [id],
       });
-      if (gallery.length === 0) {
-        return res.status(404).end("Galary not found");
+      if (people.length === 0) {
+        return res.status(404).end("People not found");
       }
-      await gallery.map(async (p: any) => {
-        p.images = JSON.parse(p.images);
-      });
 
-      
-      return res.json(gallery[0])
+      return res.json(people[0]);
     } catch (error) {
       res.status(500).json({ message: error });
       return;
