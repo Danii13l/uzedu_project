@@ -1,45 +1,37 @@
-import {FC} from "react";
+import { FC } from "react";
 import Image from "next/image";
 
-import {Navigation, Pagination} from "swiper";
-import {Swiper, SwiperSlide} from "swiper/react";
+import { Navigation, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import {useTranslation} from "next-i18next";
+import { useTranslation } from "next-i18next";
 
-import {Title} from "@/components/common/title/Title";
-import {SectionWrapper} from "@/components/common/section_wrapper/SectionWrapper";
-import {Container} from "@/components/common/container/Container";
+import { Title } from "@/components/common/title/Title";
+import { SectionWrapper } from "@/components/common/section_wrapper/SectionWrapper";
+import { Container } from "@/components/common/container/Container";
 
 
-import {cutText} from "assets/function/cutText";
+import { cutText } from "assets/function/cutText";
 
-const blockquotes = [
-    {
-        id: 1,
-        name: "Дэниел Розенблюм",
-        who: "посол США в Узбекистане",
-        text: "« Качественное образование — мощный драйвер развития и один из самых действенных инструментов сокращения бедности и улучшения здоровья, гендерного равенства, мира и стабильности. Когда дети учатся и преуспевают, они вырастают во взрослых, которые меняют свою жизнь и свою страну»."
-    },
-    {
-        id: 2,
-        name: "Дэниел Розенблюм",
-        who: "посол США в Узбекистане",
-        text: "«Качественное образование — мощный драйвер развития и один из самых действенных инструментов сокращения бедности и улучшения здоровья, гендерного равенства, мира и стабильности. Когда дети учатся и преуспевают, они вырастают во взрослых, которые меняют свою жизнь и свою страну  которые меняют свою жизнь и свою страну  которые меняют свою жизнь и свою страну  которые меняют свою жизнь и свою страну»."
-    },
-];
+interface OpinionsInt {
+    id: number;
+    subtitle: string;
+    text: string;
+    title: string;
+}
 
-export const Opinions: FC = (): JSX.Element => {
-    const {t} = useTranslation();
+export const Opinions: FC<{ data: OpinionsInt[] }> = ({ data }): JSX.Element => {
+    const { t } = useTranslation();
 
     return <div className={"opinions"}>
         <SectionWrapper>
             <Container>
                 <div className={"opinions__title"}>
-                    <Title title={t("home:opinions")}/>
+                    <Title title={t("home:opinions")} />
                 </div>
 
                 <Swiper
-                    modules={[Navigation,Pagination]}
+                    modules={[Navigation, Pagination]}
                     navigation
                     pagination={{
                         clickable: true,
@@ -48,18 +40,18 @@ export const Opinions: FC = (): JSX.Element => {
                     slidesPerView={1}
                 >
                     {
-                        blockquotes.map(item => {
+                        data && data.map(item => {
                             return <SwiperSlide key={item.id}>
                                 <div className={"opinions__slide"}>
                                     <div className={"opinions__quote"}>
-                                        <Image src={"/images/home/quote.svg"} layout={"fill"}/>
+                                        <Image src={"/images/home/quote.svg"} layout={"fill"} alt="quote" />
                                     </div>
-                                    <h6 className={"opinions__name"}>{item.name}</h6>
-                                    <p className={"opinions__who"}>{item.who}</p>
-                                    <p className={"opinions__text"}> {cutText(item.text, 392)}</p>
+                                    <h6 className={"opinions__name"}>{item?.title}</h6>
+                                    <p className={"opinions__who"}>{item?.subtitle}</p>
+                                    <p className={"opinions__text"}> {cutText(item?.text, 392)}</p>
 
                                     <div className={"opinions__quote_bottom"}>
-                                        <Image src={"/images/home/quote.svg"} layout={"fill"}/>
+                                        <Image src={"/images/home/quote.svg"} layout={"fill"} alt="quote" />
                                     </div>
 
                                     <div className={"opinions__slide_shadow"}></div>

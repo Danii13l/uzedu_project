@@ -7,7 +7,8 @@
   margin-bottom: 8px;
 }
 
-.input, .textarea {
+.input,
+.textarea {
   background: rgba(233, 235, 242, 0.5);
   border-radius: 10px;
   width: 100%;
@@ -39,10 +40,18 @@
   }
 }
 
+.number_ex {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 16px;
+  @include fs_lh_fw_fcolor(16px, 24px, 400, $text2);
+}
+
 .input_password_wrapper {
   position: relative;
 
-  input{
+  input {
     padding-right: 50px;
   }
 }
@@ -87,4 +96,3 @@
 .file_input {
   display: none;
 }
-

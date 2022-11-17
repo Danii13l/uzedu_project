@@ -66,7 +66,7 @@
   left: 0;
   bottom: 50px;
   display: grid;
-  grid-template-columns:repeat(5, minmax(250px, 1fr));
+  grid-template-columns: repeat(5, minmax(250px, 1fr));
   overflow-x: scroll;
   background: linear-gradient(90.6deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
   scrollbar-width: none;
@@ -99,10 +99,12 @@
   .banner {
     background-position: -300px center;
   }
+
   .content {
     max-width: 100%;
     margin: 0 auto;
   }
+
   .title {
     @include fs_lh_fw_fcolor(25px, 35px, 700, #fff);
     margin-bottom: 25px;
@@ -116,20 +118,21 @@
 
 @media (max-width:880px) {
   .banner {
-    background-position: center -450px;
-    padding-top: 300px;
+    background-position: center center;
+    padding-top: 60%;
     background-size: cover;
   }
-  .inner {;
+
+  .inner {
     max-width: 100%;
     margin: 0;
-    padding:32px 0 36px;
+    padding: 32px 0 36px;
     border-radius: 50px 50px 0 0;
     height: auto;
   }
 
-  .content{
-    padding:0 16px;
+  .content {
+    padding: 0 16px;
 
   }
 
@@ -147,7 +150,7 @@
     background: linear-gradient(90.6deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%);
   }
 
-  .line_items{
+  .line_items {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%);
     backdrop-filter: blur(10px);
     border-radius: 4px;
@@ -156,20 +159,15 @@
   .l_i_text {
     @include fs_lh_fw_fcolor(16px, 24px, 400, rgba(25, 38, 64, 0.75));
   }
-  
+
 }
 
 
 @media (max-width: 640px) {
-  .banner {
-    background-position:40% -450px;
-    padding-top: 300px;
-    background-size: auto;
-  }
-  .inner {;
 
+
+  .inner {
     border-radius: 30px 30px 0 0;
-
   }
 
 
@@ -177,18 +175,9 @@
     @include fs_lh_fw_fcolor(24px, 32px, 700, #fff);
     margin-bottom: 16px;
   }
+
   .blockquote {
     @include fs_lh_fw_fcolor(20px, 30px, 300, #fff);
     margin-bottom: 16px;
-  }
-}
-
-
-
-@media (max-width: 400px){
-  .banner {
-    background-position:40% -40px;
-    padding-top: 175px;
-    background-size: contain;
   }
 }

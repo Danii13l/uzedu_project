@@ -1,30 +1,31 @@
-import {FC} from "react";
+import { FC } from "react";
 import Image from "next/image";
 
 
-import {Container} from "@/components/common/container/Container";
-import {Button} from "@/components/common/button/Button";
+import { Container } from "@/components/common/container/Container";
+import { Button } from "@/components/common/button/Button";
 
 
-import {Pagination} from "swiper";
-import {Swiper, SwiperSlide} from "swiper/react";
+import { Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Link from "next/link";
 
-//fake
-const fakeSlider = [
-    {id: 1, text: "Базы данных", subtext: "Системы народного образования", img: "/images/home/laptop_book.png"},
-    {id: 2, text: "Базы данных", subtext: "Системы народного образования", img: "/images/home/laptop_book.png"},
-];
+interface SliderInt {
+    id: number;
+    title: string;
+    description: string;
+    url: string;
+    link: string;
+};
 
-
-
-export const TopSelections: FC = (): JSX.Element => {
+export const TopSelections: FC<{ data: SliderInt[] }> = ({ data }): JSX.Element => {
     return <div className={"topSelections"}>
         <Container>
             <div className={"topSelections__inner"}>
                 <div className={"topSelections__inner_left"}>
                     <div className={"topSelections__l_inner"}>
                         <div className={"topSelections__l_img_wrap"}>
-                            <Image src={"/images/home/call_center.svg"} width={48} height={48} alt={"call_center"}/>
+                            <Image src={"/images/home/call_center.svg"} width={48} height={48} alt={"call_center"} />
                         </div>
                         <div className={"topSelections__l_content"}>
                             <p>Телефон доверия</p>
@@ -46,20 +47,20 @@ export const TopSelections: FC = (): JSX.Element => {
                             slidesPerView={1}
                         >
                             {
-                                fakeSlider.map(item => {
+                                data && data.map(item => {
                                     return <SwiperSlide key={item.id}>
                                         <div className={"topSelections__slide"}>
                                             <div className={"topSelections__slide_img_wrap"}>
-                                                <Image src={item.img} layout={"fill"}/>
+                                                <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} layout={"fill"} alt="slider" unoptimized />
                                             </div>
                                             <div className={"topSelections__slide_content"}>
-                                                <p>{item.text}</p>
-                                                <p>{item.subtext}</p>
+                                                <p>{item.title}</p>
+                                                <p>{item.description}</p>
                                             </div>
 
-                                            <div className={"topSelections__slide_btn"}>
-                                                <Button classN={"main"}>Подробнее</Button>
-                                            </div>
+                                            <Link href={item?.link}>
+                                                <a className={"topSelections__slide_btn"}><Button classN={"main"}>Подробнее</Button></a>
+                                            </Link>
                                         </div>
                                     </SwiperSlide>;
                                 })

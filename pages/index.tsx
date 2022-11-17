@@ -11,28 +11,60 @@ import { UsefulLinks } from "@/components/pages/home/useful_links/UsefulLinks";
 import { ContactUs } from "@/components/pages/home/contact_us/ContactUs";
 import { Statistics } from "@/components/pages/home/statistics/Statistics";
 import { Map } from '@/components/pages/home/map/Map';
+import { myAxios } from 'assets/axios/myAxios';
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { locale } = context;
+    const allData = {
+        banner: [],
+        slider: [],
+        opinions: [],
+        statistic: [],
+        links: [],
+    };
+
+    try {
+        const banner = await myAxios(`${process.env.NEXT_PUBLIC_BASE_URL}/api/multipart?type=BANNER&lang=${locale}`);
+        allData.banner = banner?.data?.data[0];
+
+        const slider = await myAxios(`${process.env.NEXT_PUBLIC_BASE_URL}/api/multipart?type=SLIDER&lang=${locale}`);
+        allData.slider = slider?.data?.data;
+
+        const opinions = await myAxios(`${process.env.NEXT_PUBLIC_BASE_URL}/api/opinion?lang=${locale}`);
+        allData.opinions = opinions?.data?.data;
+
+        const statistic = await myAxios(`${process.env.NEXT_PUBLIC_BASE_URL}/api/statistic`);
+        allData.statistic = statistic?.data?.data[0];
+
+        const links = await myAxios(`${process.env.NEXT_PUBLIC_BASE_URL}/api/multipart?type=LINK&lang=${locale}`);
+        allData.links = links?.data?.data;
+
+    } catch (err) {
+        console.log(err);
+    }
 
     return {
         props: {
+            data: allData,
             ...(await serverSideTranslations(locale as string, ["header", "footer", "common", "buttons", "home", "months"])),
         },
     };
 };
 
-const Home: NextPage = (): JSX.Element => {
+const Home: NextPage = ({ data }: any): JSX.Element => {
+
+    console.log(data);
+
     return (
         <Layout title={"Home"} contentDesc={"home"}>
-            <Banner />
-            <Selection />
+            <Banner data={data.banner} />
+            <Selection data={data.slider} />
             <News />
-            <Opinions />
+            <Opinions data={data.opinions} />
             <Map />
             <ContactUs />
-            <Statistics />
+            <Statistics data={data.statistic} />
             <UsefulLinks />
         </Layout>
     );
