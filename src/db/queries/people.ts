@@ -7,9 +7,9 @@ export const getAllByTypeUz = "SELECT id, type, name_uz as name, position_uz as 
 export const getAllByTypeEn = "SELECT  id, type, name, position, work_hours as workHours, phone, email,tg, biography, work_history as workHistory, duty, is_boss as isBoss, url FROM people WHERE type=?";
 
 
-export const getAllById = "SELECT id, type, name, name_ru, name_uz, position, position_ru, position_uz, work_hours, work_hours_ru, work_hours_uz,phone, email,tg, biography, work_history, duty,is_boss,url FROM people WHERE id=?";
+export const getAllById = "SELECT id, type, name, name_ru, name_uz, position, position_ru, position_uz, work_hours as workHours, work_hours_ru, work_hours_uz,phone, email,tg, biography, work_history as workHistory, duty,is_boss,url FROM people WHERE id=?";
 export const getAllByIdRu = "SELECT id, type, name_ru as name, position_ru as position, work_hours_ru as workHours, phone, email,tg, biography, work_history as workHistory, duty, is_boss as isBoss, url FROM people WHERE id=?";
-export const getAllByIdUz = "SELECT  id, type, name_uz as name, position_uz as position, work_hours_uz as workHours, phone, email,tg, biography, work_history as workHistory, duty, is_boss as isBoss, url FROM people WHERE id=?";
+export const getAllByIdUz = "SELECT id, type, name_uz as name, position_uz as position, work_hours_uz as workHours, phone, email,tg, biography, work_history as workHistory, duty, is_boss as isBoss, url FROM people WHERE id=?";
 export const getAllByIdEn = "SELECT id, type, name, position, work_hours as workHours, phone, email,tg, biography, work_history as workHistory, duty, is_boss as isBoss, url FROM people WHERE id=?";
 
-export const deletePeopelById = "DELETE FROM position WHERE id=?";
+export const deletePeopelById = "DELETE FROM people WHERE id=?";

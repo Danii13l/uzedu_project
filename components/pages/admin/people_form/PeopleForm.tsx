@@ -16,10 +16,12 @@ import { PreviewImage } from "@/components/pages/admin/form_items/PreviewImage";
 import { InputsFormik } from "@/components/common/input/InputsFormik";
 import { FormWrapper } from "@/components/pages/admin/form_items/FormWrapper";
 import { myAxios } from 'assets/axios/myAxios';
+import { useTranslation } from "next-i18next";
 
 export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JSX.Element => {
-    const { query: { slug }, push } = useRouter();
+    const { push } = useRouter();
 
+    const { t } = useTranslation();
 
     const [dataOut, setDataOut] = useState<{
         name: string;
@@ -28,7 +30,7 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
         position: string;
         position_uz: string;
         position_ru: string;
-        work_hours: string;
+        workHours: string;
         work_hours_ru: string;
         work_hours_uz: string;
         phone: string;
@@ -52,20 +54,16 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
                 const { data } = await myAxios(`/api/dashboard/people/${id}?lang=ru`);
                 setDataOut(data);
             } catch (err) {
-                console.log(err);
             }
         }());
 
 
     }, []);
 
-
-    console.log("data", dataOut)
-
     return (
         <FormWrapper>
 
-            <FormActions isDelete={true} data={dataOut} typeOfPage={"Должностное лицо"} />
+            <FormActions isDelete={true} data={dataOut} typeOfPage={t(`header:${dataOut?.type?.toLowerCase() ?? type}`)} deleteFetch="dashboard/people/" pushTo="/admin" />
             <Formik
                 initialValues={{
                     type: dataOut?.type ?? type?.toUpperCase(),
@@ -75,7 +73,7 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
                     position: dataOut?.position ?? "",
                     positionUz: dataOut?.position_uz ?? "",
                     positionRu: dataOut?.position_ru ?? "",
-                    workHours: dataOut?.work_hours ?? "",
+                    workHours: dataOut?.workHours ?? "",
                     workHoursRu: dataOut?.work_hours_ru ?? "",
                     workHoursUz: dataOut?.work_hours_uz ?? "",
                     phone: dataOut?.phone ?? "",
@@ -92,27 +90,27 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
                     try {
                         const formData = new FormData();
                         dataOut?.id && formData.append("id", dataOut?.id as any);
-                        // @ts-ignore
-                        for (let key in val) {
-                            formData.append(key, val[key])
-                            if (key === "isBoss") {
-                                formData.append(key, val[key] ? 1 : 0);
-                            }
 
-                            if (key === "workHistory") {
+                        for (let key in val) {
+                            // @ts-ignore
+                            if (key === "isBoss") {
+                                formData.append(key, val[key] ? 1 : 0 as any);
+                            } else if (key === "workHistory") {
                                 formData.append(key, JSON.stringify(val[key]));
-                            }
-                            if (key === "duty") {
+                            } else if (key === "duty") {
                                 formData.append(key, JSON.stringify(val[key]));
+                            } else {
+                                     // @ts-ignore
+                                formData.append(key, val[key]);
                             }
                         }
+         
 
-                        const { data } = await myAxios.post("/api/dashboard/people", formData);
-                        console.log(val);
-                        // push("/admin");
-                    } catch (err) {
-                        console.log(err);
-                    }
+
+                        dataOut?.id ? await myAxios.put("/api/dashboard/people", formData) : await myAxios.post("/api/dashboard/people", formData);
+
+                        push("/admin");
+                    } catch (err) { }
                 }}
 
             >

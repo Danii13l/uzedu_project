@@ -59,7 +59,6 @@ export const GettingDataWithPhoto: FC<{ linkToForm: string, createItem: string }
     })();
   }, [slug]);
 
-  console.log(dataOut);
 
   return (
     <div>

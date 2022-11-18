@@ -16,7 +16,7 @@ import { myAxios } from 'assets/axios/myAxios';
 import { useTranslation } from 'next-i18next';
 
 export const InfoForm: FC<{ id?: string; type?: string }> = ({ id, type }): JSX.Element => {
-    const { query: { slug }, push } = useRouter();
+    const { push } = useRouter();
 
     const { t } = useTranslation();
 
@@ -39,7 +39,6 @@ export const InfoForm: FC<{ id?: string; type?: string }> = ({ id, type }): JSX.
                 const { data } = await myAxios(`/api/dashboard/information/${id}`);
                 setDataOut(data);
             } catch (err) {
-                console.log(err);
             }
         }());
     }, []);
