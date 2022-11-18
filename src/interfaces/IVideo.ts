@@ -1,4 +1,9 @@
-export interface IVideo{
-    title:string;
-    url:string;
+export interface IVideo {
+  titleRu: string;
+  titleUz: string;
+  title: string;
+  descriptionRu: string;
+  descriptionUz: string;
+  description: string;
+  links: string[];
 }

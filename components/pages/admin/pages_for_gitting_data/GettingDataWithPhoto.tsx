@@ -18,15 +18,7 @@ export const GettingDataWithPhoto: FC<{ linkToForm: string, createItem: string }
     query: { slug },
   } = useRouter();
 
-  const [dataOut, setDataOut] = useState<
-    | {
-      title: string;
-      id: number;
-      description: string;
-      url: string;
-    }[]
-    | null
-  >(null);
+  const [dataOut, setDataOut] = useState<any>(null);
 
   useEffect(() => {
     (async function () {
@@ -39,11 +31,35 @@ export const GettingDataWithPhoto: FC<{ linkToForm: string, createItem: string }
           const { data } = await myAxios(`/api/dashboard/opinion?lang=ru`);
           setDataOut(data.data);
         }
+
+        if (slug && slug[4] === "PHOTOS") {
+          const { data } = await myAxios(`/api/gallery?lang=ru`);
+          setDataOut(data);
+        }
+
+        if (slug && slug[4] === "VIDEOS") {
+          const { data } = await myAxios(`/api/dashboard/video?lang=ru`);
+          setDataOut(data?.pages);
+        }
+
+        if (slug && slug[4] === "INFO") {
+          const { data } = await myAxios(`/api/information?type=${slug && slug[2]}&lang=ru`);
+          setDataOut(data?.data);
+        }
+
+        if (slug && slug[4] === "PEOPLE") {
+          const { data } = await myAxios(`/api/dashboard/people?type=${slug && slug[2]}&lang=ru`);
+          setDataOut(data?.pages);
+        }
+
+
       } catch (err) {
         console.log(err);
       }
     })();
   }, [slug]);
+
+  console.log(dataOut);
 
   return (
     <div>
@@ -51,9 +67,9 @@ export const GettingDataWithPhoto: FC<{ linkToForm: string, createItem: string }
         <a className={s.create}>Создать</a>
       </Link>
       <div className={s.page_wrapper}>
-        {dataOut && (
+        {dataOut && dataOut?.length > 0 && (
           <div className={s.inner}>
-            {dataOut.map((item) => {
+            {dataOut.map((item: any) => {
               return (
                 <div className={s.item} key={item.id}>
                   <div className={s.img_wr}>
@@ -66,9 +82,22 @@ export const GettingDataWithPhoto: FC<{ linkToForm: string, createItem: string }
                         objectFit="cover"
                       />
                     )}
+
+                    {
+                      item?.images && <Image
+                        src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.images[0]?.url}`}
+                        alt={"image"}
+                        layout="fill"
+                        unoptimized
+                        objectFit="cover"
+                      />
+                    }
                   </div>
+
+
                   <div className={s.content}>
-                    <h6 className={s.title}>{item.title}</h6>
+                    <h6 className={s.title}>{item?.title}</h6>
+                    <h6 className={s.title}>{item?.name}</h6>
                     {item?.description && (
                       <p className={s.description}>{item.description}</p>
                     )}

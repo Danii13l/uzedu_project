@@ -11,8 +11,9 @@ handler.get(async (req, res) => {
     const data = await excuteQuery({
       query: getAllStatistics,
     });
+    const statistic = data[0]
     res.status(200).json({
-      data,
+      statistic,
     });
   } catch (err: any) {
     res.status(500).json({ message: err });

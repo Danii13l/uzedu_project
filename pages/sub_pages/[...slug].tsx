@@ -1,23 +1,23 @@
-import {FC} from "react";
-import {GetServerSideProps} from "next";
-import {useTranslation} from "next-i18next";
-import {useRouter} from "next/router";
+import { FC } from "react";
+import { GetServerSideProps } from "next";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
-import {CommonPage} from "@/components/common/common_page/CommonPage";
-import {Layout} from "@/components/layout/Layout";
+import { CommonPage } from "@/components/common/common_page/CommonPage";
+import { Layout } from "@/components/layout/Layout";
 
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import {myAxios} from "assets/axios/myAxios";
-import {PageInt} from "assets/interfaces/PageDataInt";
+import { myAxios } from "assets/axios/myAxios";
+import { PageInt } from "assets/interfaces/PageDataInt";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
-    const {locale} = context;
-    const {slug} = context.query;
+    const { locale } = context;
+    const { slug } = context.query;
 
     try {
-        const {data} = await myAxios(`/api/page?menuId=${slug ? slug[1] : 1}&subMenuId=${slug ? slug[3] : 1}&lang=${locale}`);
+        const { data } = await myAxios(`/api/page?menuId=${slug ? slug[1] : 1}&subMenuId=${slug ? slug[3] : 1}&lang=${locale}`);
         return {
             props: {
                 data: data?.page,
@@ -34,13 +34,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 };
 
-const SubPages: FC<{ data: PageInt }> = ({data}): JSX.Element => {
-    const {t} = useTranslation();
+const SubPages: FC<{ data: PageInt }> = ({ data }): JSX.Element => {
+    const { t } = useTranslation();
 
-    const {query: {slug}} = useRouter();
+    const { query: { slug } } = useRouter();
 
     return <Layout title={`${t(`header:${slug && slug[0]}`)}, ${t(`header:${slug && slug[2]}`)}`} contentDesc={'a'}>
-        <CommonPage data={data}/>
+        <CommonPage data={data} />
     </Layout>;
 };
 export default SubPages;

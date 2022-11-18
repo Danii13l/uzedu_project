@@ -3,9 +3,10 @@
 
 .bread {
   @include df_jc_ai(stretch, center);
-  margin-bottom: 32px;
+  margin: 32px 0;
 
-  a, div {
+  a,
+  div {
     @include fs_lh_fw_fcolor(14px, 15px, 400, $text2);
   }
 

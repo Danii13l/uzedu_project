@@ -6,10 +6,9 @@ import { myAxios } from "assets/axios/myAxios";
 import { useRouter } from "next/router";
 
 
-export const FormActions: FC<{ isDelete: boolean; data?: any; typeOfPage: string; deleteType?: string; pushTo?: string; deleteFetch?: string }> = ({
+export const FormActions: FC<{ isDelete: boolean; data?: any; typeOfPage: string; pushTo?: string; deleteFetch?: string }> = ({
     data,
     typeOfPage,
-    deleteType,
     deleteFetch,
     pushTo,
     isDelete
@@ -45,6 +44,6 @@ export const FormActions: FC<{ isDelete: boolean; data?: any; typeOfPage: string
         <p className={s.actions_typeOfPage}>{typeOfPage}</p>
 
         {data && isDelete &&
-            <button onClick={handleDeletePage} type={"button"} className={s.delete_page}>Удалить {deleteType}</button>}
+            <button onClick={handleDeletePage} type={"button"} className={s.delete_page}>Удалить</button>}
     </div>;
 };

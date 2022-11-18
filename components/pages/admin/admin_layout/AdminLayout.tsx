@@ -47,7 +47,7 @@ export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subN
                                 ["HOMEBANNER", "HOMESLIDER", "HOMEOPINIONS", "HOMESTATISTIC", "HOMELINKS"].map((item, index) => {
                                     return <Link href={`/admin/pages/home_page/0/${item.toLowerCase()}/${index}/${item}`} key={item}>
                                         <a className={s.menu_links}>{item}</a>
-                                    </Link>
+                                    </Link>;
                                 })
                             }
                         </ul>

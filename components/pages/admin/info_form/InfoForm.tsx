@@ -1,54 +1,93 @@
-import {FC} from "react";
+import { FC, useEffect, useState } from "react";
 
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
-import {Field, FieldArray, Form, Formik} from "formik";
+import { Form, Formik } from "formik";
 
-import {FormActions} from "@/components/pages/admin/form_items/FormActions";
-import {InputsBlockMain} from "@/components/pages/admin/form_items/InputsBlockMain";
-import {InputsWrapper} from "@/components/pages/admin/form_items/InputsWrapper";
-import {FieldArrayWrapper} from "@/components/pages/admin/form_items/FieldArrayWrapper";
-import {InputsBlock} from "@/components/pages/admin/form_items/InputsBlock";
-import {Button} from "@/components/common/button/Button";
-import {PreviewImage} from "@/components/pages/admin/form_items/PreviewImage";
-import {InputsFormik} from "@/components/common/input/InputsFormik";
-import {FormWrapper} from "@/components/pages/admin/form_items/FormWrapper";
+import { FormActions } from "@/components/pages/admin/form_items/FormActions";
+import { InputsBlockMain } from "@/components/pages/admin/form_items/InputsBlockMain";
+import { InputsWrapper } from "@/components/pages/admin/form_items/InputsWrapper";
 
-export const InfoForm: FC = (): JSX.Element => {
-    const {query: {slug}, push} = useRouter();
+import { Button } from "@/components/common/button/Button";
+import { PreviewImage } from "@/components/pages/admin/form_items/PreviewImage";
+
+import { FormWrapper } from "@/components/pages/admin/form_items/FormWrapper";
+import { myAxios } from 'assets/axios/myAxios';
+import { useTranslation } from 'next-i18next';
+
+export const InfoForm: FC<{ id?: string; type?: string }> = ({ id, type }): JSX.Element => {
+    const { query: { slug }, push } = useRouter();
+
+    const { t } = useTranslation();
+
+    const [dataOut, setDataOut] = useState<{
+        title: string;
+        titleRu: string;
+        titleUz: string;
+        description: string;
+        descriptionRu: string;
+        descriptionUz: string;
+        link: string;
+        url: string | null;
+        id: number,
+        type: string
+    } | null>(null);
+
+    useEffect(() => {
+        (async function () {
+            try {
+                const { data } = await myAxios(`/api/dashboard/information/${id}`);
+                setDataOut(data);
+            } catch (err) {
+                console.log(err);
+            }
+        }());
+    }, []);
+
 
     return (
         <FormWrapper>
 
-            <FormActions data={false} typeOfPage={"Информация"} deleteType={"должностное информацию"}/>
+            <FormActions isDelete={true} data={dataOut} typeOfPage={t(`header:${dataOut?.type?.toLowerCase() ?? type}`)} deleteFetch="dashboard/information" pushTo="/admin" />
             <Formik
                 initialValues={{
-                    title: "",
-                    titleRu: "",
-                    titleUz: "",
-                    description: "",
-                    descriptionRu: "",
-                    descriptionUz: "",
-                    url: ""
+                    type: dataOut?.type ?? type?.toUpperCase(),
+                    title: dataOut?.title ?? "",
+                    titleRu: dataOut?.titleRu ?? "",
+                    titleUz: dataOut?.titleUz ?? "",
+                    description: dataOut?.description ?? "",
+                    descriptionRu: dataOut?.descriptionRu ?? "",
+                    descriptionUz: dataOut?.descriptionUz ?? "",
+                    image: dataOut?.url ?? "",
                 }}
                 enableReinitialize={true}
                 onSubmit={async (val) => {
-                    console.log(val);
+                    try {
+                        const formData = new FormData();
+                        dataOut?.id && formData.append("id", dataOut?.id as any);
+                        // @ts-ignore
+                        for (let key in val) formData.append(key, val[key]);
+                        dataOut?.id ? await myAxios.put("/api/dashboard/information", formData) : await myAxios.post("/api/dashboard/information", formData);
+                        push("/admin");
+                    } catch (err) {
+                        console.log(err);
+                    }
                 }}
 
             >
-                {({values, setFieldValue, handleSubmit}) => (
+                {({ values, setFieldValue, handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
 
-                        <InputsBlockMain title={"Заголовок"} arr={["titleRu", "titleUz", "title",]}/>
-                        <InputsBlockMain title={"Описание"} arr={["descriptionRu", "descriptionUz", "description",]}/>
+                        <InputsBlockMain title={"Заголовок"} arr={["titleRu", "titleUz", "title",]} />
+                        <InputsBlockMain title={"Описание"} arr={["descriptionRu", "descriptionUz", "description",]} />
 
                         <InputsWrapper title={"Фотография"}>
-                            <PreviewImage condit={values?.url}
-                                          imgUrl={values?.url}
-                                          formikSetFun={setFieldValue}
-                                          valueToDelete={values?.url}
-                                          valueToSave={"url"}
+                            <PreviewImage condit={values?.image}
+                                imgUrl={values?.image}
+                                valueToDelete={values?.image}
+                                formikSetFun={setFieldValue}
+                                valueToSave={"image"}
+                                isToUpload={true}
                             />
                         </InputsWrapper>
 

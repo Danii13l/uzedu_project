@@ -2,12 +2,9 @@
 @import "styles/mixins.module";
 
 .page {
-  padding: 32px 0;
+  padding: 0 0 32px;
 }
 
-.inner {
-
-}
 
 .title {
   @include fs_lh_fw_fcolor(32px, 39px, 700, $text);

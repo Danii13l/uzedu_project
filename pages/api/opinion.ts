@@ -10,14 +10,14 @@ handler
   .get(async (req, res) => {
     try {
       const { lang } = req.query;
-      let query  =
-      lang === "ru"
-        ? getRuOpinionQuery
-        : lang === "uz"
-        ? getUzOpinionQuery
-        : lang === "en"
-        ? getEnOpinionQuery
-        : getOpinionQuery;
+      let query =
+        lang === "ru"
+          ? getRuOpinionQuery
+          : lang === "uz"
+            ? getUzOpinionQuery
+            : lang === "en"
+              ? getEnOpinionQuery
+              : getOpinionQuery;
       const data = await excuteQuery({
         query: query,
       });

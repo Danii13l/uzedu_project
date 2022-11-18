@@ -57,15 +57,19 @@ const AdminPages: NextPage = (): JSX.Element => {
 
     return (
         <AdminLayout namePage={slug ? t(`header:${slug[0]}`) : ""} subNamePage={slug ? t(`header:${slug[2]}`) : ""}>
-            <div>
+            {slug && <div>
                 {(() => {
                     switch (slug && slug[4]) {
                         case 'PAGE':
                             return <PageForm data={data} />;
                         case 'PHOTOS':
-                            return <GalleryForm />;
+                            return <GettingDataWithPhoto linkToForm={slug[4]} createItem={`/admin/create_edit_delete_item/${slug[4]}`} />;
                         case 'VIDEOS':
-                            return <div>Video</div>;
+                            return <GettingDataWithPhoto linkToForm={slug[4]} createItem={`/admin/create_edit_delete_item/${slug[4]}`} />;
+                        case 'PEOPLE':
+                            return <GettingDataWithPhoto linkToForm={slug[4]} createItem={`/admin/create_edit_delete_item/${slug[4]}/${slug[2]}`} />;
+                        case 'INFO':
+                            return <GettingDataWithPhoto linkToForm={slug[4]} createItem={`/admin/create_edit_delete_item/${slug[4]}/${slug[2]}`} />;
                         case 'HOMEBANNER':
                             return <HomeBanner />;
                         case 'HOMESLIDER':
@@ -77,10 +81,7 @@ const AdminPages: NextPage = (): JSX.Element => {
                             return <></>;
                     }
                 })()}
-                {/*<PeopleForm />*/}
-                {/*<VideoGallery/>*/}
-                {/* <InfoForm/> */}
-            </div>
+            </div>}
         </AdminLayout>
     );
 };

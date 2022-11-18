@@ -1,0 +1,22 @@
+@import "styles/variables.module.scss";
+@import "styles/mixins.module.scss";
+
+.img_wr {
+    position: relative;
+    height: 200px;
+    width: 100%;
+}
+
+.content {
+    padding: 32px;
+
+}
+
+.title {
+    @include fs_lh_fw_fcolor(24px, 29px, 500, $text);
+    margin-bottom: 16px;
+}
+
+.subtitle {
+    @include fs_lh_fw_fcolor(16px, 24px, 400, $main);
+}

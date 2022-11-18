@@ -1,31 +1,31 @@
-import {FC, useCallback, useEffect, useState} from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 import s from './index.module.scss';
 
-import {useTranslation} from "next-i18next";
+import { useTranslation } from "next-i18next";
 
-import {Container} from "@/components/common/container/Container";
-import {Language} from "@/components/common/header/language_select/Language";
+import { Container } from "@/components/common/container/Container";
+import { Language } from "@/components/common/header/language_select/Language";
 
-import {headerTopLinks} from "assets/constants/header_links";
-import {useDispatch} from "react-redux";
+import { headerTopLinks } from "assets/constants/header_links";
+import { useDispatch } from "react-redux";
 
-import {setBAndW} from "assets/redux/slices/blackWhite";
-import {setIsOpenMenu} from "assets/redux/slices/sidebarMenu";
-import {useGetMenu} from "assets/hooks/fetching/useGetMenu";
+import { setBAndW } from "assets/redux/slices/blackWhite";
+import { setIsOpenMenu } from "assets/redux/slices/sidebarMenu";
+import { useGetMenu } from "assets/hooks/fetching/useGetMenu";
 
 
 export const Header: FC = (): JSX.Element => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const [hoverValue, setHoverValue] = useState<number | undefined>(undefined);
     const [activeMenu, setActiveMenu] = useState<boolean>(false);
     const [searchInput, setSearchInput] = useState(false);
     const [settingView, setSettingView] = useState(false);
 
-    const {menu} = useGetMenu();
+    const { menu } = useGetMenu();
 
     const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ export const Header: FC = (): JSX.Element => {
         return () => {
             setActiveMenu(true);
             setHoverValue(value);
-        }
+        };
     }, []);
 
     const handleMouseOutMenu = useCallback(() => {
@@ -54,7 +54,7 @@ export const Header: FC = (): JSX.Element => {
 
 
     const menuVal = useCallback((val: typeof menu) => {
-        return val && val[hoverValue ? hoverValue - 1 : 0]
+        return val && val[hoverValue ? hoverValue - 1 : 0];
     }, [hoverValue]);
 
 
@@ -69,7 +69,7 @@ export const Header: FC = (): JSX.Element => {
             <div className={s.h_inner}>
                 <div className={s.h_top}>
                     {
-                        headerTopLinks.map(({id, text, link}) => {
+                        headerTopLinks.map(({ id, text, link }) => {
                             return <Link href={link} key={id}>
                                 <a className={s.h_top_links}>{t(text)}</a>
                             </Link>;
@@ -77,8 +77,8 @@ export const Header: FC = (): JSX.Element => {
                     }
 
                     <div className={s.setting} data-setview={"setting_view"}>
-                        <Image data-setview={"setting_view"} src={"/images/header/eye.svg"} width={18} height={12}
-                               onClick={handleSettingView}/>
+                        <Image data-setview={"setting_view"} src={"/images/header/eye.svg"} width={18} height={12} alt="eye"
+                            onClick={handleSettingView} />
 
                         {settingView && <div className={s.s_inner} data-setview={"setting_view"}>
                             <div className={s.s_item} data-setview={"setting_view"}>
@@ -99,14 +99,14 @@ export const Header: FC = (): JSX.Element => {
                         }
                     </div>
 
-                    <Language/>
+                    <Language />
                 </div>
                 <div className={s.h_bottom}>
                     <div className={s.setting_language_res}>
-                        <Language/>
+                        <Language />
                         <div className={s.setting} data-setview={"setting_view"}>
-                            <Image data-setview={"setting_view"} src={"/images/header/eye.svg"} width={18} height={12}
-                                   onClick={handleSettingView}/>
+                            <Image data-setview={"setting_view"} src={"/images/header/eye.svg"} width={18} height={12} alt="eye"
+                                onClick={handleSettingView} />
 
                             {settingView && <div className={s.s_inner} data-setview={"setting_view"}>
                                 <div className={s.s_item} data-setview={"setting_view"}>
@@ -132,7 +132,7 @@ export const Header: FC = (): JSX.Element => {
                     <div className={s.logo}>
                         <Link href={"/"}>
                             <a className={s.logo_wrapper}>
-                                <Image src={'/images/common/logo.svg'} layout={"fill"} objectFit={"cover"}/>
+                                <Image src={'/images/common/logo.svg'} layout={"fill"} objectFit={"cover"} alt="logo" />
                             </a>
                         </Link>
                     </div>
@@ -143,12 +143,12 @@ export const Header: FC = (): JSX.Element => {
                             menu && menu.map(item => {
                                 return <div key={item.id}
 
-                                            className={s.h_bot_main_link_wrap}>
+                                    className={s.h_bot_main_link_wrap}>
                                     {
                                         item.id !== 2 && <>
                                             <p onMouseOver={handleMouseOverMenu(item.id)}
-                                               onMouseLeave={handleMouseOutMenu()}
-                                               className={s.h_bot_main_link}>{t(`header:${item.name}`)}
+                                                onMouseLeave={handleMouseOutMenu()}
+                                                className={s.h_bot_main_link}>{t(`header:${item.name}`)}
 
                                                 {
                                                     hoverValue && <span className={s.h_bot_main_link_active}></span>
@@ -171,22 +171,22 @@ export const Header: FC = (): JSX.Element => {
                         <div className={`${s.search} ${!searchInput ? s.not_active_form : ""}`}>
                             <form className={`${s.search_form} ${searchInput ? s.active_form : ""}`}>
                                 <div className={s.search_form_img_left}>
-                                    <Image src={"/images/header/search.svg"} layout={"fill"}/>
+                                    <Image src={"/images/header/search.svg"} layout={"fill"} alt="search" />
                                 </div>
 
-                                <input type={"text"} placeholder={"Поиск"}/>
+                                <input type={"text"} placeholder={"Поиск"} />
                                 <div className={s.search_form_img_right}>
-                                    <Image src={"/images/header/close_search.svg"} layout={"fill"}
-                                           onClick={handleSearch(false)}/>
+                                    <Image src={"/images/header/close_search.svg"} layout={"fill"} alt="close"
+                                        onClick={handleSearch(false)} />
                                 </div>
                             </form>
 
-                            <Image src={"/images/header/search.svg"} width={17} height={17}
-                                   onClick={handleSearch(true)}/>
+                            <Image src={"/images/header/search.svg"} width={17} height={17} alt="search"
+                                onClick={handleSearch(true)} />
 
                         </div>
                         <div className={s.burger} onClick={() => dispatch(setIsOpenMenu(true))}>
-                            <Image src={"/images/header/burger.svg"} width={23} height={17}/>
+                            <Image src={"/images/header/burger.svg"} width={23} height={17} alt="menu" />
                         </div>
                     </div>
                 </div>
@@ -195,14 +195,21 @@ export const Header: FC = (): JSX.Element => {
 
         {
             <div className={`${s.sublinks_wrap} ${activeMenu ? s.sublinks_wrap_active : ""}`}
-                 onMouseOver={() => setActiveMenu(true)}
-                 onMouseLeave={() => setActiveMenu(false)}>
+                onMouseOver={() => setActiveMenu(true)}
+                onMouseLeave={() => setActiveMenu(false)}>
                 <Container>
                     <ul className={s.h_bot_sublinks_list}>
                         {menu && menuVal(menu)?.subMenu.map((item) => {
                             return <li key={item.id} className={s.h_bot_sublink_li} onClick={handleMouseOutMenu()}>
                                 <Link
-                                    href={`/sub_pages/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}`}>
+                                    href={
+                                        `${item.name === "gallery" ? "/gallery_photos"
+                                            :
+                                            item.name === "videogallery" ? "/gallery_video"
+                                                :
+                                                "/sub_pages"}/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}`
+
+                                    }>
                                     <a className={s.h_bot_sublink_a} >
                                         {t(`header:${item.name}`)}
                                     </a>
@@ -215,5 +222,5 @@ export const Header: FC = (): JSX.Element => {
             </div>
         }
 
-    </header>;
+    </header >;
 };

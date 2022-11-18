@@ -47,7 +47,7 @@ export const TopSelections: FC<{ data: SliderInt[] }> = ({ data }): JSX.Element 
                             slidesPerView={1}
                         >
                             {
-                                data && data.map(item => {
+                                data && typeof data !== "string" && data.map(item => {
                                     return <SwiperSlide key={item.id}>
                                         <div className={"topSelections__slide"}>
                                             <div className={"topSelections__slide_img_wrap"}>

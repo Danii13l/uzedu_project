@@ -10,43 +10,45 @@ import { useTranslation } from "next-i18next";
 
 
 interface StatisticsInt {
-    allAddr: string;
-    allReq: string;
-    checkedAddr: string;
-    checkedReq: string;
-    id: number;
-    processAddr: string;
-    processReq: string;
-    rejectedAddr: string;
+    statistic: {
+        allAddr: string;
+        allReq: string;
+        checkedAddr: string;
+        checkedReq: string;
+        id: number;
+        processAddr: string;
+        processReq: string;
+        rejectedAddr: string;
+    };
 }
-
 export const Statistics: FC<{ data: StatisticsInt }> = ({ data }): JSX.Element => {
     const { t } = useTranslation();
+
+    const statistic = data?.statistic;
 
     return <div className={s.stat}>
         <SectionWrapper>
             <Container>
-
                 {
-                    data && <>
+                    statistic && <>
                         <div className={s.stat_item}>
                             <h4 className={s.stat_title}>{t("home:callstatistics")}</h4>
                             <div className={s.stat_content}>
                                 <div className={s.stat_content_inner}>
                                     <div className={s.stat_content_item}>
-                                        <p className={s.stat_content_num}>{data.allAddr}</p>
+                                        <p className={s.stat_content_num}>{statistic.allAddr}</p>
                                         <p className={s.stat_content_text}>{t("home:totalappeals")}</p>
                                     </div>
                                     <div className={s.stat_content_item}>
-                                        <p className={s.stat_content_num}>{data.checkedAddr}</p>
+                                        <p className={s.stat_content_num}>{statistic.checkedAddr}</p>
                                         <p className={s.stat_content_text}>{t("home:appealsconsidered")}</p>
                                     </div>
                                     <div className={s.stat_content_item}>
-                                        <p className={s.stat_content_num}>{data.rejectedAddr}</p>
+                                        <p className={s.stat_content_num}>{statistic.rejectedAddr}</p>
                                         <p className={s.stat_content_text}>{t("home:rejectedrequests")}</p>
                                     </div>
                                     <div className={s.stat_content_item}>
-                                        <p className={s.stat_content_num}>{data.processAddr}</p>
+                                        <p className={s.stat_content_num}>{statistic.processAddr}</p>
                                         <p className={s.stat_content_text}>{t("home:inconsideration")}</p>
                                     </div>
                                 </div>
@@ -58,15 +60,15 @@ export const Statistics: FC<{ data: StatisticsInt }> = ({ data }): JSX.Element =
                             <div className={s.stat_content}>
                                 <div className={`${s.stat_content_inner} ${s.stat_content_inner2}`}>
                                     <div className={s.stat_content_item}>
-                                        <p className={s.stat_content_num}>{data.allReq}</p>
+                                        <p className={s.stat_content_num}>{statistic.allReq}</p>
                                         <p className={s.stat_content_text}>{t("home:numberofrequests")}</p>
                                     </div>
                                     <div className={s.stat_content_item}>
-                                        <p className={s.stat_content_num}>{data.checkedReq}</p>
+                                        <p className={s.stat_content_num}>{statistic.checkedReq}</p>
                                         <p className={s.stat_content_text}>{t("home:reviewedrequests")}</p>
                                     </div>
                                     <div className={s.stat_content_item}>
-                                        <p className={s.stat_content_num}>{data.processReq}</p>
+                                        <p className={s.stat_content_num}>{statistic.processReq}</p>
                                         <p className={s.stat_content_text}>{t("home:underconsideration")}</p>
                                     </div>
                                 </div>

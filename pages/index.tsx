@@ -12,6 +12,7 @@ import { ContactUs } from "@/components/pages/home/contact_us/ContactUs";
 import { Statistics } from "@/components/pages/home/statistics/Statistics";
 import { Map } from '@/components/pages/home/map/Map';
 import { myAxios } from 'assets/axios/myAxios';
+import { InfoPeopleItem } from './../components/common/info_people_item/InfoPeople';
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -26,19 +27,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     try {
         const banner = await myAxios(`${process.env.NEXT_PUBLIC_BASE_URL}/api/multipart?type=BANNER&lang=${locale}`);
-        allData.banner = banner?.data?.data[0];
+        allData.banner = banner?.data["data"];
 
         const slider = await myAxios(`${process.env.NEXT_PUBLIC_BASE_URL}/api/multipart?type=SLIDER&lang=${locale}`);
-        allData.slider = slider?.data?.data;
+        allData.slider = slider?.data["data"];
 
         const opinions = await myAxios(`${process.env.NEXT_PUBLIC_BASE_URL}/api/opinion?lang=${locale}`);
-        allData.opinions = opinions?.data?.data;
+        allData.opinions = opinions?.data["data"];
 
         const statistic = await myAxios(`${process.env.NEXT_PUBLIC_BASE_URL}/api/statistic`);
-        allData.statistic = statistic?.data?.data[0];
+        allData.statistic = statistic?.data;
 
         const links = await myAxios(`${process.env.NEXT_PUBLIC_BASE_URL}/api/multipart?type=LINK&lang=${locale}`);
-        allData.links = links?.data?.data;
+        allData.links = links?.data["data"];
 
     } catch (err) {
         console.log(err);
@@ -54,8 +55,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const Home: NextPage = ({ data }: any): JSX.Element => {
 
-    console.log(data);
-
     return (
         <Layout title={"Home"} contentDesc={"home"}>
             <Banner data={data.banner} />
@@ -65,7 +64,7 @@ const Home: NextPage = ({ data }: any): JSX.Element => {
             <Map />
             <ContactUs />
             <Statistics data={data.statistic} />
-            <UsefulLinks />
+            <UsefulLinks data={data.links} />
         </Layout>
     );
 };

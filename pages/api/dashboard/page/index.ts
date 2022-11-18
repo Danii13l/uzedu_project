@@ -19,8 +19,6 @@ handler
   .get(async (req, res) => {
     try {
       const { lang, menuId, subMenuId } = req.query;
-      console.log("lang",lang);
-      
       let pages: any = await excuteQuery({
         query:
           lang === "ru"
@@ -32,38 +30,54 @@ handler
             : getPageQuery,
         values: [menuId, subMenuId],
       });
-      await pages.map(async (p: any) => {
-        p.images = JSON.parse(p.images);
-        p.videos = JSON.parse(p.videos);
-        p.files = JSON.parse(p.files);
-      });
-
-      const page = pages[0];
-      for (const image of page.images) {
-        if (image.title && lang) {
-          image.title = lang === "ru" ? image.titleRu : lang === "uz" ? image.titleUz : image.title;
-          delete image.titleRu;
-          delete image.titleUz;
+      if (pages.length > 0) {
+        await pages.map(async (p: any) => {
+          p.images = JSON.parse(p.images);
+          p.videos = JSON.parse(p.videos);
+          p.files = JSON.parse(p.files);
+        });
+        const page = pages[0];
+        for (const image of page.images) {
+          if (image.title && lang) {
+            image.title =
+              lang === "ru"
+                ? image.titleRu
+                : lang === "uz"
+                ? image.titleUz
+                : image.title;
+            delete image.titleRu;
+            delete image.titleUz;
+          }
         }
-      }
-      for (const video of page.videos) {
-        if (video.title && lang) {
-          video.title = lang === "ru" ? video.titleRu : lang === "uz" ? video.titleUz : video.title;
-          delete video.titleRu;
-          delete video.titleUz;
+        for (const video of page.videos) {
+          if (video.title && lang) {
+            video.title =
+              lang === "ru"
+                ? video.titleRu
+                : lang === "uz"
+                ? video.titleUz
+                : video.title;
+            delete video.titleRu;
+            delete video.titleUz;
+          }
         }
-      }
-      for (const file of page.files) {
-        if (file.title && lang) {
-          file.title = lang === "ru" ? file.titleRu : lang === "uz" ? file.titleUz : file.title;
-          delete file.titleRu;
-          delete file.titleUz;
+        for (const file of page.files) {
+          if (file.title && lang) {
+            file.title =
+              lang === "ru"
+                ? file.titleRu
+                : lang === "uz"
+                ? file.titleUz
+                : file.title;
+            delete file.titleRu;
+            delete file.titleUz;
+          }
         }
+        return res.status(200).json({
+          page,
+        });
       }
-
-      res.status(200).json({
-        page,
-      });
+      return res.status(200).json({});
     } catch (err: any) {
       res.status(500).json({ message: err });
       return;
@@ -119,7 +133,7 @@ handler
       videos,
       files,
     } = req.body;
-    try { 
+    try {
       let pages: any = await excuteQuery({
         query: getById,
         values: [id],

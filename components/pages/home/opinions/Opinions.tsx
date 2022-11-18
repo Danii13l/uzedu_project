@@ -40,7 +40,7 @@ export const Opinions: FC<{ data: OpinionsInt[] }> = ({ data }): JSX.Element => 
                     slidesPerView={1}
                 >
                     {
-                        data && data.map(item => {
+                        data && typeof data !== "string" && data.map(item => {
                             return <SwiperSlide key={item.id}>
                                 <div className={"opinions__slide"}>
                                     <div className={"opinions__quote"}>
