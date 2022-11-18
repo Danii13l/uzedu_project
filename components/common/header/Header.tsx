@@ -27,6 +27,9 @@ export const Header: FC = (): JSX.Element => {
 
     const { menu } = useGetMenu();
 
+    console.log(menu);
+
+
     const dispatch = useDispatch();
 
     const handleMouseOverMenu = useCallback((value: number) => {

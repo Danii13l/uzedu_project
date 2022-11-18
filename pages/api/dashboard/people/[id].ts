@@ -47,6 +47,11 @@ handler
         return res.status(404).end("People not found");
       }
 
+      people.map((p: any) => {
+        p.workHistory = JSON.parse(p.workHistory);
+        p.duty = JSON.parse(p.duty);
+      });
+
       return res.json(people[0]);
     } catch (error) {
       res.status(500).json({ message: error });

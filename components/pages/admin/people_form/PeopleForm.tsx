@@ -49,7 +49,7 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
 
         (async function () {
             try {
-                const { data } = await myAxios(`/api/dashboard/people/${id}?lang=`);
+                const { data } = await myAxios(`/api/dashboard/people/${id}?lang=ru`);
                 setDataOut(data);
             } catch (err) {
                 console.log(err);
@@ -90,11 +90,24 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
                 enableReinitialize={true}
                 onSubmit={async (val) => {
                     try {
-                        // const formData = new FormData();
-                        // dataOut?.id && formData.append("id", dataOut?.id as any);
+                        const formData = new FormData();
+                        dataOut?.id && formData.append("id", dataOut?.id as any);
                         // @ts-ignore
-                        // for (let key in val) formData.append(key, val[key]);
-                        // const { data } = await myAxios.post("/api/dashboard/people", formData);
+                        for (let key in val) {
+                            formData.append(key, val[key])
+                            if (key === "isBoss") {
+                                formData.append(key, val[key] ? 1 : 0);
+                            }
+
+                            if (key === "workHistory") {
+                                formData.append(key, JSON.stringify(val[key]));
+                            }
+                            if (key === "duty") {
+                                formData.append(key, JSON.stringify(val[key]));
+                            }
+                        }
+
+                        const { data } = await myAxios.post("/api/dashboard/people", formData);
                         console.log(val);
                         // push("/admin");
                     } catch (err) {
@@ -122,7 +135,7 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
                             <InputsFormik name={`biography`} label={""} textarea={true} />
                         </InputsWrapper>
 
-                        {/* <InputsWrapper title={"Трудовая Деятельность"}>
+                        <InputsWrapper title={"Трудовая Деятельность"}>
                             <FieldArray
                                 name="workHistory"
                                 render={({ push, remove }) => (
@@ -143,9 +156,9 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
                                     </div>
                                 )}
                             />
-                        </InputsWrapper> */}
+                        </InputsWrapper>
 
-                        {/* <InputsWrapper title={"Обязанности"}>
+                        <InputsWrapper title={"Обязанности"}>
                             <FieldArray
                                 name="duty"
                                 render={({ push, remove }) => (
@@ -166,7 +179,7 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
                                     </div>
                                 )}
                             />
-                        </InputsWrapper> */}
+                        </InputsWrapper>
 
                         <InputsWrapper title={"Фотография"}>
                             <PreviewImage condit={values?.image}
