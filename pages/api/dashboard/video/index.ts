@@ -6,13 +6,7 @@ import { isAuth } from "src/utils/auth";
 import { RemoveImage, uploadImage } from "src/utils/upload";
 import excuteQuery from "src/db/mydb";
 
-
-import {
-  addInformationQuery,
-  editInformationQuery,
-  getInformationById,
-} from "src/db/queries/information";
-import { getVideoQuery } from "src/db/queries/video";
+import { addVideo, getVideoByIdQuery, getVideoQuery, updateVideo } from "src/db/queries/video";
 const handler = nc<NextApiRequest, NextApiResponse>();
 export const config = {
   api: {
@@ -48,16 +42,14 @@ handler
       }
       const imagePath = await uploadImage(image);
       const {
-        type,
         title,
         titleRu,
         titleUz,
         link
       } = data.fields;
       await excuteQuery({
-        query: addInformationQuery,
+        query: addVideo,
         values: [
-          type,
           title,
           titleRu,
           titleUz,
@@ -89,7 +81,7 @@ handler
         link
       } = data.fields;
       let information: any = await excuteQuery({
-        query: getInformationById,
+        query: getVideoByIdQuery,
         values: [id],
       });
       if (information.length === 0) {
@@ -103,7 +95,7 @@ handler
       }
 
       await excuteQuery({
-        query: editInformationQuery,
+        query: updateVideo,
         values: [
           title,
           titleRu,

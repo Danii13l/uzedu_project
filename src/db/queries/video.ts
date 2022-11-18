@@ -1,5 +1,5 @@
 export const addVideo =
-  "INSERT INTO videos (title, title_ru, title_uz,link,url) VALUES(?,?,?,?,?,?,?)";
+  "INSERT INTO videos (title, title_ru, title_uz,link, url) VALUES(?,?,?,?,?)";
 export const updateVideo =
   "UPDATE videos  SET title=?, title_ru=?,  title_uz=?, link=?,url=? WHERE id=?";
 
