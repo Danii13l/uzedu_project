@@ -25,15 +25,15 @@ handler
       let galleries: any = await excuteQuery({
         query: fullQuery,
       });
-      if(galleries.length === 0){
-          res.status(200).json([]);
+      if (galleries.length === 0) {
+        res.status(200).json([]);
       }
       galleries = JSON.parse(JSON.stringify(galleries));
       galleries.map((p: any) => {
-          p.images = JSON.parse(p.images);
-        });
+        p.images = JSON.parse(p.images);
+      });
       res.status(200).json(galleries);
-    } catch (err:any) {    
+    } catch (err: any) {
       res.status(500).json({ message: err.message });
       return;
     }
@@ -48,7 +48,7 @@ handler
           resolve({ fields, files });
         });
       });
-     const {images} = data.files;
+      const { images } = data.files;
       if (!images) {
         return res.status(400).json({ message: "image required" });
       }
@@ -85,17 +85,18 @@ handler
       return;
     }
   })
-.put(async (req, res) => {
-    const data: any = await new Promise((resolve, reject) => {
-      const form = new IncomingForm();
-      form.parse(req, (err, fields, files) => {
-        if (err) return reject(err);
-        resolve({ fields, files });
+  .put(async (req, res) => {
+    const form = formidable({ multiples: true });
+      const data: any = await new Promise((resolve, reject) => {
+        form.parse(req, (err, fields, files) => {
+          if (err) return reject(err);
+          resolve({ fields, files });
+        });
       });
-    });
+
     try {
       const imagesURLArray: IImage[] = [];
-      const { ...images } = data.files;
+      const {images } = data.files;
       const {
         id,
         title,
@@ -106,6 +107,9 @@ handler
         descriptionUz,
         images_url,
       } = data.fields;
+    
+     
+      
       const query = "SELECT id, images FROM galleries where id = ? ";
       let galleries: any = await excuteQuery({
         query: query,
@@ -114,21 +118,30 @@ handler
       if (galleries.length === 0) {
         return res.status(404).end("Gallery not found");
       }
+    
+      
       galleries = Object.values(JSON.parse(JSON.stringify(galleries)));
       galleries = JSON.parse(JSON.stringify(galleries));
       galleries.map((p: any) => {
         p.images = JSON.parse(p.images);
       });
+    
       const galleriesData: IGallery = galleries[0];
 
       let arr = Object.keys(images).map((k) => images[k]);
+    
+      
       if (arr.length > 0) {
         for (let index = 0; index < arr.length; index++) {
           const imagePath = await uploadImage(arr[index]);
           imagesURLArray.push({ url: imagePath, id: index + 1 });
         }
       }
+   
+      
       const imagesURL: string[] = images_url.split(",");
+      
+      
       let counter = imagesURLArray.length;
       let flag = false;
       for (let i = 0; i < galleriesData.images.length; i++) {

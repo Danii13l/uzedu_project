@@ -10,30 +10,27 @@ import {
 } from "src/db/queries/video";
 const handler = nc<NextApiRequest, NextApiResponse>();
 
-handler
-  .get(async (req, res) => {
-    try {
-      const { lang } = req.query;
-      let pages: any = await excuteQuery({
-        query:
-          lang === "ru"
-            ? getRuVidoQuery
-            : lang === "uz"
-            ? getUzVideoQuery
-            : lang === "en"
-            ? getEnVidoQuery
-            : getVideoQuery,
-        values: [],
-      });
-      await pages.map(async (p: any) => {
-        p.links = JSON.parse(p.links);
-      });
-      res.status(200).json({
-        pages,
-      });
-    } catch (err: any) {
-      res.status(500).json({ message: err });
-      return;
-    }
-  });
+handler.get(async (req, res) => {
+  try {
+    const { lang, type } = req.query;
+    const query =
+    lang === "ru"
+      ? getRuVidoQuery
+      : lang === "uz"
+      ? getUzVideoQuery
+      : lang === "en"
+      ? getEnVidoQuery
+      : getVideoQuery;
+   const data = await excuteQuery({
+      query: query,values:[type]
+    });
+    res.status(200).json({
+      data,
+    });
+  } catch (err: any) {
+    res.status(500).json({ message: err });
+    return;
+  }
+});
+
 export default handler;
