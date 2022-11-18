@@ -20,7 +20,7 @@ handler.get(async (req, res) => {
       const subMenuArray: ISubMenu[] = [];
       subMenu.forEach((s: any) => {
         if (m.id === s.menuId) {
-            subMenuArray.push({id:s.id,name:s.name,typeOfForm:s.typeOfForm});
+            subMenuArray.push({id:s.id,name:s.name,typeOfForm:s.typeOfForm, pageLink:s.pageLink});
         }
       });
       m.subMenu = subMenuArray;

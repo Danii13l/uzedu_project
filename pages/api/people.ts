@@ -13,11 +13,7 @@ import {
   getAllByIdEn,
   getAllByIdRu,
   getAllByIdUz,
-  getAllByType,
-  getAllByTypeEn,
-  getAllByTypeRu,
-  getAllByTypeUz,
-  updatePeople,
+
 } from "src/db/queries/people";
 import { RemoveImage, uploadImage } from "src/utils/upload";
 export const config = {
