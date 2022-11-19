@@ -43,16 +43,14 @@ export const VideoGallery: FC<{ id?: string }> = ({ id }) => {
 
     console.log(dataOut);
     return <FormWrapper>
-        <FormActions isDelete={true} data={dataOut} typeOfPage={"Видео Галерея"} deleteType={"видео галерею"} deleteFetch={`dashboard/video/`} pushTo="/admin/pages/informationService/5/videogallery/38/VIDEOS" />
+        <FormActions isDelete={true} data={dataOut} typeOfPage={"Видео Галерея"} deleteFetch={`dashboard/video/`} pushTo="/admin/pages/informationService/5/videogallery/38/VIDEOS" />
         <Formik
             initialValues={{
                 titleRu: dataOut?.titleRu ?? "",
                 titleUz: dataOut?.titleUz ?? "",
                 title: dataOut?.title ?? "",
-                descriptionRu: dataOut?.descriptionRu ?? "",
-                descriptionUz: dataOut?.descriptionUz ?? "",
-                description: dataOut?.description ?? "",
-                links: dataOut?.links ?? [],
+                image: "",
+                link: dataOut?.links ?? [],
             }}
             enableReinitialize={true}
             onSubmit={async (val) => {
@@ -67,27 +65,7 @@ export const VideoGallery: FC<{ id?: string }> = ({ id }) => {
             {({ values, handleSubmit }) => (
                 <Form onSubmit={handleSubmit}>
                     <InputsBlockMain title={"Заголовок"} arr={["titleRu", "titleUz", "title"]} />
-                    <InputsBlockMain title={"Описание"}
-                        arr={["descriptionRu", "descriptionUz", "description"]} textarea={true} />
-
-                    <InputsWrapper title={"Ссылки"}>
-                        <FieldArray
-                            name="links"
-                            render={({ push, remove }) => (
-                                <div>
-                                    {values?.links.map((video, index) => (
-                                        <FieldArrayWrapper deleteFun={() => remove(index)} key={index}>
-                                            <InputsFormik name={`links[${index}].link`} label={"ссылка"} />
-                                        </FieldArrayWrapper>
-                                    ))}
-
-                                    <div onClick={() => push({ link: "" })}>
-                                        <Button classN={"main"}>Добавить Ссылку</Button>
-                                    </div>
-                                </div>
-                            )}
-                        />
-                    </InputsWrapper>
+                    <InputsFormik name={`link`} label={"ссылка"} />
                     <div>
                         <Button classN={"main"} submit={true}>Отправить</Button>
                     </div>

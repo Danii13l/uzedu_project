@@ -40,7 +40,7 @@ export const HomeUsefulLinks: FC<{ id?: string }> = ({ id }): JSX.Element => {
 
     return (
         <FormWrapper>
-            <FormActions isDelete={true} data={dataOut} typeOfPage={"Полезные ссылки"} deleteType={"ссылку"} deleteFetch="dashboard/multipart" pushTo="/admin/pages/home_page/0/homelinks/4/HOMELINKS" />
+            <FormActions isDelete={true} data={dataOut} typeOfPage={"Полезные ссылки"} deleteFetch="dashboard/multipart" pushTo="/admin/pages/home_page/0/homelinks/4/HOMELINKS" />
             <Formik
                 initialValues={{
                     type: "LINK",

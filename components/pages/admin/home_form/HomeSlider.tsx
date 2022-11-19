@@ -41,7 +41,7 @@ export const HomeSlider: FC<{ id?: string }> = ({ id }): JSX.Element => {
 
     return (
         <FormWrapper>
-            <FormActions isDelete={true} data={dataOut} typeOfPage={"Слайдер"} deleteType={"слайдер"} deleteFetch="dashboard/multipart" pushTo="/admin/pages/home_page/0/homeslider/1/HOMESLIDER" />
+            <FormActions isDelete={true} data={dataOut} typeOfPage={"Слайдер"} deleteFetch="dashboard/multipart" pushTo="/admin/pages/home_page/0/homeslider/1/HOMESLIDER" />
             <Formik
                 initialValues={{
                     type: "SLIDER",

@@ -42,7 +42,7 @@ export const GalleryForm: FC<{ id?: string }> = ({ id }) => {
 
     const { push } = useRouter();
     return <FormWrapper>
-        <FormActions isDelete={true} data={dataOut} typeOfPage={"Фото Галерея"} deleteType={"фото галерею"} deleteFetch="dashboard/gallery" pushTo="/admin/pages/informationService/5/gallery/37/PHOTOS" />
+        <FormActions isDelete={true} data={dataOut} typeOfPage={"Фото Галерея"} deleteFetch="dashboard/gallery" pushTo="/admin/pages/informationService/5/gallery/37/PHOTOS" />
         <Formik
             initialValues={{
                 titleRu: dataOut?.titleRu ?? "",
@@ -65,7 +65,9 @@ export const GalleryForm: FC<{ id?: string }> = ({ id }) => {
                         const arrFile = [];
 
                         for (let i = 0; i < imagesServer.length; i++) {
+                            // @ts-ignore
                             if (imagesServer[i]?.url) {
+                                // @ts-ignore
                                 arrUrl.push(imagesServer[i].url);
                             } else {
                                 arrFile.push(imagesServer[i].file);

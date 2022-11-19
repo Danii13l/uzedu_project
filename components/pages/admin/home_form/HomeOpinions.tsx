@@ -40,7 +40,7 @@ export const HomeOpinions: FC<{ id?: string }> = ({ id }): JSX.Element => {
 
     return (
         <FormWrapper>
-            <FormActions isDelete={true} data={dataOut} typeOfPage={"Мнения"} deleteType={"мнение"} deleteFetch="dashboard/opinion" pushTo="/admin/pages/home_page/0/homeopinions/2/HOMEOPINIONS" />
+            <FormActions isDelete={true} data={dataOut} typeOfPage={"Мнения"} deleteFetch="dashboard/opinion" pushTo="/admin/pages/home_page/0/homeopinions/2/HOMEOPINIONS" />
             <Formik
                 initialValues={{
                     type: "OPINION",
