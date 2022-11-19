@@ -22,9 +22,6 @@ export const GalleryForm: FC<{ id?: string }> = ({ id }) => {
         titleRu: string;
         titleUz: string;
         title: string;
-        descriptionRu: string;
-        descriptionUz: string;
-        description: string;
         images: string[],
     } | null>(null);
 
@@ -51,9 +48,6 @@ export const GalleryForm: FC<{ id?: string }> = ({ id }) => {
                 titleRu: dataOut?.titleRu ?? "",
                 titleUz: dataOut?.titleUz ?? "",
                 title: dataOut?.title ?? "",
-                descriptionRu: dataOut?.descriptionRu ?? "",
-                descriptionUz: dataOut?.descriptionUz ?? "",
-                description: dataOut?.description ?? "",
                 images: [],
             }}
             enableReinitialize={true}
@@ -63,14 +57,27 @@ export const GalleryForm: FC<{ id?: string }> = ({ id }) => {
                     formData.append("title", val.title);
                     formData.append("titleRu", val.titleRu);
                     formData.append("titleUz", val.titleUz);
-                    formData.append("description", val.description);
-                    formData.append("descriptionRu", val.descriptionRu);
-                    formData.append("descriptionUz", val.descriptionUz);
 
                     // @ts-ignore
                     dataOut?.id && formData.append("id", dataOut?.id);
+                    if (dataOut?.id) {
+                        const arrUrl = [];
+                        const arrFile = [];
 
-                    for (let i = 0; i < imagesServer.length; i++) formData.append("images", imagesServer[i].file as any);
+                        for (let i = 0; i < imagesServer.length; i++) {
+                            if (imagesServer[i]?.url) {
+                                arrUrl.push(imagesServer[i].url);
+                            } else {
+                                arrFile.push(imagesServer[i].file);
+                            }
+                        }
+                        formData.append("images_url", arrUrl as any);
+                        for (let i = 0; i < arrFile.length; i++) formData.append("images", arrFile[i] as any);
+
+                    } else {
+                        for (let i = 0; i < imagesServer.length; i++) formData.append("images", imagesServer[i].file as any);
+                    }
+
 
 
                     await myAxios[dataOut?.id ? "put" : "post"]("/api/dashboard/gallery", formData, {
@@ -88,9 +95,6 @@ export const GalleryForm: FC<{ id?: string }> = ({ id }) => {
                 <Form onSubmit={handleSubmit}>
 
                     <InputsBlockMain title={"Заголовок галереи"} arr={["titleRu", "titleUz", "title"]} />
-                    <InputsBlockMain title={"Описание галереи"}
-                        arr={["descriptionRu", "descriptionUz", "description"]} textarea={true} />
-
 
                     <div className={s.load_wr}>
                         <label className={s.label_file} htmlFor={"input_label"}>Загрузить фотографии</label>
