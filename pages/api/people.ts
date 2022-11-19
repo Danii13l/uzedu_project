@@ -8,33 +8,27 @@ import formidable from "formidable";
 
 import { getById, updatePage } from "src/db/queries/page";
 import {
-  addPeople,
-  getAllById,
-  getAllByIdEn,
-  getAllByIdRu,
-  getAllByIdUz,
+  getAllByType,
+  getAllByTypeEn,
+  getAllByTypeRu,
+  getAllByTypeUz,
 
 } from "src/db/queries/people";
-import { RemoveImage, uploadImage } from "src/utils/upload";
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+
 handler
   .get(async (req, res) => {
     try {
-      const { lang, id } = req.query;
+      const { lang, type } = req.query;
       let pages: any = await excuteQuery({
         query:
           lang === "ru"
-            ? getAllByIdRu
+            ? getAllByTypeRu
             : lang === "uz"
-            ? getAllByIdUz
+            ? getAllByTypeUz
             : lang === "en"
-            ? getAllByIdEn
-            : getAllById,
-        values: [id],
+            ? getAllByTypeEn
+            : getAllByType,
+        values: [type],
       });
       pages = JSON.parse(JSON.stringify(pages));
 
