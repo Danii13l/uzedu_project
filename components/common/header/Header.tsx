@@ -27,9 +27,6 @@ export const Header: FC = (): JSX.Element => {
 
     const { menu } = useGetMenu();
 
-    console.log(menu);
-
-
     const dispatch = useDispatch();
 
     const handleMouseOverMenu = useCallback((value: number) => {
@@ -210,7 +207,8 @@ export const Header: FC = (): JSX.Element => {
                                             :
                                             item.name === "videogallery" ? "/gallery_video"
                                                 :
-                                                "/sub_pages"}/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}`
+                                                item.typeOfForm === "PEOPLE" ? "/people_page" :
+                                                    "/sub_pages"}/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}`
 
                                     }>
                                     <a className={s.h_bot_sublink_a} >

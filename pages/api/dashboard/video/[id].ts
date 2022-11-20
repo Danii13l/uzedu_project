@@ -18,7 +18,7 @@ handler
     try {
       const id = req.query.id;
       let video: any = await excuteQuery({
-        query: getInformationById,
+        query: getVideoByIdQuery,
         values: [id],
       });
       if (video.length === 0) {

@@ -38,8 +38,8 @@ export const GettingDataWithPhoto: FC<{ linkToForm: string, createItem: string }
         }
 
         if (slug && slug[4] === "VIDEOS") {
-          const { data } = await myAxios(`/api/dashboard/video?lang=ru`);
-          setDataOut(data?.pages);
+          const { data } = await myAxios(`/api/video?lang=ru`);
+          setDataOut(data?.data);
         }
 
         if (slug && slug[4] === "INFO") {

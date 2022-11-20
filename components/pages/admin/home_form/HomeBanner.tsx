@@ -80,7 +80,7 @@ export const HomeBanner: FC = (): JSX.Element => {
                         const formData = new FormData();
                         // @ts-ignore
                         for (let key in val) formData.append(key, val[key]);
-                        formData.append("id", dataOut?.id as any);
+                        dataOut?.id && formData.append("id", dataOut?.id as any);
                         dataOut ? await myAxios.patch("/api/dashboard/multipart", formData) : await myAxios.post("/api/dashboard/multipart", formData);
                         await push("/admin");
                     } catch (err) {
