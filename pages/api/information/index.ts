@@ -2,12 +2,17 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
 import excuteQuery from "src/db/mydb";
-import { enInformationQuery, fullInformationQuery, ruInformationQuery, uzInformationQuery } from "src/db/queries/information";
+import { enInformationQuery, fullInformationQuery, informationTypeCountQuery, ruInformationQuery, uzInformationQuery } from "src/db/queries/information";
 const handler = nc<NextApiRequest, NextApiResponse>();
 
 handler.get(async (req, res) => {
   try {
-    const { lang, type } = req.query;
+    const limit = 20;
+    const { page=1, lang, type } = req.query;
+
+    const count: any = await excuteQuery({
+      query: informationTypeCountQuery,values:[type]
+    });
     const query =
     lang === "ru"
       ? ruInformationQuery
@@ -17,11 +22,13 @@ handler.get(async (req, res) => {
       ? enInformationQuery
       : fullInformationQuery;
    const data = await excuteQuery({
-      query: query,values:[type]
+      query: query,values:[type,limit, (+page - 1) * limit]
     });
-    res.status(200).json({
+    res.json({
       data,
-    });
+      totalPages: Math.ceil(count[0].value / limit),
+      currentPage: page,
+  });
   } catch (err: any) {
     res.status(500).json({ message: err });
     return;
