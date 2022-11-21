@@ -13,6 +13,7 @@ import {
   editInformationQuery,
   fullInformationQuery,
   getInformationById,
+  informationTypeCountQuery,
 } from "src/db/queries/information";
 const handler = nc<NextApiRequest, NextApiResponse>();
 export const config = {
@@ -23,13 +24,24 @@ export const config = {
 handler
   .use(isAuth)
   .get(async (req, res) => {
-    const { type } = req.query;
+    const limit = 20;
+    const { page = 1, type } = req.query;
+
+    const count: any = await excuteQuery({
+      query: informationTypeCountQuery,
+      values: [type],
+    });
     try {
-      let information: any = await excuteQuery({
-        query: fullInformationQuery,values:[type]
+      const data: any = await excuteQuery({
+        query: fullInformationQuery,
+        values: [type, limit, (+page - 1) * limit],
       });
 
-      res.status(200).json(information);
+      res.json({
+        data,
+        totalPages: Math.ceil(count[0].value / limit),
+        currentPage: page,
+      });
     } catch (err: any) {
       res.status(500).json({ message: err.message });
       return;
@@ -103,7 +115,7 @@ handler
       if (information.length === 0) {
         return res.status(404).end("Gallery not found");
       }
-      let imagePath = information[0].url; 
+      let imagePath = information[0].url;
       if (image) {
         const url = "public" + imagePath;
         RemoveImage(url);
