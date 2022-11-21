@@ -27,3 +27,11 @@
   height: 405px;
   margin: 0 auto;
 }
+
+
+
+@media (max-width: 768px) {
+  .title {
+    @include fs_lh_fw_fcolor(25px, 30px, 600, $text)
+  }
+}

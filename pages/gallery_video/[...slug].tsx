@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         const { data } = await myAxios(`/api/video?lang=${locale}`);
         return {
             props: {
-                data: data?.pages,
+                data: data?.data,
                 ...(await serverSideTranslations(locale as string, ["header", "footer", "common", "buttons", "home", "months"])),
             },
         };

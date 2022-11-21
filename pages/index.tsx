@@ -12,7 +12,8 @@ import { ContactUs } from "@/components/pages/home/contact_us/ContactUs";
 import { Statistics } from "@/components/pages/home/statistics/Statistics";
 import { Map } from '@/components/pages/home/map/Map';
 import { myAxios } from 'assets/axios/myAxios';
-import { InfoPeopleItem } from './../components/common/info_people_item/InfoPeople';
+import { Container } from '@/components/common/container/Container';
+
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -65,7 +66,7 @@ const Home: NextPage = ({ data }: any): JSX.Element => {
             <ContactUs />
             <Statistics data={data.statistic} />
             <UsefulLinks data={data.links} />
-        </Layout>
+        </Layout >
     );
 };
 

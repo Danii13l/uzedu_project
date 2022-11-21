@@ -7,7 +7,7 @@ import LightGallery from "lightgallery/react";
 
 
 interface GalleryInt {
-    id: number, title: string, images: { url: string; id: number }[], links: { link: string }[]
+    id: number; title: string; images: { url: string; id: number }[]; links: { link: string }[]; url: string; link: string
 }
 
 export const GalleryItem: FC<{ data: GalleryInt[], isVideo?: boolean }> = ({ data, isVideo }): JSX.Element => {
@@ -32,7 +32,7 @@ export const GalleryItem: FC<{ data: GalleryInt[], isVideo?: boolean }> = ({ dat
                             {
                                 isVideo ?
                                     <div onClick={handleToggleVid(true, indMain)}>
-                                        <Image src={`/images/home/banner_home.jpg`} alt={item.title} unoptimized layout="fill" />
+                                        <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.url}`} alt={item.title} unoptimized layout="fill" />
                                     </div>
                                     :
                                     <>
@@ -57,13 +57,13 @@ export const GalleryItem: FC<{ data: GalleryInt[], isVideo?: boolean }> = ({ dat
                             <p className={s.date}>27 октябрь 2021 год</p>
                         </div>
                         {
-                            isVideo && <div className={`${s.vid_modal} ${toggleVid ? s.active : ""}`}>
+                            <div className={`${s.vid_modal} ${toggleVid ? s.active : ""}`}>
                                 <div className={s.vid_close} onClick={handleToggleVid(false, 0)}>
                                     <Image src={`/images/header/close_search.svg`} alt={"close"} layout="fill" />
                                 </div>
 
                                 <div className={s.vid_wr}>
-                                    <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${data[activeV]?.links[0]?.link}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                                    <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${data[activeV]?.link}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                                 </div>
                             </div>
                         }

@@ -5,6 +5,7 @@ export const updateVideo =
 
 export const deleteVidoById = "DELETE FROM videos  WHERE ID = ?";
 
+
 export const getEnVidoQuery =
   "SELECT id, title, description, link  FROM videos";
 export const getRuVidoQuery =

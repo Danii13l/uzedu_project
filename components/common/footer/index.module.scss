@@ -8,7 +8,7 @@
 
 .f_inner {
   display: grid;
-  grid-template-columns: minmax(280px, 346px) minmax(200px, 207px) minmax(200px, 207px)  minmax(280px, 360px);
+  grid-template-columns: minmax(280px, 346px) minmax(200px, 207px) minmax(200px, 207px) minmax(280px, 360px);
   grid-gap: 30px;
   justify-content: space-between;
   @include fs_lh_fw_fcolor(14px, 20px, 400, #F8F9FB);
@@ -89,10 +89,30 @@
 }
 
 
+@media (min-width:1160px) {
+  .footer {
+    &.bigFont {
+      .ministry {
+        @include fs_lh_fw_fcolor(20px, 20px, 400, #F8F9FB);
+      }
+
+      .info_title {
+        @include fs_lh_fw_fcolor(20px, 20px, 700, #FFF);
+        margin-bottom: 32px;
+      }
+
+      a {
+        @include fs_lh_fw_fcolor(18px, 20px, 700, #FFF);
+      }
+    }
+  }
+}
+
+
 @media (max-width: 1150px) {
 
   .f_inner {
-    grid-template-columns: minmax(280px, 346px) minmax(200px, 207px) minmax(200px, 207px)  minmax(280px, 360px);
+    grid-template-columns: minmax(280px, 346px) minmax(200px, 207px) minmax(200px, 207px) minmax(280px, 360px);
     grid-gap: 50px 30px;
     justify-content: stretch;
     grid-template-rows: repeat(2, 1fr);
@@ -110,14 +130,13 @@
 
 @media (max-width: 1150px) {
   .f_inner {
-    grid-template-columns:repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 50px 30px;
     justify-content: stretch;
     grid-template-rows: auto;
   }
 
-  .f_items_first {
-  }
+  .f_items_first {}
 
   .f_items_third {
     grid-column: -3/-1;
@@ -150,7 +169,7 @@
     display: block;
   }
 
-  .f_items_second{
+  .f_items_second {
     margin: 40px 0;
   }
 
@@ -175,4 +194,3 @@
   }
 
 }
-

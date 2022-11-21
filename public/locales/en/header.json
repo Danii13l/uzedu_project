@@ -1,4 +1,5 @@
 {
+  "main": "Home",
   "vacancies": "Vacancies",
   "projects": "Projects",
   "faq": "FAQ",
@@ -58,4 +59,3 @@
   "opendatadp": "Open data (DP-6247)",
   "setofopendata": "Set of open data"
 }
-

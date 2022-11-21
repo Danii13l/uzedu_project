@@ -12,7 +12,6 @@ import {
   fullQuery,
 } from "src/db/queries/gallery";
 import { IGallery } from "src/interfaces/IGallery";
-
 const handler = nc<NextApiRequest, NextApiResponse>();
 export const config = {
   api: {
@@ -94,7 +93,6 @@ handler
         resolve({ fields, files });
       });
     });
-
     try {
       const imagesURLArray: IImage[] = [];
       const { images } = data.files;
@@ -108,6 +106,7 @@ handler
         descriptionUz,
         images_url,
       } = data.fields;
+
 
 
 
@@ -128,21 +127,19 @@ handler
       });
 
       const galleriesData: IGallery = galleries[0];
-
-      let arr = Object.keys(images).map((k) => images[k]);
-
-
-      if (arr.length > 0) {
-        for (let index = 0; index < arr.length; index++) {
-          const imagePath = await uploadImage(arr[index]);
-          imagesURLArray.push({ url: imagePath, id: index + 1 });
+      if (Array.isArray(images)) {
+        let arr = Object.keys(images).map((k: any) => images[k]);
+        if (arr.length > 0) {
+          for (let index = 0; index < arr.length; index++) {
+            const imagePath = await uploadImage(arr[index]);
+            imagesURLArray.push({ url: imagePath, id: index + 1 });
+          }
         }
+      } else {
+        const imagePath = await uploadImage(images);
+        imagesURLArray.push({ url: imagePath, id: 1 });
       }
-
-
       const imagesURL: string[] = images_url.split(",");
-
-
       let counter = imagesURLArray.length;
       let flag = false;
       for (let i = 0; i < galleriesData.images.length; i++) {

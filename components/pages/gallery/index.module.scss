@@ -13,7 +13,16 @@
     border-radius: 8px;
     overflow: hidden;
 
-    &:nth-child(4n+1) {
+    &:nth-child(9n+1) {
+        grid-column: span 2;
+    }
+
+
+    &:nth-child(9n+5) {
+        grid-column: span 2;
+    }
+
+    &:nth-child(9n+9) {
         grid-column: span 2;
     }
 }

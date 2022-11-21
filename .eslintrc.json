@@ -1,7 +1,7 @@
 {
   "extends": [
-    "next/core-web-vitals",
-    "next/babel"
+    "next/core-web-vitals"
+    // "next/babel"
   ],
   "env": {
     "browser": true,
@@ -13,6 +13,7 @@
       "warn",
       "always"
     ],
+    "@next/next/no-img-element": "off",
     "no-var": [
       "error"
     ],

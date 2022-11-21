@@ -4,10 +4,12 @@
 .bread {
   @include df_jc_ai(stretch, center);
   margin: 32px 0;
+  flex-wrap: wrap;
 
   a,
   div {
     @include fs_lh_fw_fcolor(14px, 15px, 400, $text2);
+
   }
 
 
@@ -30,4 +32,18 @@
   margin: 0 8px;
   display: block;
   border-radius: 50%;
+}
+
+
+@media (min-width:1160px) {
+  .bread {
+    &.bigFont {
+
+      a,
+      div {
+        @include fs_lh_fw_fcolor(22px, 35px, 400, $text2);
+
+      }
+    }
+  }
 }

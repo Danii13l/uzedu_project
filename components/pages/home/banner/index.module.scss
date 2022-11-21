@@ -116,6 +116,30 @@
   }
 }
 
+@media (min-width:1160px) {
+  .inner {
+    &.bigFont {
+      .blockquote {
+        @include fs_lh_fw_fcolor(28px, 36px, 300, #fff);
+      }
+
+      .name {
+        @include fs_lh_fw_fcolor(22px, 24px, 700, #E9EBF2);
+      }
+
+      .l_i_title {
+        @include fs_lh_fw_fcolor(35px, 39px, 700, $main);
+        margin-bottom: 2px;
+      }
+
+      .l_i_text {
+        @include fs_lh_fw_fcolor(24px, 24px, 400, rgba(25, 38, 64, 0.75));
+      }
+
+    }
+  }
+}
+
 @media (max-width:880px) {
   .banner {
     background-position: center center;
@@ -161,6 +185,8 @@
   }
 
 }
+
+
 
 
 @media (max-width: 640px) {

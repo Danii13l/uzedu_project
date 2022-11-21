@@ -10,11 +10,14 @@ import { Container } from "@/components/common/container/Container";
 import { Language } from "@/components/common/header/language_select/Language";
 
 import { headerTopLinks } from "assets/constants/header_links";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setBAndW } from "assets/redux/slices/blackWhite";
 import { setIsOpenMenu } from "assets/redux/slices/sidebarMenu";
 import { useGetMenu } from "assets/hooks/fetching/useGetMenu";
+import { setBigFont } from "assets/redux/slices/bigFont";
+
+import { RootState } from "assets/redux/store";
 
 
 export const Header: FC = (): JSX.Element => {
@@ -25,7 +28,11 @@ export const Header: FC = (): JSX.Element => {
     const [searchInput, setSearchInput] = useState(false);
     const [settingView, setSettingView] = useState(false);
 
+    const { bigFont } = useSelector(({ bigFont }: RootState) => bigFont);
+    const { bAndw } = useSelector(({ blackWhite }: RootState) => blackWhite);
+
     const { menu } = useGetMenu();
+
 
     const dispatch = useDispatch();
 
@@ -48,6 +55,10 @@ export const Header: FC = (): JSX.Element => {
         return () => dispatch(setBAndW(val));
     }, []);
 
+    const handleBigFont = useCallback((val: boolean) => {
+        return () => dispatch(setBigFont(val));
+    }, []);
+
     const handleSettingView = useCallback(() => {
         return setSettingView(prev => !prev);
     }, []);
@@ -64,7 +75,7 @@ export const Header: FC = (): JSX.Element => {
         });
     }, []);
 
-    return <header className={s.header}>
+    return <header className={`${s.header} ${bigFont ? s.bigFont : ""}`}>
         <Container>
             <div className={s.h_inner}>
                 <div className={s.h_top}>
@@ -82,17 +93,19 @@ export const Header: FC = (): JSX.Element => {
 
                         {settingView && <div className={s.s_inner} data-setview={"setting_view"}>
                             <div className={s.s_item} data-setview={"setting_view"}>
-                                <p data-setview={"setting_view"}>Вид:</p>
-                                <div className={s.s_item_inner} data-setview={"setting_view"}>
-                                    <div onClick={handleBlackAndWhite(false)} data-setview={"setting_view"}>A</div>
-                                    <div onClick={handleBlackAndWhite(true)} data-setview={"setting_view"}>A</div>
+                                <p data-setview={"setting_view_title"} className={s.s_item_title}>Вид</p>
+                                <div className={`${s.s_item_inner} ${s.s_item_inner_color}`} data-setview={"setting_view_box"}>
+                                    <div className={!bAndw ? s.active : ""} onClick={handleBlackAndWhite(false)} data-setview={"setting_view"}>A</div>
+                                    <div className={bAndw ? s.active : ""} onClick={handleBlackAndWhite(true)} data-setview={"setting_view"}>A</div>
                                 </div>
                             </div>
-                            <div className={`${s.s_item} ${s.s_item_font}`} data-setview={"setting_view"}>
-                                <p data-setview={"setting_view"}>Размер шрифта:</p>
-                                <div className={s.s_item_inner} data-setview={"setting_view"}>
-                                    <div data-setview={"setting_view"}>A</div>
-                                    <div data-setview={"setting_view"}>A</div>
+
+                            <div className={s.s_item_inner_border}></div>
+                            <div className={s.s_item} data-setview={"setting_view"}>
+                                <p data-setview={"setting_view_title"} className={s.s_item_title}>Размер шрифта</p>
+                                <div className={`${s.s_item_inner} ${s.s_item_inner_font}`} data-setview={"setting_view_box"}>
+                                    <div className={!bigFont ? s.active : ""} onClick={handleBigFont(false)} data-setview={"setting_view"}>A</div>
+                                    <div className={bigFont ? s.active : ""} onClick={handleBigFont(true)} data-setview={"setting_view"}>A</div>
                                 </div>
                             </div>
                         </div>
@@ -110,17 +123,19 @@ export const Header: FC = (): JSX.Element => {
 
                             {settingView && <div className={s.s_inner} data-setview={"setting_view"}>
                                 <div className={s.s_item} data-setview={"setting_view"}>
-                                    <p data-setview={"setting_view"}>Вид:</p>
-                                    <div className={s.s_item_inner} data-setview={"setting_view"}>
+                                    <p data-setview={"setting_view_title"} className={s.s_item_title}>Вид</p>
+                                    <div className={`${s.s_item_inner} ${s.s_item_inner_color}`} data-setview={"setting_view_box"}>
                                         <div onClick={handleBlackAndWhite(false)} data-setview={"setting_view"}>A</div>
                                         <div onClick={handleBlackAndWhite(true)} data-setview={"setting_view"}>A</div>
                                     </div>
                                 </div>
-                                <div className={`${s.s_item} ${s.s_item_font}`} data-setview={"setting_view"}>
-                                    <p data-setview={"setting_view"}>Размер шрифта:</p>
-                                    <div className={s.s_item_inner} data-setview={"setting_view"}>
-                                        <div data-setview={"setting_view"}>A</div>
-                                        <div data-setview={"setting_view"}>A</div>
+
+                                <div className={s.s_item_inner_border}></div>
+                                <div className={s.s_item} data-setview={"setting_view"}>
+                                    <p data-setview={"setting_view_title"} className={s.s_item_title}>Размер шрифта</p>
+                                    <div className={`${s.s_item_inner} ${s.s_item_inner_font}`} data-setview={"setting_view_box"}>
+                                        <div onClick={handleBigFont(false)} data-setview={"setting_view"}>A</div>
+                                        <div onClick={handleBigFont(true)} data-setview={"setting_view"}>A</div>
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +223,8 @@ export const Header: FC = (): JSX.Element => {
                                             item.name === "videogallery" ? "/gallery_video"
                                                 :
                                                 item.typeOfForm === "PEOPLE" ? "/people_page" :
-                                                    "/sub_pages"}/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}`
+                                                    item.typeOfForm === "INFO" ? "/info_page" :
+                                                        "/sub_pages"}/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}`
 
                                     }>
                                     <a className={s.h_bot_sublink_a} >

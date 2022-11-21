@@ -4,6 +4,8 @@ import s from './index.module.scss';
 
 import { SectionWrapper } from "@/components/common/section_wrapper/SectionWrapper";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "assets/redux/store";
 
 
 
@@ -20,10 +22,13 @@ interface BannerInt {
 
 
 export const Banner: FC<{ data: BannerInt[] }> = ({ data }): JSX.Element => {
+
+    const { bigFont } = useSelector(({ bigFont }: RootState) => bigFont);
+
     return <>
         {data && (data.length > 0) && <div className={s.banner} style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}${data[0].url})` }}>
             <SectionWrapper>
-                <div className={s.inner}>
+                <div className={`${s.inner} ${bigFont ? s.bigFont : ""}`}>
                     <div className={s.socials}>
                         <Link href={"https://www.facebook.com/uzedu/"} className={s.social_item}>
                             <a className={s.social_item}>

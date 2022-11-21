@@ -1,11 +1,13 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
 import blackWhiteReducer from './slices/blackWhite';
+import bigFontReducer from './slices/bigFont';
 import sideBarMenuReducer from './slices/sidebarMenu';
 
 export const store = configureStore({
     reducer: {
         blackWhite: blackWhiteReducer,
+        bigFont: bigFontReducer,
         sidebarMenu: sideBarMenuReducer
     },
 });

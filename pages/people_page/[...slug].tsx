@@ -10,25 +10,23 @@ import { useRouter } from 'next/router';
 import { Layout } from 'components/layout/Layout';
 import { Breadcrumb } from '@/components/common/breadcrumb/Breadcrumb';
 import { Container } from "@/components/common/container/Container";
-import { GalleryItem } from "@/components/pages/gallery/GalleryItem";
 import { Title } from "@/components/common/title/Title";
 import { PeopleWr } from './../../components/pages/people/PeopleWr';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { locale } = context;
-    const { query: { slug } } = context
+    const { query: { slug } } = context;
 
     try {
-        const { data } = await myAxios(`/api/people?type=LEADERS&lang=ru`);
-        console.log(data)
+        const { data } = await myAxios(`/api/people?type=${slug && slug[2]}&lang=ru`);
+
         return {
             props: {
-                data: data,
+                data: data?.page,
                 ...(await serverSideTranslations(locale as string, ["header", "footer", "common", "buttons", "home", "months"])),
             },
         };
     } catch (err) {
-        console.log(err);
 
         return {
             props: {
@@ -48,7 +46,8 @@ const PeoplePage: NextPage<{ data: PeoplePageInt[] }> = ({ data }): JSX.Element 
 
     const { query: { slug } } = useRouter();
 
-    console.log(data);
+
+
 
     return <Layout title={`${t(`header:${slug && slug[0]}`)}, ${t(`header:${slug && slug[2]}`)}`} contentDesc={'a'}>
         <Container>
