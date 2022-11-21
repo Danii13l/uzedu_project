@@ -6,5 +6,5 @@ export const uzInformationSearchQuery = (value: string) => {
 };
 
 export const enInformationSearchQuery = (value: string) => {
-  return `SELECT id,type, title, description, url FROM information WHERE LIKE '%${value}%' OR description_uz LIKE '%${value}%'`;
+  return `SELECT id, type, title, description, url FROM information WHERE title LIKE '%${value}%' OR description_uz LIKE '%${value}%'`;
 };
