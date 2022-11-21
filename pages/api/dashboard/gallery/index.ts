@@ -136,8 +136,11 @@ handler
           }
         }
       }else{
-        const imagePath = await uploadImage(images);
-        imagesURLArray.push({ url: imagePath, id:1 });
+        if(images){
+
+          const imagePath = await uploadImage(images);
+          imagesURLArray.push({ url: imagePath, id:1 });
+        }
       }
       const imagesURL: string[] = images_url.split(","); 
       let counter = imagesURLArray.length;
