@@ -26,7 +26,7 @@ export const Banner: FC<{ data: BannerInt[] }> = ({ data }): JSX.Element => {
     const { bigFont } = useSelector(({ bigFont }: RootState) => bigFont);
 
     return <>
-        {data && (data.length > 0) && <div className={s.banner} style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}${data[0].url})` }}>
+        {data && (data.length > 0) && <div className={s.banner} style={{ backgroundImage: `url(/images/home/banner_home.jpg)` }}>
             <SectionWrapper>
                 <div className={`${s.inner} ${bigFont ? s.bigFont : ""}`}>
                     <div className={s.socials}>

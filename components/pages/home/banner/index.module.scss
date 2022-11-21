@@ -5,13 +5,14 @@
   position: relative;
   background-position: left center;
   background-repeat: no-repeat;
+  background-size: contain;
   max-width: 1920px;
   margin: 0 auto;
 }
 
 .inner {
   background: $main;
-  max-width: 50%;
+  max-width: 66%;
   margin-left: auto;
   padding: 32px 32px 270px 32px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
@@ -96,9 +97,7 @@
 
 @media (max-width:1200px) {
 
-  .banner {
-    background-position: -300px center;
-  }
+
 
   .content {
     max-width: 100%;
@@ -142,12 +141,12 @@
 
 @media (max-width:880px) {
   .banner {
-    background-position: center center;
-    padding-top: 60%;
-    background-size: cover;
+    background-position: left 0;
+    padding-top: 400px;
   }
 
   .inner {
+
     max-width: 100%;
     margin: 0;
     padding: 32px 0 36px;
@@ -188,6 +187,17 @@
 
 
 
+@media (max-width:750px) {
+  .banner {
+    background-position: left 0;
+    padding-top: 300px;
+  }
+}
+
+
+
+
+
 
 @media (max-width: 640px) {
 
@@ -205,5 +215,21 @@
   .blockquote {
     @include fs_lh_fw_fcolor(20px, 30px, 300, #fff);
     margin-bottom: 16px;
+  }
+}
+
+
+@media (max-width:600px) {
+  .banner {
+    background-position: left 0;
+    padding-top: 250px;
+  }
+}
+
+
+@media (max-width:470px) {
+  .banner {
+    background-position: left 0;
+    padding-top: 180px;
   }
 }
