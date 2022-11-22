@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 interface GalleryInt {
-    id: number; title: string; images: { url: string; id: number }[]; links: { link: string }[]; url: string; link: string
+    id: number; title: string; images: { url: string; id: number }[]; links: { link: string }[]; url: string; link: string, createdAt: string
 }
 
 const GalleryPhotos: NextPage<{ data: GalleryInt[] }> = ({ data }): JSX.Element => {

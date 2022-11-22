@@ -22,7 +22,7 @@ export const PageForm: FC<{ data: initialValuesIint | null }> = ({ data }): JSX.
     const { query: { slug }, push } = useRouter();
 
     return <FormWrapper>
-        <FormActions isDelete={true} data={data} typeOfPage={"Страница"} />
+        <FormActions isDelete={true} data={data} typeOfPage={"Страница"} deleteFetch={"dashboard/page"} pushTo={"/admin"} />
         <Formik
             initialValues={{
                 ...getInitValuePageForm(data),

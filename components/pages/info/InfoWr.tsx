@@ -4,7 +4,7 @@ import { FC } from "react";
 
 import s from "./index.module.scss";
 import { useRouter } from 'next/router';
-import { months } from './../../../assets/constants/months';
+import { months } from 'assets/constants/months';
 import { useTranslation } from 'next-i18next';
 
 

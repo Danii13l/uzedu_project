@@ -4,15 +4,19 @@ import s from "./index.module.scss";
 import Image from 'next/image';
 
 import LightGallery from "lightgallery/react";
+import { useTranslation } from 'next-i18next';
+import { months } from './../../../assets/constants/months';
 
 
 interface GalleryInt {
-    id: number; title: string; images: { url: string; id: number }[]; links: { link: string }[]; url: string; link: string
+    id: number; title: string; images: { url: string; id: number }[]; links: { link: string }[]; url: string; link: string; createdAt: string
 }
 
 export const GalleryItem: FC<{ data: GalleryInt[], isVideo?: boolean }> = ({ data, isVideo }): JSX.Element => {
     const [toggleVid, setToggleVid] = useState(false);
     const [activeV, setActiveV] = useState(0);
+
+    const { t } = useTranslation();
 
     const handleToggleVid = useCallback((val: boolean, ind: number) => {
         return () => {
@@ -54,6 +58,8 @@ export const GalleryItem: FC<{ data: GalleryInt[], isVideo?: boolean }> = ({ dat
                         </div>
                         <div className={s.content}>
                             <p className={s.title}>{item.title}</p>
+                            {/* @ts-ignore */}
+                            <p className={s.date}>{`${item?.createdAt?.slice(8, 10)} ${t(months[item?.createdAt?.slice(5, 7) - 1])} ${item?.createdAt?.slice(0, 4)} ${t("common:year")}`} </p>
                         </div>
                         {
                             <div className={`${s.vid_modal} ${toggleVid ? s.active : ""}`}>

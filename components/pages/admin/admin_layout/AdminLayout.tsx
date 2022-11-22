@@ -28,6 +28,24 @@ const service = [
 ];
 
 
+const footerLinks = [
+    {
+        id: 1, text: "Политика безопастности", link: "/admin/pages/footer/200/cookiepolicy/1/PAGE"
+    },
+    {
+        id: 2, text: "Политика конфиденциальности", link: "/admin/pages/footer/200/privacypolicy/2/PAGE"
+    },
+    {
+        id: 3, text: "Условия использования", link: "/admin/pages/footer/200/termsuse/3/PAGE"
+    }
+    , {
+        id: 4, text: "Обращения граждан", link: "/admin/pages/footer/200/appealscitizens/4/PAGE"
+    },
+    {
+        id: 5, text: "Открытые данные", link: "/admin/pages/footer/200/opendata/5/PAGE"
+    }
+];
+
 export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subNamePage: string | null }> = ({
     children,
     namePage,
@@ -87,6 +105,21 @@ export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subN
                         </ul>
                     </div>
 
+                    <div className={`${s.menu_item} ${activeMenu === 200 ? s.active : ""}`} onClick={handleActivePage(200)}>
+                        <h6 className={s.menu_title} >
+                            Футер
+                        </h6>
+                        <ul className={`${s.menu_list}  ${activeMenu === 200 ? s.active : ""}`}>
+                            {
+                                footerLinks.map((item) => {
+                                    return <Link href={item.link} key={item.id}>
+                                        <a className={s.menu_links} onClick={handleActivePage(200)} >{item.text}</a>
+                                    </Link>;
+                                })
+                            }
+                        </ul>
+                    </div>
+
                     {
                         menu && menu.map(item => {
                             return <div className={`${s.menu_item}  ${activeMenu === item.id ? s.active : ""}`}
@@ -98,12 +131,16 @@ export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subN
                                 <ul className={`${s.menu_list}  ${activeMenu === item.id ? s.active : ""}`}>
                                     {
                                         item.subMenu.map(subitem => {
-                                            return <li key={subitem.id} onClick={handleActivePage(item.id)}>
-                                                <Link
-                                                    href={`/admin/pages/${item.name}/${item.id}/${subitem.name}/${subitem.id}/${subitem?.typeOfForm}`}>
-                                                    <a className={s.menu_links}>{t(`header:${subitem.name}`)}</a>
-                                                </Link>
-                                            </li>;
+                                            {
+                                                return subitem.typeOfForm !== "LINK" && <li key={subitem.id} onClick={handleActivePage(item.id)}>
+                                                    <Link
+                                                        href={`/admin/pages/${item.name}/${item.id}/${subitem.name}/${subitem.id}/${subitem?.typeOfForm}`}>
+                                                        <a className={s.menu_links}>{t(`header:${subitem.name}`)}</a>
+                                                    </Link>
+                                                </li>;
+                                            }
+
+
                                         })
                                     }
                                 </ul>

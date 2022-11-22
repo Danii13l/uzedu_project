@@ -98,7 +98,7 @@ export const Header: FC = (): JSX.Element => {
                 <div className={s.h_top}>
                     {
                         headerTopLinks.map(({ id, text, link }) => {
-                            return <Link href={link} key={id}>
+                            return id === 5 ? <a href={link} className={s.h_top_links}>{t(text)}</a> : <Link href={link} key={id}>
                                 <a className={s.h_top_links}>{t(text)}</a>
                             </Link>;
                         })
@@ -142,17 +142,17 @@ export const Header: FC = (): JSX.Element => {
                                 <div className={s.s_item} data-setview={"setting_view"}>
                                     <p data-setview={"setting_view_title"} className={s.s_item_title}>Вид</p>
                                     <div className={`${s.s_item_inner} ${s.s_item_inner_color}`} data-setview={"setting_view_box"}>
-                                        <div onClick={handleBlackAndWhite(false)} data-setview={"setting_view"}>A</div>
-                                        <div onClick={handleBlackAndWhite(true)} data-setview={"setting_view"}>A</div>
+                                        <div className={!bAndw ? s.active : ""} onClick={handleBlackAndWhite(false)} data-setview={"setting_view"}>A</div>
+                                        <div className={bAndw ? s.active : ""} onClick={handleBlackAndWhite(true)} data-setview={"setting_view"}>A</div>
                                     </div>
                                 </div>
 
                                 <div className={s.s_item_inner_border}></div>
-                                <div className={s.s_item} data-setview={"setting_view"}>
+                                <div className={`${s.s_item} ${s.s_item_sec}`} data-setview={"setting_view"}>
                                     <p data-setview={"setting_view_title"} className={s.s_item_title}>Размер шрифта</p>
                                     <div className={`${s.s_item_inner} ${s.s_item_inner_font}`} data-setview={"setting_view_box"}>
-                                        <div onClick={handleBigFont(false)} data-setview={"setting_view"}>A</div>
-                                        <div onClick={handleBigFont(true)} data-setview={"setting_view"}>A</div>
+                                        <div className={!bigFont ? s.active : ""} onClick={handleBigFont(false)} data-setview={"setting_view"}>A</div>
+                                        <div className={bigFont ? s.active : ""} onClick={handleBigFont(true)} data-setview={"setting_view"}>A</div>
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@ export const Header: FC = (): JSX.Element => {
                                     autoComplete="on"
                                 />
 
-                                <div className={s.search_form_img_right}>
+                                <div className={`${s.search_form_img_right}  ${searchInput ? s.active_search_close : ""}`}>
                                     <Image src={"/images/header/close_search.svg"} layout={"fill"} alt="close"
                                         onClick={handleSearch(false)} />
                                 </div>
@@ -242,21 +242,28 @@ export const Header: FC = (): JSX.Element => {
                     <ul className={s.h_bot_sublinks_list}>
                         {menu && menuVal(menu)?.subMenu.map((item) => {
                             return <li key={item.id} className={s.h_bot_sublink_li} onClick={handleMouseOutMenu()}>
-                                <Link
-                                    href={
-                                        `${item.name === "gallery" ? "/gallery_photos"
-                                            :
-                                            item.name === "videogallery" ? "/gallery_video"
-                                                :
-                                                item.typeOfForm === "PEOPLE" ? "/people_page" :
-                                                    item.typeOfForm === "INFO" ? "/info_page" :
-                                                        "/sub_pages"}/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}`
 
-                                    }>
-                                    <a className={s.h_bot_sublink_a} >
+                                {
+                                    item?.pageLink ? <a href={`https://${item.pageLink}`} className={s.h_bot_sublink_a} >
                                         {t(`header:${item.name}`)}
-                                    </a>
-                                </Link>
+                                    </a> : <Link
+                                        href={
+                                            `${item.name === "gallery" ? "/gallery_photos"
+                                                :
+                                                item.name === "videogallery" ? "/gallery_video"
+                                                    :
+                                                    item.typeOfForm === "PEOPLE" ? "/people_page" :
+                                                        item.typeOfForm === "INFO" ? "/info_page" :
+                                                            "/sub_pages"}/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}`
+
+                                        }>
+                                        <a className={s.h_bot_sublink_a} >
+                                            {t(`header:${item.name}`)}
+                                        </a>
+                                    </Link>
+
+                                }
+
                             </li>;
                         })
                         }

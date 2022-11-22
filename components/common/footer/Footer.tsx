@@ -12,12 +12,11 @@ import { RootState } from "assets/redux/store";
 
 
 const footerLinks = [
-    { id: 1, link: "#", text: "footer:cookiepolicy" },
-    { id: 2, link: "#", text: "footer:privacypolicy" },
-    { id: 3, link: "#", text: "footer:termsuse" },
-    { id: 5, link: "#", text: "footer:appealscitizens" },
-    { id: 6, link: "#", text: "footer:opendata" },
-    { id: 7, link: "#", text: "footer:sitemap" }
+    { id: 1, link: "/sub_pages/footer/200/cookiepolicy/1", text: "footer:cookiepolicy" },
+    { id: 2, link: "/sub_pages/footer/200/privacypolicy/2", text: "footer:privacypolicy" },
+    { id: 3, link: "/sub_pages/footer/200/termsuse/3", text: "footer:termsuse" },
+    { id: 5, link: "/sub_pages/footer/200/appealscitizens/4", text: "footer:appealscitizens" },
+    { id: 6, link: "/sub_pages/footer/200/opendata/5", text: "footer:opendata" },
 ];
 
 export const Footer: FC = (): JSX.Element => {

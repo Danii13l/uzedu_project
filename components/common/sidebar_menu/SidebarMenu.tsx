@@ -92,13 +92,13 @@ export const SidebarMenu: FC = (): JSX.Element | null => {
                                         {
                                             item.subMenu.map(subitem => {
                                                 return <Link key={subitem.id} href={
-                                                    `${item.name === "gallery" ? "/gallery_photos"
+                                                    `${subitem.name === "gallery" ? "/gallery_photos"
                                                         :
-                                                        item.name === "videogallery" ? "/gallery_video"
+                                                        subitem.name === "videogallery" ? "/gallery_video"
                                                             :
                                                             subitem.typeOfForm === "PEOPLE" ? "/people_page" :
                                                                 subitem.typeOfForm === "INFO" ? "/info_page" :
-                                                                    "/sub_pages"}/${subitem?.name}/${subitem?.id}/${item.name}/${item.id}`
+                                                                    "/sub_pages"}/${item.name}/${item.id}/${subitem?.name}/${subitem?.id}`
 
                                                 }>
                                                     <a className={s.sidebar_bottom_links} onClick={() => dispatch(setIsOpenMenu(false))} >
