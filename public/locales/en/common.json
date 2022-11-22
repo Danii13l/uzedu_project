@@ -6,5 +6,6 @@
   "phonen": "Phone number",
   "email": "Email",
   "comment": "Comment",
-  "specifyappeal": "Specify the subject of the appeal"
+  "specifyappeal": "Specify the subject of the appeal",
+  "year": "year"
 }

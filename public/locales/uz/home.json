@@ -1,5 +1,6 @@
 {
-  "maint": "Buxoro viloyati interaktiv xaritasi",
+  "mapint": "Buxoro viloyati interaktiv xaritasi",
+  "districtdepartments": "Tuman bo'limlari",
   "call": "Bog'lanish",
   "pupils": "O'quvchilar",
   "teachers": "O'qituvchilar",
@@ -67,5 +68,6 @@
   "peshkun": "Peshkun tumani",
   "romit": "Romiton tumani",
   "karaul": "Qorovulbozor tumani",
-  "shafirkan": "Shofirkon tumani"
+  "shafirkan": "Shofirkon tumani",
+  "yourquestion": "Sizning savolingiz"
 }

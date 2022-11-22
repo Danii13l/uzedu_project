@@ -2,5 +2,10 @@
   "editphoto": "Foto galereyani tahrirlash",
   "editvideo": "Video galereyani tahrirlash",
   "homepage": "Asosiy sahifa",
-  "adminpanel": "Admin panel"
+  "adminpanel": "Admin panel",
+  "homebanner": "Баннер",
+  "homeslider": "Слайдер",
+  "homeopinions": "Мнения",
+  "homestatistic": "Статистика",
+  "homelinks": "Полезные ссылки"
 }

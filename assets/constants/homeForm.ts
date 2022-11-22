@@ -53,7 +53,7 @@ export interface HomePageInt {
 }
 
 export const bannerNumber = ["pupils", "teachers", "barkamol", "houses", "school"];
-export const bannerNumberTitles = ["pupils", "teachers", "barkamloSchools", "mercyHouses", "schools"];
+export const bannerNumberTitles = ["pupils", "teachers", "barkamloSchools", "citizen", "checkedaddres"];
 
 export const statisticNumber = ["allAddr", "checkedAddr", "rejectedAddr", "processAddr", "allReq", "checkedReq", "processReq"];
 export const statisticNumberTitles = ["totalappeals", "appealsconsidered", "rejectedrequests", "inconsideration", "numberofrequests", "reviewedrequests", "underconsideration"];

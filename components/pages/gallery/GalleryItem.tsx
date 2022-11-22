@@ -32,7 +32,7 @@ export const GalleryItem: FC<{ data: GalleryInt[], isVideo?: boolean }> = ({ dat
                             {
                                 isVideo ?
                                     <div onClick={handleToggleVid(true, indMain)}>
-                                        <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.url}`} alt={item.title} unoptimized layout="fill" />
+                                        <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.url}`} alt={item.title} unoptimized layout="fill" objectFit="cover" />
                                     </div>
                                     :
                                     <>
@@ -40,7 +40,7 @@ export const GalleryItem: FC<{ data: GalleryInt[], isVideo?: boolean }> = ({ dat
                                             <>  {
                                                 item?.images?.map((img, index) => {
                                                     return <a href={`${process.env.NEXT_PUBLIC_BASE_URL}${img?.url}`} className={`${s.img_link} ${index === 0 ? s.active : ""}`} key={index} >
-                                                        <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${img?.url}`} alt={item.title} unoptimized layout="fill" />
+                                                        <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${img?.url}`} alt={item.title} unoptimized layout="fill" objectFit="cover" />
                                                     </a>;
                                                 })
                                             }</>
@@ -54,7 +54,6 @@ export const GalleryItem: FC<{ data: GalleryInt[], isVideo?: boolean }> = ({ dat
                         </div>
                         <div className={s.content}>
                             <p className={s.title}>{item.title}</p>
-                            <p className={s.date}>27 октябрь 2021 год</p>
                         </div>
                         {
                             <div className={`${s.vid_modal} ${toggleVid ? s.active : ""}`}>

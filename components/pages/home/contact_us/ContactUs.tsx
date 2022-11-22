@@ -1,24 +1,24 @@
-import {FC} from "react";
+import { FC } from "react";
 
 import s from "./index.module.scss";
 
-import {SectionWrapper} from "@/components/common/section_wrapper/SectionWrapper";
-import {Title} from "@/components/common/title/Title";
-import {TextInput} from "@/components/common/input/TextInput";
-import {PhoneInput} from "@/components/common/input/PhoneInput";
-import {TextArea} from "@/components/common/input/TextArea";
-import {Button} from "@/components/common/button/Button";
-import {Container} from "@/components/common/container/Container";
+import { SectionWrapper } from "@/components/common/section_wrapper/SectionWrapper";
+import { Title } from "@/components/common/title/Title";
+import { TextInput } from "@/components/common/input/TextInput";
+import { PhoneInput } from "@/components/common/input/PhoneInput";
+import { TextArea } from "@/components/common/input/TextArea";
+import { Button } from "@/components/common/button/Button";
+import { Container } from "@/components/common/container/Container";
 
-import {useTranslation} from "next-i18next";
+import { useTranslation } from "next-i18next";
 
-import {FormikProps, useFormik} from "formik";
-import {ContactUsInt, ContactUsSchema} from "assets/validation_form/contact_us";
+import { FormikProps, useFormik } from "formik";
+import { ContactUsInt, ContactUsSchema } from "assets/validation_form/contact_us";
 
 
 export const ContactUs: FC = (): JSX.Element => {
 
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const formik: FormikProps<ContactUsInt> = useFormik<ContactUsInt>({
         initialValues: {
@@ -38,7 +38,7 @@ export const ContactUs: FC = (): JSX.Element => {
                 <form className={s.form}>
 
                     <div className={s.title_wrapper}>
-                        <Title title={t("home:contactus")}/>
+                        <Title title={t("home:contactus")} />
                         <p className={s.subtitle}>{t("home:wewillcontact")}</p>
                     </div>
 
@@ -77,18 +77,18 @@ export const ContactUs: FC = (): JSX.Element => {
 
 
                     <TextArea name={"question"}
-                              labelText={t("common:comment")}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              isError={formik.errors.question}
-                              isTouched={formik.touched.question}
-                              value={formik.values.question}
-                              place={"Ваш вопрос"}/>
+                        labelText={t("common:comment")}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        isError={formik.errors.question}
+                        isTouched={formik.touched.question}
+                        value={formik.values.question}
+                        place={t("home:yourquestion")} />
 
 
                     <div className={s.submit_wrapper}>
                         <div className={s.submit}>
-                            <Button classN={"main"}>Отправить</Button>
+                            <Button classN={"main"}>{t("buttons:send")}</Button>
                         </div>
                     </div>
 

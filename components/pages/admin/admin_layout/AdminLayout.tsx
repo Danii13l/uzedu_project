@@ -11,6 +11,23 @@ import { useGetMenu } from "assets/hooks/fetching/useGetMenu";
 import { useTranslation } from "next-i18next";
 
 
+
+const service = [
+    {
+        id: 1, text: "Ученикам", link: "/admin/pages/services/100/pupils/1/PAGE"
+    },
+    {
+        id: 2, text: "Родителям", link: "/admin/pages/services/100/parents/2/PAGE"
+    },
+    {
+        id: 3, text: "Педагогам", link: "/admin/pages/services/100/teacher/3/PAGE"
+    }
+    , {
+        id: 4, text: "Школам", link: "/admin/pages/services/100/schools/4/PAGE"
+    }
+];
+
+
 export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subNamePage: string | null }> = ({
     children,
     namePage,
@@ -18,7 +35,7 @@ export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subN
 }): JSX.Element => {
     const { menu } = useGetMenu();
 
-    const [activeMenu, setActiveMenu] = useState(0);
+    const [activeMenu, setActiveMenu] = useState<number | null>(null);
     const { t } = useTranslation();
 
     const handleActivePage = (num: number) => {
@@ -30,23 +47,40 @@ export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subN
             <Head>
                 <title>{"hello"}</title>
             </Head>
+
+
             <div className={s.layout}>
                 <div className={s.navbar}>
                     <Link href={"/admin"}>
                         <a className={s.logo}>
-                            <Image src={"/images/common/logo.svg"} width={80} height={80} alt={"logo"} />
+                            <Image src={"/images/common/logo.svg"} width={100} height={100} alt={"logo"} />
                         </a>
                     </Link>
 
-                    <div className={`${s.home_link} ${activeMenu === 0 ? s.active : ""}`} onClick={handleActivePage(0)}>
-                        <h6 className={s.menu_title} onClick={handleActivePage(0)}>
+                    <div className={`${s.menu_item} ${activeMenu === 0 ? s.active : ""}`} onClick={handleActivePage(0)}>
+                        <h6 className={s.menu_title}>
                             {t(`admin:homepage`)}
                         </h6>
-                        <ul>
+                        <ul className={`${s.menu_list}  ${activeMenu === 0 ? s.active : ""}`}>
                             {
                                 ["HOMEBANNER", "HOMESLIDER", "HOMEOPINIONS", "HOMESTATISTIC", "HOMELINKS"].map((item, index) => {
                                     return <Link href={`/admin/pages/home_page/0/${item.toLowerCase()}/${index}/${item}`} key={item}>
-                                        <a className={s.menu_links}>{item}</a>
+                                        <a className={s.menu_links} onClick={handleActivePage(0)}>{t(`admin:${item.toLowerCase()}`)}</a>
+                                    </Link>;
+                                })
+                            }
+                        </ul>
+                    </div>
+
+                    <div className={`${s.menu_item} ${activeMenu === 100 ? s.active : ""}`} onClick={handleActivePage(100)}>
+                        <h6 className={s.menu_title} >
+                            Услуги
+                        </h6>
+                        <ul className={`${s.menu_list}  ${activeMenu === 100 ? s.active : ""}`}>
+                            {
+                                service.map((item) => {
+                                    return <Link href={item.link} key={item.id}>
+                                        <a className={s.menu_links} onClick={handleActivePage(100)} >{item.text}</a>
                                     </Link>;
                                 })
                             }

@@ -18,28 +18,28 @@ const cards = [
         id: 1,
         title: "home:forstudents",
         desc: ["home:tutorials", "home:videotutorials", "home:smartland", "home:mugs"],
-        link: "#",
+        link: "sub_pages/services/100/pupils/1",
         bgImg: "/images/home/select_card_1.jpg"
     },
     {
         id: 2,
         title: "home:forparents",
         desc: ["home:questionnaire", "home:admissiontoschool", "home:transferschool", "home:specializedschools"],
-        link: "#",
+        link: "sub_pages/services/100/parents/2",
         bgImg: "/images/home/select_card_2.jpg"
     },
     {
         id: 3,
         title: "home:forteachers",
         desc: ["home:vacancies", "home:training", "home:corecurriculum", "home:teacherdocuments"],
-        link: "#",
+        link: "sub_pages/services/100/teacher/3",
         bgImg: "/images/home/select_card_3.jpg"
     },
     {
         id: 4,
         title: "home:forSchools",
         desc: ["home:directorfund", "home:educationact", "home:stateeducationals", "home:modernschool"],
-        link: "#",
+        link: "sub_pages/services/100/schools/4",
         bgImg: "/images/home/select_card_4.jpg"
     }
 ];
@@ -87,11 +87,11 @@ export const BottomSelections: FC = (): JSX.Element => {
                 <div className={s.con_inner}>
                     <div className={s.con_text_wr}>
                         <h3 className={s.con_title}>{t("home:cantgotoschool")}</h3>
-                        <p className={s.con_text}><a
-                            href={"https://maktab.uz/"}>Maktab.uz</a> - {t("home:cantgotoschooltext")} </p>
-                        <div className={s.con_btn}>
+                        <p className={s.con_text}>
+                            <a href={"https://maktab.uz/"}>Maktab.uz</a> - {t("home:cantgotoschooltext")} </p>
+                        <a href={"https://maktab.uz/"} className={s.con_btn}>
                             <Button classN={"second"}>{t("buttons:more")}</Button>
-                        </div>
+                        </a>
                     </div>
                     <div className={s.content_img_wr}>
                         <Image src={"/images/home/computer.png"} width={556} height={370} quality={100} />

@@ -12,6 +12,7 @@
   "smartland": "Smartland,",
   "mugs": "Кружки",
   "mapint": "Интерактивная карта Бухарской области",
+  "districtdepartments": "Районные отделы",
   "forparents": "Родителям",
   "questionnaire": "Анкета,",
   "admissiontoschool": "Прием в школу,",
@@ -38,12 +39,12 @@
   "contactus": "Свяжитесь с нами",
   "wewillcontact": "Мы свяжемся с вами в ближайшее время",
   "callstatistics": "Статистика обращений",
-  "totalappeals": "Всего обращений граждан в МНО (II квартал 2022 год )",
+  "totalappeals": "Всего обращений граждан",
   "appealsconsidered": "Рассмотрено обращений",
   "rejectedrequests": "Отклоненных обращения",
   "inconsideration": "В рассмотрении",
   "requestproces": "Статистика обработки запросов",
-  "numberofrequests": "Количество поступивших запросов (II квартал 2022 год)",
+  "numberofrequests": "Количество поступивших запросов",
   "reviewedrequests": "Рассмотренные запросы",
   "underconsideration": "Рассматривается",
   "usefullinks": "Полезные ссылки",
@@ -67,5 +68,6 @@
   "peshkun": "Пешкунский район",
   "romit": "Ромитанский район",
   "karaul": "Караулбазарский район",
-  "shafirkan": "Шафирканский район"
+  "shafirkan": "Шафирканский район",
+  "yourquestion": "Ваш вопрос"
 }

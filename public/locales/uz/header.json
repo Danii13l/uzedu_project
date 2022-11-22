@@ -57,5 +57,12 @@
   "opendata": "Ochiq ma'lumotlar",
   "openbudget": "Ochiq byudjet",
   "opendatadp": "Ochiq ma'lumotlar (PQ-6247)",
-  "setofopendata": "To'plam ochish"
+  "setofopendata": "To'plam ochish",
+  "search": "Qidiruv",
+  "searchresult": "Qidiruv natijalari",
+  "services": "Xizmatlar",
+  "pupils": "O'quvchilar",
+  "parents": "Ota-onalar uchun",
+  "teacher": "O'qituvchilarga",
+  "schools": "Maktablarga"
 }

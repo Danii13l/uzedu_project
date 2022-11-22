@@ -18,39 +18,40 @@ import { useGetMenu } from "assets/hooks/fetching/useGetMenu";
 import { setBigFont } from "assets/redux/slices/bigFont";
 
 import { RootState } from "assets/redux/store";
+import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
+import { myAxios } from 'assets/axios/myAxios';
 
 
 export const Header: FC = (): JSX.Element => {
     const { t } = useTranslation();
 
+    const { push, locale } = useRouter();
+
     const [hoverValue, setHoverValue] = useState<number | undefined>(undefined);
     const [activeMenu, setActiveMenu] = useState<boolean>(false);
     const [searchInput, setSearchInput] = useState(false);
     const [settingView, setSettingView] = useState(false);
-    const [searchResult, setSearchResult] = useState("");
 
     const { bigFont } = useSelector(({ bigFont }: RootState) => bigFont);
     const { bAndw } = useSelector(({ blackWhite }: RootState) => blackWhite);
 
     const { menu } = useGetMenu();
 
-    console.log(searchResult)
 
 
     const dispatch = useDispatch();
 
-    const handleKeypress = (e: any) => {
-        e.preventDefault();
-        if (e.keyCode === 13) {
-            alert(1);
-        }
-    };
 
+    const formik = useFormik({
+        initialValues: {
+            val: "",
+        },
+        onSubmit: async (values) => {
+            await push(`/search_result/${values.val}`);
 
-    const handleSearchInput = useCallback(
-        (ev: any) => setSearchResult(ev.target.value)
-        , []
-    );
+        },
+    });
 
     const handleMouseOverMenu = useCallback((value: number) => {
         return () => {
@@ -160,13 +161,15 @@ export const Header: FC = (): JSX.Element => {
 
                     </div>
 
-                    <div className={s.logo}>
-                        <Link href={"/"}>
-                            <a className={s.logo_wrapper}>
-                                <Image src={'/images/common/logo.svg'} layout={"fill"} objectFit={"contain"} alt="logo" />
-                            </a>
-                        </Link>
-                    </div>
+
+                    <Link href={"/"}>
+                        <a >
+                            <div className={s.logo}>
+                                <div className={s.logo_wrapper}> <Image src={'/images/common/logo.svg'} layout={"fill"} objectFit={"contain"} alt="logo" /></div>
+                            </div>
+                        </a>
+                    </Link>
+
 
 
                     <div className={s.h_bot_main_links_wrap}>
@@ -200,12 +203,19 @@ export const Header: FC = (): JSX.Element => {
 
                     <div className={s.burger_search_wrap}>
                         <div className={`${s.search} ${!searchInput ? s.not_active_form : ""}`}>
-                            <form className={`${s.search_form} ${searchInput ? s.active_form : ""}`}>
+                            <form className={`${s.search_form} ${searchInput ? s.active_form : ""}`} onSubmit={formik.handleSubmit}>
                                 <div className={s.search_form_img_left}>
                                     <Image src={"/images/header/search.svg"} layout={"fill"} alt="search" />
                                 </div>
 
-                                <input type={"text"} placeholder={"Поиск"} value={searchResult} onChange={handleSearchInput} />
+                                <input
+                                    type="text"
+                                    name={"val"}
+                                    value={formik.values.val}
+                                    onChange={formik.handleChange}
+                                    autoComplete="on"
+                                />
+
                                 <div className={s.search_form_img_right}>
                                     <Image src={"/images/header/close_search.svg"} layout={"fill"} alt="close"
                                         onClick={handleSearch(false)} />

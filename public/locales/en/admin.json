@@ -2,5 +2,10 @@
   "editphoto": "Edit Photo Gallery",
   "editvideo": "Edit Video Gallery",
   "homepage": "Home Page",
-  "adminpanel": "Admin Dashboard"
+  "adminpanel": "Admin Dashboard",
+  "homebanner": "Баннер",
+  "homeslider": "Слайдер",
+  "homeiopinions": "Мнения",
+  "homestatistic": "Статистика",
+  "homelinks": "Полезные ссылки"
 }

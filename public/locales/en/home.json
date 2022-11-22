@@ -12,6 +12,7 @@
   "smartland": "Smartland",
   "mugs": "Mugs",
   "mapint": "Interactive map of Bukhara region",
+  "districtdepartments": "District departments",
   "forparents": "For parents",
   "questionnaire": "Questionnaire",
   "admissiontoschool": "Admission to school",
@@ -67,5 +68,6 @@
   "peshkun": "Пешкунский районEn",
   "romit": "Ромитанский районEn",
   "karaul": "Караулбазарский районEn",
-  "shafirkan": "Шафирканский районEn"
+  "shafirkan": "Шафирканский районEn",
+  "yourquestion": "Your question"
 }

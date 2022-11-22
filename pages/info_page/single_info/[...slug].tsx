@@ -44,8 +44,6 @@ const SingleInfoPage: NextPage<{ data: any }> = ({ data }: any): JSX.Element => 
 
     const { query: { slug } } = useRouter();
 
-
-    console.log(data);
     return <>
         {
             data && <Layout title={`${t(`header:${slug && slug[0]}`)} ${data?.title}`} contentDesc={'a'}>
@@ -58,7 +56,6 @@ const SingleInfoPage: NextPage<{ data: any }> = ({ data }: any): JSX.Element => 
             </Layout>
         }
     </>;
-
 
 };
 

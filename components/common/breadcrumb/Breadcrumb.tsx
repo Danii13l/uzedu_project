@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "assets/redux/store";
 
 
-export const Breadcrumb: FC<{ nextlast?: string, last?: string }> = ({ last, nextlast }): JSX.Element => {
+export const Breadcrumb: FC<{ nextlast?: string, last?: string[] }> = ({ last, nextlast }): JSX.Element => {
     const { t } = useTranslation();
     const { query: { slug } } = useRouter();
 

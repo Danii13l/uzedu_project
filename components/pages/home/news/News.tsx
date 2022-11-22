@@ -16,44 +16,25 @@ import { useSelector } from "react-redux";
 import { RootState } from "assets/redux/store";
 
 
-
-
-
-const allNews = [
-    {
-        id: 1,
-        link: "#",
-        img: "/images/home/news_1.jpg",
-        date: new Date(),
-        title: "Для участия в апробрации учебно-методических комплексов нового поколения"
-    },
-    { id: 2, link: "#", img: "/images/home/news_2.jpg", date: new Date(), title: "Шавкат Мирзиёев прибыл в Самарканд" },
-    {
-        id: 3,
-        link: "#",
-        img: "/images/home/news_3.jpg",
-        date: new Date(),
-        title: "Определился САМЫХ ОБРАЗЦОВЫХ ШКОЛЬНЫХ КАПИТАНОВ"
-    },
-    {
-        id: 4,
-        link: "#",
-        img: "/images/home/news_4.jpg",
-        date: new Date(),
-        title: "В текущем учебном году 11380 выпускников были награждены золотыми и серебряными медалями"
-    }
-];
-
 const offers = [
     { id: 1, title: "home:appeals", text: "home:appealstext", link: "#", img: "/images/home/offer_1.svg" },
-    { id: 2, title: "home:giveidea", text: "home:appealstext", link: "#", img: "/images/home/offer_2.svg" },
+    { id: 2, title: "home:giveidea", text: "home:appealstext", link: "https://idea.uzedu.uz/uz", img: "/images/home/offer_2.svg" },
     { id: 3, title: "home:receptionschedule", text: "home:receptiontext", link: "#", img: "/images/home/offers_3.svg" },
 ];
 
-export const News: FC = (): JSX.Element => {
+interface NewsItn {
+    id: number;
+    url: string;
+    createdAt: Date;
+    title: string
+
+}
+
+export const News: FC<{ data: NewsItn }> = ({ data }): JSX.Element => {
     const { bigFont } = useSelector(({ bigFont }: RootState) => bigFont);
 
     const { t } = useTranslation();
+
     return <div className={s.news}>
         <SectionWrapper>
             <Container>
@@ -62,28 +43,31 @@ export const News: FC = (): JSX.Element => {
                         <div className={s.n_section_top}>
                             <Title title={t("common:news")} />
 
-                            <Link href={"#"}>
+                            <Link href={"/info_page/informationService/5/ministrynews/32"}>
                                 <a className={s.all_news}>{t("buttons:allnews")}</a>
                             </Link>
                         </div>
 
                         <div className={s.n_section_inner}>
                             {
-                                allNews.map(item => {
+                                data && Array.isArray(data) && data.slice(0, 4).map(item => {
                                     return <div key={item.id} className={s.news_item}
-                                        style={{ backgroundImage: `url(${item.img})` }}>
+                                        style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}${item.url})` }}>
                                         <div className={s.news_item_inner}>
 
 
                                             <div className={s.news_item_time_wr}>
-                                                <span className={s.news_item_day}>{item.date.getDate()}</span>
+                                                <span className={s.news_item_day}>{item?.createdAt?.slice(8, 10)}</span>
                                                 <span
-                                                    className={s.news_item_month}>{t(months[item.date.getUTCMonth()])}</span>
-                                                <span className={s.news_item_year}>{item.date.getFullYear()}</span>
+                                                    className={s.news_item_month}>{t(months[item?.createdAt?.slice(5, 7) - 1])}</span>
+                                                <span className={s.news_item_year}>{item?.createdAt?.slice(0, 4)}</span>
                                             </div>
 
                                             <p className={s.news_item_title}>{item.title}</p>
                                         </div>
+                                        <Link href={`/info_page/single_info/informationService/ministrynews/${item.id}`}>
+                                            <a className={s.news_link}></a>
+                                        </Link>
                                     </div>;
                                 })
                             }
@@ -94,7 +78,7 @@ export const News: FC = (): JSX.Element => {
 
                         <div className={s.o_s_inner}>
                             {
-                                offers.map(item => {
+                                offers.map((item, index: number) => {
                                     return <div key={item.id} className={s.offer_item}>
                                         <div className={s.o_item_top}>
                                             <Image src={item.img} width={48} height={48} alt="icon" />
@@ -105,9 +89,14 @@ export const News: FC = (): JSX.Element => {
                                             {t(item.text)}
                                         </p>
 
-                                        <Link href={item.link}>
-                                            <a className={s.o_item_btn}><Button classN={"third"}>{t("buttons:go")}</Button></a>
-                                        </Link>
+                                        {
+                                            index === 1 ? <a className={s.o_item_btn} href={item.link}>
+                                                <Button classN={"third"}>{t("buttons:go")}</Button>
+                                            </a> : <Link href={item.link}>
+                                                <a className={s.o_item_btn}><Button classN={"third"}>{t("buttons:go")}</Button></a>
+                                            </Link>
+                                        }
+
                                         <div className={s.o_item_border}></div>
                                     </div>;
                                 })
@@ -157,5 +146,5 @@ export const News: FC = (): JSX.Element => {
 
             </Container>
         </SectionWrapper>
-    </div>;
+    </div >;
 };

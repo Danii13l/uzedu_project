@@ -16,7 +16,7 @@
 }
 
 .number_banner_wr {
-  @include dg_tc_tr_gg(repeat(auto-fill, minmax(160px, 1fr)), auto, 20px);
+  @include dg_tc_tr_gg(repeat(auto-fill, minmax(190px, 1fr)), auto, 20px);
 }
 
 .banner_number_title {
@@ -30,7 +30,7 @@
   @include dg_tc_tr_gg(repeat(2, 1fr), auto, 20px);
   margin-bottom: 50px;
 
-  &:last-child{
+  &:last-child {
     margin-bottom: 0;
   }
 }

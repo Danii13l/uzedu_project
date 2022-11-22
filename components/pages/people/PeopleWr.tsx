@@ -33,7 +33,7 @@ export const PeopleWr: FC<{ data: any }> = ({ data }): JSX.Element => {
 
                             <div className={s.isBoss_big_info}>
                                 <div className={s.isBoss_img_wr}>
-                                    <Image src={'/images/people/isboss_logo.svg'} alt="person" layout="fill" objectFit="contain" quality="100" />
+                                    <Image src={'/images/people/logo.svg'} alt="person" width={140} height={140} quality="100" />
                                 </div>
 
                                 <p>{item.name}</p>

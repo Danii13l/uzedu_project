@@ -50,7 +50,8 @@
   }
 }
 
-.menu_title,.home_link {
+.menu_title,
+.home_link {
   @include fs_lh_fw_fcolor(18px, 20px, 400, #fff);
   cursor: pointer;
 }
@@ -64,16 +65,6 @@
   }
 }
 
-.home_link{
-  padding: 15px;
-  display: block;
-  width: 100%;
-  &.active{
-    background: linear-gradient(90.6deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
-    backdrop-filter: blur(10px);
-    color: $main;
-  }
-}
 
 .menu_links {
   @include fs_lh_fw_fcolor(16px, 20px, 400, #fff);
@@ -104,11 +95,10 @@
   }
 }
 
-.subname{
+.subname {
   border-left: 2px solid $main;
 }
 
 .content_inner {
   padding: 32px;
 }
-

@@ -40,7 +40,7 @@ export const UsefulLinks: FC<{ data: UsefulLinks[] }> = ({ data }): JSX.Element 
                                 </div>
 
                                 <div className={s.item_link_wr}>
-                                    <a className={s.item_link} href={item.link}>{item.link}</a>
+                                    <a className={s.item_link} href={`https://${item.link}`}>{item.link}</a>
                                 </div>
 
                             </div>;

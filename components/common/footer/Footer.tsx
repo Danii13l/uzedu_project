@@ -15,7 +15,6 @@ const footerLinks = [
     { id: 1, link: "#", text: "footer:cookiepolicy" },
     { id: 2, link: "#", text: "footer:privacypolicy" },
     { id: 3, link: "#", text: "footer:termsuse" },
-    { id: 4, link: "#", text: "footer:websiteguide" },
     { id: 5, link: "#", text: "footer:appealscitizens" },
     { id: 6, link: "#", text: "footer:opendata" },
     { id: 7, link: "#", text: "footer:sitemap" }
@@ -90,14 +89,14 @@ export const Footer: FC = (): JSX.Element => {
                     <h4 className={s.info_title}>{t("footer:information")}</h4>
 
                     <div className={s.info_items}>
-                        <a href={"tel:712020909"}>71 202 09 09</a>
+                        <a href={"tel:3652230845"}>(365) 223-08-45</a>
                         <div className={s.inf_img_wr}>
                             <Image src={"/images/common/phone_fot.svg"} width={18} height={18} />
                         </div>
                     </div>
 
                     <div className={s.info_items}>
-                        <a href={"mailto:info@xtv.uz"}>info@xtv.uz</a>
+                        <a href={"mailto:bux_vxtb@xtv.uz"}>bux_vxtb@xtv.uz</a>
                         <div className={s.inf_img_wr}>
                             <Image src={"/images/common/email_fot.svg"} width={18} height={18} />
                         </div>

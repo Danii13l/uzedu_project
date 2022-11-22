@@ -51,13 +51,13 @@ body {
 
   /* width */
   &::-webkit-scrollbar {
-    width: 1px;
+    width: 3px;
     background: rgba(255, 255, 255, 0);
   }
 
   /* Track */
   &::-webkit-scrollbar-track {
-    background:transparent;
+    background: transparent;
   }
 
   /* Handle */
@@ -104,7 +104,3 @@ ul li {
 img {
   vertical-align: top;
 }
-
-
-
-

@@ -334,8 +334,8 @@
 
 .locales {
   padding: 3px 0;
-  background: rgba(255, 255, 255, 0.605);
-  @include fs_lh_fw_fcolor(10px, 15px, 400, $text2);
+  background: rgb(255, 255, 255);
+  @include fs_lh_fw_fcolor(12px, 15px, 400, $text2);
   border-radius: 10px;
   position: absolute;
   top: 25px;
@@ -343,10 +343,17 @@
 
   a {
     color: $text2;
-    margin-bottom: 2px;
+    padding: 4px 2px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
 
-
+    &:nth-child(2) {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
   }
+
 
   a:last-child {
     margin-right: 0;
@@ -366,10 +373,6 @@
   .h_bot_main_link_wrap {
     margin-right: 6px;
   }
-
-  // .h_bot_main_link {
-  //   @include fs_lh_fw_fcolor(18px, 20px, 400, $text);
-  // }
 }
 
 @media (min-width:1160px) {
@@ -390,7 +393,7 @@
       }
 
       .h_bot_main_link {
-        @include fs_lh_fw_fcolor(18px, 20px, 400, $text);
+        @include fs_lh_fw_fcolor(17px, 20px, 400, $text2);
       }
 
     }
@@ -420,7 +423,7 @@
 
   .h_bottom {
     display: grid;
-    grid-template-columns: 85px 160px 72px;
+    grid-template-columns: 85px 126px 72px;
 
   }
 

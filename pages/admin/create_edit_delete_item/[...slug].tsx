@@ -11,6 +11,7 @@ import { GalleryForm } from "@/components/pages/admin/photo_gallery_form/Gallery
 import { VideoGallery } from '@/components/pages/admin/video_gallery_form/VideoGallery';
 import { InfoForm } from '@/components/pages/admin/info_form/InfoForm';
 import { PeopleForm } from '@/components/pages/admin/people_form/PeopleForm';
+import { useTranslation } from 'next-i18next';
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -25,8 +26,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 const EditDeleteItem: NextPage = (): JSX.Element => {
     const { query: { slug } } = useRouter();
+    console.log(slug);
+
+    const { t } = useTranslation();
     return (
-        <AdminLayout namePage={"Админ Панель"} subNamePage={""}>
+        <AdminLayout namePage={t(`header:${slug && slug[0]?.toLowerCase()}`)} subNamePage={""}>
             {(() => {
                 switch (slug && slug[0]) {
                     case 'HOMESLIDER': return <HomeSlider id={slug && slug[1]} />;

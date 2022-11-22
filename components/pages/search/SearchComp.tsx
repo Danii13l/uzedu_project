@@ -1,22 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { useRouter } from "next/router";
 
 import s from "./index.module.scss";
-import { useRouter } from 'next/router';
-import { months } from './../../../assets/constants/months';
-import { useTranslation } from 'next-i18next';
 
 
-
-export const InfoWr: FC<{ data: any }> = ({ data }): JSX.Element => {
-
-    const { query: { slug } } = useRouter();
-
-    const { t } = useTranslation();
-
-
-
+export const SearchComp = ({ data }) => {
     return <div className={s.wr}>
         {data && Array.isArray(data) && <div className={s.inner}>
             {
@@ -28,9 +17,9 @@ export const InfoWr: FC<{ data: any }> = ({ data }): JSX.Element => {
                         </div>
                         <div className={s.content} >
                             <p>{item.title}</p>
-                            <p>{`${item?.createdAt?.slice(8, 10)} ${t(months[item?.createdAt?.slice(5, 7) - 1])} ${item?.createdAt?.slice(0, 4)} ${t("common:year")}`} </p>
+                            <p>{item.description}</p>
                         </div>
-                        <Link href={`/info_page/single_info/${slug && slug[0]}/${slug && slug[2]}/${item.id}`}>
+                        <Link href={`/info_page/single_info/search/${item.type?.toLowerCase()}/${item.id}`}>
                             <a className={s.link}></a>
                         </Link>
                     </div>;
@@ -38,6 +27,5 @@ export const InfoWr: FC<{ data: any }> = ({ data }): JSX.Element => {
                 })
             }
         </div>}
-
     </div>;
 };

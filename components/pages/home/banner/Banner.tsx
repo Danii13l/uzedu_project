@@ -89,7 +89,7 @@ export const Banner: FC<{ data: BannerInt[] }> = ({ data }): JSX.Element => {
                             <p className={s.l_i_text}>{t("home:citizen")}</p>
                         </div>
                         <div className={s.line_items}>
-                            <h4 className={s.l_i_title}>{data[0].houses}</h4>
+                            <h4 className={s.l_i_title}>{data[0].school}</h4>
                             <p className={s.l_i_text}>{t("home:checkedaddres")}</p>
                         </div>
                     </div>

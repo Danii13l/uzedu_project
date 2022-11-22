@@ -185,8 +185,8 @@ export const Map = () => {
     return <SectionWrapper>
         <Container>
             <div className={s.title_wr}>
-                <Title title={"Интерактивная карта Бухарской области"} />
-                <p className={s.subtitle}>Районные отделы</p>
+                <Title title={t("home:mapint")} />
+                <p className={s.subtitle}>{t("home:districtdepartments")}</p>
             </div>
             <div className={s.img_wr_main}>
                 <div className={s.img_wr}>
@@ -196,7 +196,7 @@ export const Map = () => {
 
 
             <div className={s.btn} onClick={handleModal(true)}>
-                <Button classN="second">Подробнее</Button>
+                <Button classN="second">{t("buttons:more")}</Button>
             </div>
 
             <div className={`${s.modal_map} ${modal ? s.active : ""}`}>

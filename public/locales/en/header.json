@@ -57,5 +57,12 @@
   "opendata": "Open Data",
   "openbudget": "Open Budget",
   "opendatadp": "Open data (DP-6247)",
-  "setofopendata": "Set of open data"
+  "setofopendata": "Set of open data",
+  "search": "Search",
+  "searchresult": "Search result",
+  "services": "Services",
+  "pupils": "For students",
+  "parents": "For parents",
+  "teacher": "For teachers",
+  "schools": "For schools"
 }
