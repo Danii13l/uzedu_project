@@ -7,12 +7,12 @@ export const deleteVidoById = "DELETE FROM videos  WHERE ID = ?";
 
 
 export const getEnVidoQuery =
-  "SELECT id, title, description, link  FROM videos";
+  "SELECT id, title, description, link, url, created_at as createdAt  FROM videos";
 export const getRuVidoQuery =
-  "SELECT id, title_ru as title, link, url FROM videos";
+  "SELECT id, title_ru as title, link, url, created_at as createdAt FROM videos";
 export const getUzVideoQuery =
-  "SELECT id, title_uz as title,link, url FROM videos";
+  "SELECT id, title_uz as title,link, url, created_at as createdAt FROM videos";
 export const getVideoQuery =
-  "SELECT id, title, title_ru as titleRu, title_uz as titleUz,link, url FROM videos";
+  "SELECT id, title, title_ru as titleRu, title_uz as titleUz,link, url, created_at as createdAt FROM videos";
 export const getVideoByIdQuery =
-  "SELECT id, title, title_ru as titleRu, title_uz as titleUz, link, url FROM videos WHERE id = ?";
+  "SELECT id, title, title_ru as titleRu, title_uz as titleUz, link, url, created_at as createdAt FROM videos WHERE id = ?";
