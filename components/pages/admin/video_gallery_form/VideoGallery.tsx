@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { FormWrapper } from "@/components/pages/admin/form_items/FormWrapper";
-import { FieldArray, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 
 import { InputsBlockMain } from "@/components/pages/admin/form_items/InputsBlockMain";
 import { Button } from "@/components/common/button/Button";
-import { FieldArrayWrapper } from "@/components/pages/admin/form_items/FieldArrayWrapper";
+
 import { InputsFormik } from "@/components/common/input/InputsFormik";
 import { InputsWrapper } from "@/components/pages/admin/form_items/InputsWrapper";
 
@@ -12,7 +12,7 @@ import { myAxios } from 'assets/axios/myAxios';
 import { FC, useEffect, useState } from "react";
 import { FormActions } from './../form_items/FormActions';
 import { PreviewImage } from '@/components/pages/admin/form_items/PreviewImage';
-import { string } from "yup";
+
 
 export const VideoGallery: FC<{ id?: string }> = ({ id }) => {
 
@@ -41,7 +41,6 @@ export const VideoGallery: FC<{ id?: string }> = ({ id }) => {
         }());
     }, []);
 
-    console.log(dataOut);
     return <FormWrapper>
         <FormActions isDelete={true} data={dataOut} typeOfPage={"Видео Галерея"} deleteFetch={`dashboard/video`} pushTo="/admin/pages/informationService/5/videogallery/38/VIDEOS" />
         <Formik
@@ -70,7 +69,11 @@ export const VideoGallery: FC<{ id?: string }> = ({ id }) => {
             {({ values, handleSubmit, setFieldValue }) => (
                 <Form onSubmit={handleSubmit}>
                     <InputsBlockMain title={"Заголовок"} arr={["titleRu", "titleUz", "title"]} />
-                    <InputsFormik name={`link`} label={"ссылка"} />
+
+                    <InputsWrapper title={"Ссылка"}>
+                            <InputsFormik name={`link`} label={""}  />
+                        </InputsWrapper>
+
                     <InputsWrapper title={"Фотография"}>
                         <PreviewImage condit={values?.image}
                             imgUrl={values?.image}

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 
 
-export const InfoWr: FC<{ data }> = ({ data }): JSX.Element => {
+export const InfoWr: FC<{ data: any }> = ({ data }): JSX.Element => {
 
     const { query: { slug } } = useRouter();
     return <div className={s.wr}>

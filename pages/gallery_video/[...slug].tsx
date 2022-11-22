@@ -34,11 +34,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 };
 
-interface GalleryVideoInt {
-    id: number, title: string, images: { url: string; id: number }[], links: { link: string }[]
+interface GalleryInt {
+    id: number; title: string; images: { url: string; id: number }[]; links: { link: string }[]; url: string; link: string
 }
 
-const GalleryVideo: NextPage<{ data: GalleryVideoInt[] }> = ({ data }): JSX.Element => {
+
+const GalleryVideo: NextPage<{ data: GalleryInt[] }> = ({ data }): JSX.Element => {
     const { t } = useTranslation();
 
     const { query: { slug } } = useRouter();

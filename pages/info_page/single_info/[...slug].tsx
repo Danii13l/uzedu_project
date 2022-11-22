@@ -17,12 +17,12 @@ import { SingleInfo } from "@/components/pages/info/single_info/SingleInfo";
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { locale } = context;
 
-
+    const { query: { slug } } = context;
     try {
-
+        const { data } = await myAxios(`/api/information/more?id=${slug && slug[2]}&lang=${locale}`);
         return {
             props: {
-
+                data: data,
                 ...(await serverSideTranslations(locale as string, ["header", "footer", "common", "people"])),
             },
         };
@@ -39,33 +39,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 
 
-
-const a = {
-    "id": 1,
-    "type": "COORDADVBODIES",
-    "title": "Hello Banner",
-    "titleRu": "Привет Баннер деск",
-    "titleUz": "Salom Banner",
-    "description": "Hello Banner desc",
-    "descriptionRu": "Привет Баннер деск",
-    "descriptionUz": "Salom Banner  desc",
-    "url": "/541c90bdc206c2930f80ffa02.png"
-};
-
-
-
-const SingleInfoPage: NextPage<{ data: any }> = ({ data }): JSX.Element => {
+const SingleInfoPage: NextPage<{ data: any }> = ({ data }: any): JSX.Element => {
     const { t } = useTranslation();
 
     const { query: { slug } } = useRouter();
 
-    return <Layout title={`${t(`header:${slug && slug[0]}`)} ${a?.title}`} contentDesc={'a'}>
-        <Container>
-            <Breadcrumb last={a?.title} />
-            <Title title={a?.title} />
-            <SingleInfo data={a} />
-        </Container>
-    </Layout>;
+
+    console.log(data);
+    return <>
+        {
+            data && <Layout title={`${t(`header:${slug && slug[0]}`)} ${data?.title}`} contentDesc={'a'}>
+                <Container>
+                    <Breadcrumb last={data?.title} />
+                    <Title title={data?.title} />
+                    {/* @ts-ignore */}
+                    <SingleInfo data={data} />
+                </Container>
+            </Layout>
+        }
+    </>;
+
+
 };
 
 export default SingleInfoPage;

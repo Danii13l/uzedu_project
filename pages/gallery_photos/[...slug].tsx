@@ -34,11 +34,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 };
 
-interface GalleryPhotosInt {
-    id: number, title: string, images: { url: string; id: number }[], links: { link: string }[]
+interface GalleryInt {
+    id: number; title: string; images: { url: string; id: number }[]; links: { link: string }[]; url: string; link: string
 }
 
-const GalleryPhotos: NextPage<{ data: GalleryPhotosInt[] }> = ({ data }): JSX.Element => {
+const GalleryPhotos: NextPage<{ data: GalleryInt[] }> = ({ data }): JSX.Element => {
     const { t } = useTranslation();
 
     const { query: { slug } } = useRouter();

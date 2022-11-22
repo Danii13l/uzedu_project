@@ -30,7 +30,7 @@ export const Footer: FC = (): JSX.Element => {
             <div className={s.f_inner}>
                 <div className={`${s.f_items} ${s.f_items_first}`}>
                     <div>
-                        <Image src={"/images/footer/logo_footer.svg"} width={195} height={59} alt="logo" />
+                        <Image src={"/images/common/logo.svg"} width={195} height={59} alt="logo" />
                     </div>
                     <p className={s.ministry}>{t("footer:ministryeducation")}</p>
                     <p>{t("footer:allsitematerials")}</p>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FC } from "react";
 
-export const SingleInfo: FC = ({ data }): JSX.Element => {
+export const SingleInfo: FC = ({ data }: any): JSX.Element => {
 
 
     return <div className="page_container" style={{ "marginTop": "32px" }}>

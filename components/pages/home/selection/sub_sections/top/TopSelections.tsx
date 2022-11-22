@@ -9,6 +9,7 @@ import { Button } from "@/components/common/button/Button";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
+import { useTranslation } from 'next-i18next';
 
 interface SliderInt {
     id: number;
@@ -19,6 +20,9 @@ interface SliderInt {
 };
 
 export const TopSelections: FC<{ data: SliderInt[] }> = ({ data }): JSX.Element => {
+
+    const { t } = useTranslation();
+
     return <div className={"topSelections"}>
         <Container>
             <div className={"topSelections__inner"}>
@@ -28,13 +32,14 @@ export const TopSelections: FC<{ data: SliderInt[] }> = ({ data }): JSX.Element 
                             <Image src={"/images/home/call_center.svg"} width={48} height={48} alt={"call_center"} />
                         </div>
                         <div className={"topSelections__l_content"}>
-                            <p>Телефон доверия</p>
+                            <p>{t("home:helpline")}</p>
                             <a href={"tel:+998712020909"}>(71) 202 09 09</a>
                         </div>
                     </div>
-                    <div className={"topSelections__l_btn"}>
-                        <Button classN={"main"}>Оценить</Button>
-                    </div>
+
+                    <a href="tel:(71) 202 09 09" className={"topSelections__l_btn"}>
+                        <Button classN={"main"}>{t("home:call")}</Button>
+                    </a>
                 </div>
                 <div className={"topSelections__right"}>
                     <div className={"topSelections__slider"}>
@@ -59,7 +64,7 @@ export const TopSelections: FC<{ data: SliderInt[] }> = ({ data }): JSX.Element 
                                             </div>
 
                                             <Link href={item?.link}>
-                                                <a className={"topSelections__slide_btn"}><Button classN={"main"}>Подробнее</Button></a>
+                                                <a className={"topSelections__slide_btn"}><Button classN={"main"}>{t("buttons:more")}</Button></a>
                                             </Link>
                                         </div>
                                     </SwiperSlide>;

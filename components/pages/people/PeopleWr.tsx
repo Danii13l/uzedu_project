@@ -7,7 +7,7 @@ import s from "./index.module.scss";
 
 
 
-export const PeopleWr: FC<{ data }> = ({ data }): JSX.Element => {
+export const PeopleWr: FC<{ data: any }> = ({ data }): JSX.Element => {
 
 
     const { query: { slug } } = useRouter();

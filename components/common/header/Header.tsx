@@ -27,14 +27,30 @@ export const Header: FC = (): JSX.Element => {
     const [activeMenu, setActiveMenu] = useState<boolean>(false);
     const [searchInput, setSearchInput] = useState(false);
     const [settingView, setSettingView] = useState(false);
+    const [searchResult, setSearchResult] = useState("");
 
     const { bigFont } = useSelector(({ bigFont }: RootState) => bigFont);
     const { bAndw } = useSelector(({ blackWhite }: RootState) => blackWhite);
 
     const { menu } = useGetMenu();
 
+    console.log(searchResult)
+
 
     const dispatch = useDispatch();
+
+    const handleKeypress = (e: any) => {
+        e.preventDefault();
+        if (e.keyCode === 13) {
+            alert(1);
+        }
+    };
+
+
+    const handleSearchInput = useCallback(
+        (ev: any) => setSearchResult(ev.target.value)
+        , []
+    );
 
     const handleMouseOverMenu = useCallback((value: number) => {
         return () => {
@@ -147,7 +163,7 @@ export const Header: FC = (): JSX.Element => {
                     <div className={s.logo}>
                         <Link href={"/"}>
                             <a className={s.logo_wrapper}>
-                                <Image src={'/images/common/logo.svg'} layout={"fill"} objectFit={"cover"} alt="logo" />
+                                <Image src={'/images/common/logo.svg'} layout={"fill"} objectFit={"contain"} alt="logo" />
                             </a>
                         </Link>
                     </div>
@@ -189,7 +205,7 @@ export const Header: FC = (): JSX.Element => {
                                     <Image src={"/images/header/search.svg"} layout={"fill"} alt="search" />
                                 </div>
 
-                                <input type={"text"} placeholder={"Поиск"} />
+                                <input type={"text"} placeholder={"Поиск"} value={searchResult} onChange={handleSearchInput} />
                                 <div className={s.search_form_img_right}>
                                     <Image src={"/images/header/close_search.svg"} layout={"fill"} alt="close"
                                         onClick={handleSearch(false)} />

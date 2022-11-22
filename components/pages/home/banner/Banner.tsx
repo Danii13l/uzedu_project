@@ -6,6 +6,7 @@ import { SectionWrapper } from "@/components/common/section_wrapper/SectionWrapp
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "assets/redux/store";
+import { useTranslation } from 'next-i18next';
 
 
 
@@ -25,8 +26,12 @@ export const Banner: FC<{ data: BannerInt[] }> = ({ data }): JSX.Element => {
 
     const { bigFont } = useSelector(({ bigFont }: RootState) => bigFont);
 
+    const { t } = useTranslation();
+
+    console.log(data);
+
     return <>
-        {data && (data.length > 0) && <div className={s.banner} style={{ backgroundImage: `url(/images/home/banner_home.jpg)` }}>
+        {data && (data.length > 0) && <div className={s.banner} style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}${data[0].url})` }}>
             <SectionWrapper>
                 <div className={`${s.inner} ${bigFont ? s.bigFont : ""}`}>
                     <div className={s.socials}>
@@ -63,29 +68,29 @@ export const Banner: FC<{ data: BannerInt[] }> = ({ data }): JSX.Element => {
                     </div>
                     <div className={s.content}>
                         <h1 className={s.title}>{data[0].title}</h1>
-                        <blockquote className={s.blockquote}>{data[0].description}</blockquote>
+                        <div dangerouslySetInnerHTML={{ __html: data[0].description }}></div>
                     </div>
 
                     <div className={s.line_content}>
                         <div className={s.line_items}>
                             <h4 className={s.l_i_title}>{data[0].pupils}</h4>
-                            <p className={s.l_i_text}>Учеников</p>
+                            <p className={s.l_i_text}>{t("home:pupils")}</p>
                         </div>
                         <div className={s.line_items}>
                             <h4 className={s.l_i_title}>{data[0].teachers}</h4>
-                            <p className={s.l_i_text}>Преподователей</p>
+                            <p className={s.l_i_text}>{t("home:teachers")}</p>
                         </div>
                         <div className={s.line_items}>
                             <h4 className={s.l_i_title}>{data[0].barkamol}</h4>
-                            <p className={s.l_i_text}>“Школ Баркамол авлод”</p>
+                            <p className={s.l_i_text}>{t("home:barkamloSchools")}</p>
                         </div>
                         <div className={s.line_items}>
                             <h4 className={s.l_i_title}>{data[0].houses}</h4>
-                            <p className={s.l_i_text}>Дома милосердия</p>
+                            <p className={s.l_i_text}>{t("home:citizen")}</p>
                         </div>
                         <div className={s.line_items}>
                             <h4 className={s.l_i_title}>{data[0].houses}</h4>
-                            <p className={s.l_i_text}>Школ</p>
+                            <p className={s.l_i_text}>{t("home:checkedaddres")}</p>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import s from "./index.module.scss";
 import { useTranslation } from 'next-i18next';
@@ -7,7 +6,7 @@ import { RootState } from "assets/redux/store";
 
 
 
-export const SinglePerson = ({ data }) => {
+export const SinglePerson = ({ data }: any) => {
     const { t } = useTranslation();
 
 
@@ -100,10 +99,10 @@ export const SinglePerson = ({ data }) => {
                         </label>
                         <ul className="accordion__content">
                             {
-                                data?.workHistory.map((item, index: number) => {
+                                data?.workHistory.map((item: any, index: number) => {
                                     return <li className="accordion__li" key={index}>
                                         <p className="accordion__text" >
-                                            {item.text}
+                                            {item?.text}
                                         </p>
                                         <span className="accordion__li_border"></span>
                                     </li>;
@@ -131,10 +130,10 @@ export const SinglePerson = ({ data }) => {
                         </label>
                         <ul className="accordion__content">
                             {
-                                data?.duty.map((item, index: number) => {
+                                data?.duty.map((item: any, index: number) => {
                                     return <li className="accordion__li" key={index}>
                                         <p className="accordion__text" >
-                                            {item.text}
+                                            {item?.text}
                                         </p>
                                         <span className="accordion__li_border"></span>
                                     </li>;
