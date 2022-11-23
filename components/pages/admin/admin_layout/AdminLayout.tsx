@@ -46,6 +46,23 @@ const footerLinks = [
     }
 ];
 
+
+
+const headerTopLinks = [
+    {
+        id: 1, text: "Вакансии", link: "/admin/pages/top_links/300/vacancies/1/PAGE"
+    },
+    {
+        id: 2, text: "Проекты", link: "/admin/pages/top_links/300/projects/2/PAGE"
+    },
+    {
+        id: 3, text: "Часто задаваемые вопросы", link: "/admin/pages/top_links/300/faqs/3/PAGE"
+    }
+    , {
+        id: 4, text: "Государственные символы", link: "/admin/pages/top_links/300/statesymbol/4/PAGE"
+    },
+];
+
 export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subNamePage: string | null }> = ({
     children,
     namePage,
@@ -114,6 +131,21 @@ export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subN
                                 footerLinks.map((item) => {
                                     return <Link href={item.link} key={item.id}>
                                         <a className={s.menu_links} onClick={handleActivePage(200)} >{item.text}</a>
+                                    </Link>;
+                                })
+                            }
+                        </ul>
+                    </div>
+
+                    <div className={`${s.menu_item} ${activeMenu === 300 ? s.active : ""}`} onClick={handleActivePage(300)}>
+                        <h6 className={s.menu_title} >
+                            Верхние ссылки
+                        </h6>
+                        <ul className={`${s.menu_list}  ${activeMenu === 300 ? s.active : ""}`}>
+                            {
+                                headerTopLinks.map((item) => {
+                                    return <Link href={item.link} key={item.id}>
+                                        <a className={s.menu_links} onClick={handleActivePage(300)} >{item.text}</a>
                                     </Link>;
                                 })
                             }

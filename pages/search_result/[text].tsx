@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 
-const SearchRes: NextPage = ({ data }): JSX.Element => {
+const SearchRes: NextPage = ({ data }: any): JSX.Element => {
     const { query: { text } } = useRouter();
     const { t } = useTranslation();
 

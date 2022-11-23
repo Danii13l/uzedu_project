@@ -20,13 +20,13 @@ import { setBigFont } from "assets/redux/slices/bigFont";
 import { RootState } from "assets/redux/store";
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
-import { myAxios } from 'assets/axios/myAxios';
+
 
 
 export const Header: FC = (): JSX.Element => {
     const { t } = useTranslation();
 
-    const { push, locale } = useRouter();
+    const { push } = useRouter();
 
     const [hoverValue, setHoverValue] = useState<number | undefined>(undefined);
     const [activeMenu, setActiveMenu] = useState<boolean>(false);
@@ -192,9 +192,8 @@ export const Header: FC = (): JSX.Element => {
                                     }
 
                                     {
-                                        item.id === 2 && <Link href={`/sub_pages/${item.name}`}>
-                                            <a className={s.h_bot_main_link}>{t(`header:${item.name}`)}</a>
-                                        </Link>
+                                        item.id === 2 && <a className={s.h_bot_main_link} href="https://www.uzedu.uz/ru/documents/categories">{t(`header:${item.name}`)}</a>
+
                                     }
                                 </div>;
                             })

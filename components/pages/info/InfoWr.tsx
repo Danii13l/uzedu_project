@@ -7,6 +7,8 @@ import { useRouter } from 'next/router';
 import { months } from 'assets/constants/months';
 import { useTranslation } from 'next-i18next';
 
+import { Pagination } from './../../common/pagination/Pagination';
+
 
 
 export const InfoWr: FC<{ data: any }> = ({ data }): JSX.Element => {
@@ -39,5 +41,7 @@ export const InfoWr: FC<{ data: any }> = ({ data }): JSX.Element => {
             }
         </div>}
 
+
+        <Pagination pageCount={2} />
     </div>;
 };

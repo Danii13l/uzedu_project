@@ -2,7 +2,7 @@
   "main": "Asosiy sahifa",
   "vacancies": "Ishlar",
   "projects": "Loyihalar",
-  "faq": "Ko'p so'raladigan savollar",
+  "faqs": "Ko'p so'raladigan savollar",
   "statesymbol": "Davlat ramzlari",
   "addressofcitizen": "Fuqarolarning murojaatlari",
   "ministry": "Vazirlik",
@@ -69,5 +69,6 @@
   "privacypolicy": "Maxfiylikka rioya qilish siyosati",
   "termsuse": "Foydalanish shartlari",
   "appealscitizens": "Fuqarolar murojaatlari",
-  "footer": "Eslatma"
+  "footer": "Eslatma",
+  "top_links": "Верхние ссылки"
 }

@@ -60,7 +60,7 @@ export const CommonPage: FC<{ data: PageInt }> = ({ data }): JSX.Element => {
                     })
                 }
             </Container>
-        </div>;
+        </div>
     </div>;
 };
 

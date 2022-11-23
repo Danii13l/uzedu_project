@@ -8,7 +8,7 @@ import { useTranslation } from "next-i18next";
 
 import { Container } from "@/components/common/container/Container";
 
-import { headerBottomLinksSidebar, headerTopLinks } from "assets/constants/header_links";
+import { headerTopLinks } from "assets/constants/header_links";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "assets/redux/store";
@@ -53,7 +53,7 @@ export const SidebarMenu: FC = (): JSX.Element | null => {
                                 {
                                     headerTopLinks.map(item => {
                                         return <Link href={item.link} key={item.id}>
-                                            <a className={s.sidebar_top_links}>{t(item.text)}</a>
+                                            <a className={s.sidebar_top_links} onClick={() => dispatch(setIsOpenMenu(false))}>{t(item.text)}</a>
                                         </Link>;
                                     })
                                 }
@@ -81,12 +81,9 @@ export const SidebarMenu: FC = (): JSX.Element | null => {
                                                 {t(`header:${item.name}`)}
                                             </h5>
                                             :
-                                            <Link href={`/sub_pages/${item.name}`}>
-                                                <a className={s.sidebar_bottom_links_main}>{t(`header:${item.name}`)}</a>
-                                            </Link>
+                                            <a className={s.sidebar_bottom_links_main} href={"https://www.uzedu.uz/ru/documents/categories"}>{t(`header:${item.name}`)}</a>
+
                                     }
-
-
 
                                     <div className={s.sidebar_link_bottom_subitem}>
                                         {

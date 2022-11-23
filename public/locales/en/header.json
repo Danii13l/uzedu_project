@@ -2,7 +2,7 @@
   "main": "Home",
   "vacancies": "Vacancies",
   "projects": "Projects",
-  "faq": "FAQ",
+  "faqs": "FAQ",
   "statesymbol": "State symbols",
   "addressofcitizen": "Appeals of citizens",
   "ministry": "Ministry",
@@ -69,5 +69,6 @@
   "privacypolicy": "Privacy Policy",
   "termsuse": "Terms of Use",
   "appealscitizens": "Appeals of citizens",
-  "footer": "Note"
+  "footer": "Note",
+  "top_links": "Верхние ссылки"
 }

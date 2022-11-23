@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import s from "./index.module.scss";
 
 
-export const SearchComp = ({ data }) => {
+export const SearchComp = ({ data }: any) => {
     return <div className={s.wr}>
         {data && Array.isArray(data) && <div className={s.inner}>
             {

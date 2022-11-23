@@ -104,3 +104,41 @@ ul li {
 img {
   vertical-align: top;
 }
+
+.pagination_bottom {
+  margin-top: 40px;
+
+  ul {
+    @include df_jc_ai(center, center);
+
+    a {
+      display: block;
+      @include fs_lh_fw_fcolor(14px, 16px, 600, $main);
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .selected {
+      background: $main;
+      border-radius: 4px;
+      color: #fff;
+
+      a {
+        color: #fff;
+      }
+    }
+  }
+
+  .next {
+    margin-left: 25px;
+  }
+
+  .previous {
+    margin-right: 25px;
+  }
+
+  .next,
+  .previous {
+    display: none;
+  }
+}
