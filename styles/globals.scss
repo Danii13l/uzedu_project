@@ -108,6 +108,7 @@ img {
 .pagination_bottom {
   margin-top: 40px;
 
+
   ul {
     @include df_jc_ai(center, center);
 
@@ -119,13 +120,15 @@ img {
     }
 
     .selected {
+      pointer-events: none;
+    }
+
+    .activee_boxx {
       background: $main;
       border-radius: 4px;
       color: #fff;
 
-      a {
-        color: #fff;
-      }
+
     }
   }
 
@@ -141,4 +144,7 @@ img {
   .previous {
     display: none;
   }
+
+
+
 }

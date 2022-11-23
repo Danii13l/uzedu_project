@@ -33,6 +33,8 @@ export const Header: FC = (): JSX.Element => {
     const [searchInput, setSearchInput] = useState(false);
     const [settingView, setSettingView] = useState(false);
 
+    const [blockLink, setBlockLink] = useState<number | null>(null);
+
     const { bigFont } = useSelector(({ bigFont }: RootState) => bigFont);
     const { bAndw } = useSelector(({ blackWhite }: RootState) => blackWhite);
 
@@ -52,6 +54,13 @@ export const Header: FC = (): JSX.Element => {
 
         },
     });
+
+
+    const handleBlockLink = useCallback((value: number) => {
+        return () => {
+            setBlockLink(value);
+        };
+    }, []);
 
     const handleMouseOverMenu = useCallback((value: number) => {
         return () => {
@@ -253,10 +262,10 @@ export const Header: FC = (): JSX.Element => {
                                                     :
                                                     item.typeOfForm === "PEOPLE" ? "/people_page" :
                                                         item.typeOfForm === "INFO" ? "/info_page" :
-                                                            "/sub_pages"}/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}`
+                                                            "/sub_pages"}/${menuVal(menu)?.name}/${menuVal(menu)?.id}/${item.name}/${item.id}/${item.typeOfForm === "INFO" ? "1" : ""}`
 
                                         }>
-                                        <a className={s.h_bot_sublink_a} >
+                                        <a className={`${s.h_bot_sublink_a} ${blockLink === item.id ? s.blockLink : ""}`} onClick={handleBlockLink(item.id)} >
                                             {t(`header:${item.name}`)}
                                         </a>
                                     </Link>

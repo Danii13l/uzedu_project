@@ -241,6 +241,10 @@
 
 .h_bot_sublink_a {
   @include fs_lh_fw_fcolor(14px, 24px, 400, $text);
+
+  &.blockLink {
+    pointer-events: none
+  }
 }
 
 .burger_search_wrap {

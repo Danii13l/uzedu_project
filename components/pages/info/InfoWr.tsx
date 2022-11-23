@@ -17,13 +17,10 @@ export const InfoWr: FC<{ data: any }> = ({ data }): JSX.Element => {
 
     const { t } = useTranslation();
 
-
-
     return <div className={s.wr}>
-        {data && Array.isArray(data) && <div className={s.inner}>
+        {data?.data && Array.isArray(data?.data) && <div className={s.inner}>
             {
-                data.map(item => {
-
+                data?.data.map((item: any) => {
                     return <div className={s.item} key={item.id}>
                         <div className={s.img_wr}>
                             <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} alt="person" layout="fill" objectFit="cover" unoptimized />
@@ -42,6 +39,6 @@ export const InfoWr: FC<{ data: any }> = ({ data }): JSX.Element => {
         </div>}
 
 
-        <Pagination pageCount={2} />
+        <Pagination pageCount={data.totalPages} curPage={data.currentPage} />
     </div>;
 };
