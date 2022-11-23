@@ -152,7 +152,7 @@ handler
           description,
           descriptionRu,
           descriptionUz,
-          JSON.stringify(images),
+          images? JSON.stringify(images) : pages[0].images,
           JSON.stringify(videos),
           JSON.stringify(files),
           id,
