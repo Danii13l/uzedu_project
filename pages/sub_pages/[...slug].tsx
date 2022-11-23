@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { GetServerSideProps } from "next";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -10,6 +10,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { myAxios } from "assets/axios/myAxios";
 import { PageInt } from "assets/interfaces/PageDataInt";
+import { useToTheTopWindows } from "assets/hooks/useToTheTopWindow";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
@@ -37,8 +38,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const SubPages: FC<{ data: PageInt }> = ({ data }): JSX.Element => {
     const { t } = useTranslation();
 
-    const { query: { slug } } = useRouter();
 
+
+    const { query: { slug } } = useRouter();
+    useToTheTopWindows();
     return <Layout title={`${t(`header:${slug && slug[0]}`)}, ${t(`header:${slug && slug[2]}`)}`} contentDesc={'a'}>
         <CommonPage data={data} />
     </Layout>;

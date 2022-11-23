@@ -2,6 +2,10 @@
 @import "styles/mixins.module.scss";
 
 
+.title {
+    @include fs_lh_fw_fcolor(32px, 39px, 700, $text);
+}
+
 .title_wr {
     text-align: center;
     margin-bottom: 32px;
@@ -223,6 +227,8 @@
 
 
 
+
+
 @media (max-width:780px) {
     .img_wr {
         width: 80%;
@@ -248,6 +254,7 @@
         }
     }
 }
+
 
 @media (max-width:560px) {
     .img_wr_main {

@@ -1,0 +1,226 @@
+@import "styles/variables.module.scss";
+@import "styles/mixins.module.scss";
+
+.contacts {
+    padding: 32px 0;
+}
+
+.modal_inner {
+    background: #FFFFFF;
+    border-radius: 20px;
+    height: 100%;
+    margin-top: 64px;
+}
+
+.modal_top {
+    padding: 32px 32px 0 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.map_inner {
+    display: flex;
+}
+
+.modal_top_img_wr {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+}
+
+.modal_title {
+    @include fs_lh_fw_fcolor(24px, 34px, 700, $text);
+}
+
+
+.map_inner_left {
+    padding: 32px;
+    width: 439px;
+
+}
+
+.map_inner_right {
+    padding: 32px;
+    width: 100%;
+}
+
+.list_control {
+    @include fs_lh_fw_fcolor(20px, 24px, 400, $text2);
+    margin: 16px;
+    margin-bottom: 0;
+    display: none;
+    position: relative;
+    display: none;
+
+    &:after {
+        content: "";
+        width: 8px;
+        height: 2px;
+        background: $text2;
+        position: absolute;
+        top: 55%;
+        right: -19.5px;
+        transform: rotate(-50deg);
+    }
+
+    &:before {
+        content: "";
+        width: 8px;
+        height: 2px;
+        background: $text2;
+        position: absolute;
+        top: 55%;
+        right: -15px;
+        transform: rotate(50deg);
+    }
+}
+
+.list_items {
+    padding: 8px 16px;
+    @include fs_lh_fw_fcolor(20px, 24px, 400, $text2);
+    cursor: pointer;
+    margin-bottom: 5px;
+
+    &.active {
+        background: #213D88;
+        color: #fff;
+        border-radius: 100px;
+    }
+}
+
+.map_info {
+    background: #F8F9FB;
+    border-radius: 8px;
+    padding: 24px 32px;
+    margin-bottom: 16px;
+
+    p {
+        @include fs_lh_fw_fcolor(20px, 24px, 400, $text2);
+        padding: 8px 0;
+    }
+
+    span {
+        @include fs_lh_fw_fcolor(20px, 24px, 500, $text);
+        margin-left: 8px;
+    }
+}
+
+.map_subtitle {
+    @include fs_lh_fw_fcolor(24px, 34px, 700, $text);
+    margin-bottom: 8px;
+}
+
+.map_google {
+    width: 100%;
+    height: 342px;
+}
+
+
+@media (max-width:1120px) {
+    .modal_top {
+        padding: 16px 16px 0 16px;
+    }
+
+    .map_inner_left {
+        padding: 16px;
+        min-width: 280px;
+        width: 280px
+    }
+
+    .map_inner_right {
+        padding: 16px;
+    }
+
+
+    .list_items {
+        padding: 6px 16px;
+        @include fs_lh_fw_fcolor(18px, 22px, 400, $text2);
+        margin-bottom: 3px;
+    }
+
+    .map_info {
+        background: #F8F9FB;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 10px;
+
+        p {
+            @include fs_lh_fw_fcolor(18px, 24px, 400, $text2);
+            padding: 5px 0;
+        }
+
+        span {
+            @include fs_lh_fw_fcolor(18px, 24px, 500, $text);
+        }
+    }
+}
+
+@media (max-width:1000px) {
+    .img_wr_main {
+        height: 450px;
+    }
+}
+
+
+
+@media (max-width:780px) {
+    .img_wr {
+        width: 80%;
+    }
+
+    .map_inner {
+        display: block;
+    }
+
+    .list_control {
+        display: inline-block;
+
+    }
+
+    .map_inner_left {
+        display: none;
+        min-width: 100%;
+
+        &.active {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 5px
+        }
+    }
+}
+
+@media (max-width:560px) {
+    .img_wr_main {
+        height: 400px;
+    }
+
+    .img_wr {
+        width: 100%;
+    }
+
+    .map_inner_left {
+        &.active {
+            grid-template-columns: 1fr;
+
+        }
+    }
+
+    .map_info {
+        p {
+            @include fs_lh_fw_fcolor(18px, 24px, 400, $text2);
+            padding: 5px 0;
+        }
+
+        span {
+            @include fs_lh_fw_fcolor(18px, 24px, 500, $text);
+            display: block;
+            margin-left: 0;
+        }
+    }
+
+    .modal_top_img_wr {
+        width: 15px;
+        height: 15px;
+    }
+}

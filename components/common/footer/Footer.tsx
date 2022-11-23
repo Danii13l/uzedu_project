@@ -15,8 +15,8 @@ const footerLinks = [
     { id: 1, link: "/sub_pages/footer/200/cookiepolicy/1", text: "footer:cookiepolicy" },
     { id: 2, link: "/sub_pages/footer/200/privacypolicy/2", text: "footer:privacypolicy" },
     { id: 3, link: "/sub_pages/footer/200/termsuse/3", text: "footer:termsuse" },
-    { id: 5, link: "/sub_pages/footer/200/appealscitizens/4", text: "footer:appealscitizens" },
-    { id: 6, link: "/sub_pages/footer/200/opendata/5", text: "footer:opendata" },
+    { id: 5, link: "https://www.uzedu.uz/ru/static/request", text: "footer:appealscitizens" },
+    { id: 6, link: "https://www.uzedu.uz/ru/documents/open-data", text: "footer:opendata" },
 ];
 
 export const Footer: FC = (): JSX.Element => {
@@ -90,21 +90,21 @@ export const Footer: FC = (): JSX.Element => {
                     <div className={s.info_items}>
                         <a href={"tel:3652230845"}>(365) 223-08-45</a>
                         <div className={s.inf_img_wr}>
-                            <Image src={"/images/common/phone_fot.svg"} width={18} height={18} />
+                            <Image src={"/images/common/phone_fot.svg"} width={18} height={18} alt="icon" />
                         </div>
                     </div>
 
                     <div className={s.info_items}>
                         <a href={"mailto:bux_vxtb@xtv.uz"}>bux_vxtb@xtv.uz</a>
                         <div className={s.inf_img_wr}>
-                            <Image src={"/images/common/email_fot.svg"} width={18} height={18} />
+                            <Image src={"/images/common/email_fot.svg"} width={18} height={18} alt="icon" />
                         </div>
                     </div>
 
                     <div className={s.info_items}>
                         <p>{t("footer:address")}</p>
                         <div className={s.inf_img_wr}>
-                            <Image src={"/images/common/location-fot.svg"} width={18} height={18} />
+                            <Image src={"/images/common/location-fot.svg"} width={18} height={18} alt="icon" />
                         </div>
                     </div>
 

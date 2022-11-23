@@ -19,7 +19,7 @@ export const Pagination: FC<paginationInt> = ({
     }, []);
 
     return (
-        <div className="pagination_bottom">
+        <div className="pagination">
             <ReactPaginate
                 onClick={handlePage}
                 pageCount={pageCount ? +pageCount : 0}

@@ -38,12 +38,6 @@ const footerLinks = [
     {
         id: 3, text: "Условия использования", link: "/admin/pages/footer/200/termsuse/3/PAGE"
     }
-    , {
-        id: 4, text: "Обращения граждан", link: "/admin/pages/footer/200/appealscitizens/4/PAGE"
-    },
-    {
-        id: 5, text: "Открытые данные", link: "/admin/pages/footer/200/opendata/5/PAGE"
-    }
 ];
 
 

@@ -56,11 +56,11 @@ export const Header: FC = (): JSX.Element => {
     });
 
 
-    const handleBlockLink = useCallback((value: number) => {
+    const handleBlockLink = (value: number) => {
         return () => {
             setBlockLink(value);
         };
-    }, []);
+    };
 
     const handleMouseOverMenu = useCallback((value: number) => {
         return () => {
@@ -255,7 +255,7 @@ export const Header: FC = (): JSX.Element => {
                                     item?.pageLink ? <a href={`https://${item.pageLink}`} className={s.h_bot_sublink_a} >
                                         {t(`header:${item.name}`)}
                                     </a> : <Link
-                                        href={
+                                        href={item.name === "contacts" ? "/contacts" :
                                             `${item.name === "gallery" ? "/gallery_photos"
                                                 :
                                                 item.name === "videogallery" ? "/gallery_video"

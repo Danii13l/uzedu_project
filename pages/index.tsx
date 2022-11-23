@@ -14,6 +14,7 @@ import { Map } from '@/components/pages/home/map/Map';
 import { myAxios } from 'assets/axios/myAxios';
 import { Container } from '@/components/common/container/Container';
 import { useTranslation } from 'next-i18next';
+import { useToTheTopWindows } from './../assets/hooks/useToTheTopWindow';
 
 
 
@@ -27,6 +28,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         links: [],
         news: []
     };
+
+
 
     try {
         const banner = await myAxios(`/api/multipart?type=BANNER&lang=${locale}`);

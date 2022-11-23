@@ -1,5 +1,6 @@
 import 'styles/for_libraries/top_selections.scss';
 import "styles/for_libraries/opinions.scss";
+import "styles/for_libraries/pagination.scss";
 import "styles/for_libraries/inputs.scss";
 import 'styles/globals.scss';
 

@@ -2,7 +2,7 @@ import { Container } from "@/components/common/container/Container";
 import { Title } from "@/components/common/title/Title";
 import { Layout } from "@/components/layout/Layout";
 import { SearchComp } from "@/components/pages/search/SearchComp";
-import { myAxios } from "assets/axios/myAxios";
+
 import { GetServerSideProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Breadcrumb } from './../../components/common/breadcrumb/Breadcrumb';
@@ -16,8 +16,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const { query: { text } } = context;
 
+
     try {
-        const res = await fetch(`http://localhost:3000/api/search?lang=${locale}&text=${text}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/search?lang=ru&text=${text}`);
         const data = await res.json();
 
         return {
@@ -26,7 +27,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                 ...(await serverSideTranslations(locale as string, ["header", "footer", "common", "buttons", "home", "months"])),
             },
         };
-
     } catch (err) {
         return {
             props: {
@@ -43,6 +43,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const SearchRes: NextPage = ({ data }: any): JSX.Element => {
     const { query: { text } } = useRouter();
     const { t } = useTranslation();
+
+
 
     return (
         <Layout title={`${t("header:search")},${t("header:searchresult")}`} contentDesc={"home"}>

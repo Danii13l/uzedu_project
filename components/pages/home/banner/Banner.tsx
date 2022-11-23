@@ -28,7 +28,6 @@ export const Banner: FC<{ data: BannerInt[] }> = ({ data }): JSX.Element => {
 
     const { t } = useTranslation();
 
-    console.log(data);
 
     return <>
         {data && (data.length > 0) && <div className={s.banner} style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL}${data[0].url})` }}>
