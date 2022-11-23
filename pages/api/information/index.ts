@@ -7,9 +7,8 @@ const handler = nc<NextApiRequest, NextApiResponse>();
 
 handler.get(async (req, res) => {
   try {
-    const limit = 20;
-    const { page=1, lang, type } = req.query;
-
+  
+    const { page=1, limit=20, lang, type } = req.query;
     const count: any = await excuteQuery({
       query: informationTypeCountQuery,values:[type]
     });
@@ -22,11 +21,11 @@ handler.get(async (req, res) => {
       ? enInformationQuery
       : fullInformationQuery;
    const data = await excuteQuery({
-      query: query,values:[type,limit, (+page - 1) * limit]
+      query: query,values:[type, Number(limit), (+page - 1) * Number(limit)]
     });
     res.json({
       data,
-      totalPages: Math.ceil(count[0].value / limit),
+      totalPages: Math.ceil(count[0].value / Number(limit)),
       currentPage: page,
   });
   } catch (err: any) {
