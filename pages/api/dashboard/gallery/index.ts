@@ -52,12 +52,17 @@ handler
       if (!images) {
         return res.status(400).json({ message: "image required" });
       }
-      let arr = Object.keys(images).map((k) => images[k]);
-      if (arr.length > 0) {
-        for (let index = 0; index < arr.length; index++) {
-          const imagePath = await uploadImage(arr[index]);
-          imagesURLArray.push({ url: imagePath, id: index + 1 });
+      if(Array.isArray(images)){
+        let arr = Object.keys(images).map((k:any) => images[k]);
+        if (arr.length > 0) {
+          for (let index = 0; index < arr.length; index++) {
+            const imagePath = await uploadImage(arr[index]);
+            imagesURLArray.push({ url: imagePath, id: index + 1 });
+          }
         }
+      }else{
+        const imagePath = await uploadImage(images);
+            imagesURLArray.push({ url: imagePath, id: 1 });
       }
       const {
         title,
