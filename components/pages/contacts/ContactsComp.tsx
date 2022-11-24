@@ -36,7 +36,7 @@ export const ContactsComp: FC<{ data: PageInt }> = ({ data }) => {
 
         <div className={s.modal_inner}>
             <div className={s.modal_top}>
-                <h4 className={s.modal_title}>Бухарская область</h4>
+                <h4 className={s.modal_title}>{t("home:buharatitle")}</h4>
             </div>
 
             <div className={s.map_inner}>
@@ -53,14 +53,14 @@ export const ContactsComp: FC<{ data: PageInt }> = ({ data }) => {
                 <div className={s.map_inner_right}>
                     <div className={s.map_info}>
                         {/* @ts-ignore */}
-                        <p>Директор:<span>{mapData[activeM].director[`${locale}`].name}</span></p>
-                        <p>Адрес:<span>{mapData[activeM].address}</span></p>
-                        <p>Контакты:<span>{mapData[activeM].contact}</span></p>
+                        <p>{t("home:director")}:<span>{mapData[activeM].director}</span></p>
+                        <p>{t("home:contacts")}:<span>{mapData[activeM].address}</span></p>
+                        <p>{t("home:address")}:<span>{mapData[activeM].contact}</span></p>
                     </div>
 
-                    <h6 className={s.map_subtitle}>Карта проезда</h6>
+                    <h6 className={s.map_subtitle}>{t("home:roadmap")}</h6>
                     <div className={s.map_google}>
-                        <iframe src={`https://www.google.com/maps/embed?pb=${getMapDirection(activeM, locale)}`} width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src={`https://yandex.ru/map-widget/v1/?um=constructor%${getMapDirection(activeM)};source=constructor`} width="100%" height="100%" frameBorder="0"></iframe>
                     </div>
                 </div>
             </div>

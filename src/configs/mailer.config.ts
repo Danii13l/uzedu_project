@@ -2,17 +2,17 @@ import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport(
   {
-    host: process.env.NEXT_PUBLIC_SMTP_SERVER,
+    host: "server3.ahost.uz",
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
       // Пожалуйста, используйте свой собственный аккаунт для рассылки
-      user: process.env.MAIL_USER, // (замените звездочики на название вашего почтового ящика)
-      pass: process.env.MAIL_PASSWORD, //  (замените звездочики на пароль вашего почтового ящика)
+      user: "send.site@bvxtb.uz", // (замените звездочики на название вашего почтового ящика)
+      pass: "L2jZM2zR+BR)", //  (замените звездочики на пароль вашего почтового ящика)
     },
   },
   {
-    from: `Bukhara <${process.env.MAIL_FROM}>`,
+    from: `info@bvxtb.uz`,
   }
 );
 

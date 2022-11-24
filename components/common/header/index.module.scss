@@ -338,6 +338,7 @@
 
   button {
     margin-right: 4px;
+    margin-top: 2px;
     background: transparent;
     @include fs_lh_fw_fcolor(12px, 15px, 400, $text2);
   }
@@ -416,6 +417,9 @@
     display: none;
   }
 
+  .s_item_second {
+    display: none;
+  }
 
   .s_item_inner_border {
     display: none;

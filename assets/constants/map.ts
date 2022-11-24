@@ -1,133 +1,81 @@
 export const mapData = [
     {
         district: "buhara",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44",
+        director: "Солиев Санжар Азимджанович",
+        address: "Бухоро шахар И.Муминов 2-уй",
+        contact: "+998652234003",
     },
     {
         district: "kagan",
-        director: {
-            ru: { name: "Хусенов Шерзод2" },
-            uz: { name: "Хусенов Шерзод UZ2" },
-            en: { name: "Хусенов Шерзод En2" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44",
+        director: "Ф.Н.Xидоятов",
+        address: "Шухрат -25 уй",
+        contact: "(865)524-88-42",
 
     },
     {
         district: "altay",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44",
+        director: "Кўмаков Фаррухжон Қўзибоевич",
+        address: "Олот туман Халифа МФЙ",
+        contact: "998990589886",
 
     },
     {
         district: "buharadis",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44"
+        director: "Sadulloyev Shamshod Xojiqurbonovich",
+        address: "Галаосиё шахри Буюк ипак йули кучаси 25-уй",
+        contact: "+998655425131"
     },
     {
         district: "vabkent",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
+        director: "Хусенов Шерзод Журабоевич",
         address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44"
+        contact: "+998653321544"
     },
     {
         district: "gidjuvan",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44"
+        director: "Файзиев Мухтор Cайфидинович",
+        address: "Ибн Сино 158",
+        contact: "998956082162"
     },
     {
         district: "jandar",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44"
+        director: "Беҳбудова Латофат Жўраевна",
+        address: "Халқобод 28",
+        contact: "+998655821863"
     },
     {
         district: "kagandist",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44"
+        director: "Кобилов Зафар Музафарович",
+        address: "Бухоро вилоят Когон туман Б.Нақшбанд МФЙ",
+        contact: "+998993522107"
     },
     {
         district: "karakul",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44"
+        director: "Nurov Umid Safarovich",
+        address: "Qorako’l shahar Тoshkent koʻchasi 13-uy",
+        contact: "(8365) 56-53-022"
     },
     {
         district: "peshkun",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44"
+        director: "Матекуб Очилович Ҳамидов",
+        address: "Ибн сино кўчаси 6-уй",
+        contact: "+99865-353-14-64"
     },
     {
         district: "romit",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44"
+        director: "Зикриллоев Хайрилло Саъдуллоевич",
+        address: "Бухоро кучаси-3/1",
+        contact: "998655521804"
     },
     {
         district: "karaul",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
-        contact: "+998 65 332-15-44"
+        director: "Рахматова Дидора Низомовна",
+        address: "Коравулбозор шахри",
+        contact: "+998653641728"
     },
     {
         district: "shafirkan",
-        director: {
-            ru: { name: "Хусенов Шерзод" },
-            uz: { name: "Хусенов Шерзод UZ" },
-            en: { name: "Хусенов Шерзод En" },
-        },
-        address: "G`afur G`ulom кучаси 9 уй",
+        director: "Атоев Руслан Мухаммадович",
+        address: "+998655022314",
         contact: "+998 65 332-15-44"
     }];

@@ -19,7 +19,7 @@ import { RootState } from "assets/redux/store";
 const offers = [
     { id: 1, title: "home:appeals", text: "home:appealstext", link: "https://uzedu.uz/ru/static/request", img: "/images/home/offer_1.svg" },
     { id: 2, title: "home:giveidea", text: "home:appealstextidea", link: "https://idea.uzedu.uz/uz", img: "/images/home/offer_2.svg" },
-    { id: 3, title: "home:receptionschedule", text: "home:receptiontext", link: "#", img: "/images/home/offers_3.svg" },
+    { id: 3, title: "home:receptionschedule", text: "home:receptiontext", link: "/sub_pages/performance/4/workwithapplications/31", img: "/images/home/offers_3.svg" },
 ];
 
 interface NewsItn {
@@ -111,7 +111,7 @@ export const News: FC<{ data: NewsItn }> = ({ data }): JSX.Element => {
                                                 stroke="#213D88" />
                                         </svg>
                                     </div>
-                                    <a href={"https://ru-ru.facebook.com/uzedu/"}>@uzedu</a>
+                                    <a href={"https://www.facebook.com/buxorovxtb"}>/buxorovxtb</a>
                                 </div>
 
                                 <div className={s.n_soc_item}>
@@ -123,7 +123,7 @@ export const News: FC<{ data: NewsItn }> = ({ data }): JSX.Element => {
                                                 stroke="#213D88" strokeLinejoin="round" />
                                         </svg>
                                     </div>
-                                    <a href={"https://t.me/uzedu/"}>@uzedu</a>
+                                    <a href={"https://t.me/bvxtb"}>@bvxtb</a>
                                 </div>
 
                                 <div className={s.n_soc_item}>
@@ -135,7 +135,7 @@ export const News: FC<{ data: NewsItn }> = ({ data }): JSX.Element => {
                                                 stroke="#213D88" />
                                         </svg>
                                     </div>
-                                    <a href={"https://www.instagram.com/uzedu.uz"}>/uzedu.uz</a>
+                                    <a href={"https://www.instagram.com/bvxtb/"}>/bvxtb</a>
                                 </div>
                             </div>
                         </div>

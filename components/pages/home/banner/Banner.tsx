@@ -34,7 +34,7 @@ export const Banner: FC<{ data: BannerInt[] }> = ({ data }): JSX.Element => {
             <SectionWrapper>
                 <div className={`${s.inner} ${bigFont ? s.bigFont : ""}`}>
                     <div className={s.socials}>
-                        <Link href={"https://www.facebook.com/uzedu/"} className={s.social_item}>
+                        <Link href={"https://www.facebook.com/buxorovxtb"} className={s.social_item}>
                             <a className={s.social_item}>
                                 <svg width="16" height="16" viewBox="0 0 18 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +44,7 @@ export const Banner: FC<{ data: BannerInt[] }> = ({ data }): JSX.Element => {
                                 </svg>
                             </a>
                         </Link>
-                        <Link href={"https://www.instagram.com/uzedu.uz"}>
+                        <Link href={"https://www.instagram.com/bvxtb/"}>
                             <a className={s.social_item}>
                                 <svg width="16" height="16" viewBox="0 0 18 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +54,7 @@ export const Banner: FC<{ data: BannerInt[] }> = ({ data }): JSX.Element => {
                                 </svg>
                             </a>
                         </Link>
-                        <Link href={"https://t.me/uzedu/"}>
+                        <Link href={"https://t.me/bvxtb"}>
                             <a className={s.social_item}>
                                 <svg width="16" height="16" viewBox="0 0 18 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">

@@ -14,6 +14,7 @@ import { useTranslation } from "next-i18next";
 
 import { FormikProps, useFormik } from "formik";
 import { ContactUsInt, ContactUsSchema } from "assets/validation_form/contact_us";
+import { myAxios } from 'assets/axios/myAxios';
 
 
 export const ContactUs: FC = (): JSX.Element => {
@@ -29,13 +30,20 @@ export const ContactUs: FC = (): JSX.Element => {
         },
         validationSchema: ContactUsSchema,
         onSubmit: async (values) => {
+            try {
+                await myAxios.post("/api/feedback", values);
+            } catch (err) {
+                console.log(err);
+
+            }
+
         },
     });
 
     return <div className={s.contact}>
         <SectionWrapper>
             <Container>
-                <form className={s.form}>
+                <form className={s.form} onSubmit={formik.handleSubmit}>
 
                     <div className={s.title_wrapper}>
                         <Title title={t("home:contactus")} />
@@ -88,7 +96,7 @@ export const ContactUs: FC = (): JSX.Element => {
 
                     <div className={s.submit_wrapper}>
                         <div className={s.submit}>
-                            <Button classN={"main"}>{t("buttons:send")}</Button>
+                            <Button classN={"main"} submit={true}>{t("buttons:send")}</Button>
                         </div>
                     </div>
 

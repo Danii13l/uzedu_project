@@ -37,6 +37,8 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
         email: string;
         tg: string;
         biography: string;
+        biography_ru: string;
+        biography_uz: string;
         workHistory: string[];
         duty: string[];
         isBoss: number;
@@ -80,6 +82,8 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
                     email: dataOut?.email ?? "",
                     tg: dataOut?.tg ?? "",
                     biography: dataOut?.biography ?? "",
+                    biographyRu: dataOut?.biography_ru ?? "",
+                    biographyUz: dataOut?.biography_uz ?? "",
                     workHistory: dataOut?.workHistory ?? [],
                     duty: dataOut?.duty ?? [],
                     isBoss: dataOut?.is_boss === 1,

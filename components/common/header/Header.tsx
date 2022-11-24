@@ -12,14 +12,14 @@ import { Language } from "@/components/common/header/language_select/Language";
 import { headerTopLinks } from "assets/constants/header_links";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setBAndW } from "assets/redux/slices/blackWhite";
 import { setIsOpenMenu } from "assets/redux/slices/sidebarMenu";
 import { useGetMenu } from "assets/hooks/fetching/useGetMenu";
-import { setBigFont } from "assets/redux/slices/bigFont";
+
 
 import { RootState } from "assets/redux/store";
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
+import { ViewSelect } from "./view_select/VIewSelect";
 
 
 
@@ -32,19 +32,14 @@ export const Header: FC = (): JSX.Element => {
     const [hoverValue, setHoverValue] = useState<number | undefined>(undefined);
     const [activeMenu, setActiveMenu] = useState<boolean>(false);
     const [searchInput, setSearchInput] = useState(false);
-    const [settingView, setSettingView] = useState(false);
-
+    const [setSettingView] = useState(false);
     const [blockLink, setBlockLink] = useState<number | null>(null);
 
     const { bigFont } = useSelector(({ bigFont }: RootState) => bigFont);
-    const { bAndw } = useSelector(({ blackWhite }: RootState) => blackWhite);
 
     const { menu } = useGetMenu();
 
-
-
     const dispatch = useDispatch();
-
 
     const formik = useFormik({
         initialValues: {
@@ -78,29 +73,15 @@ export const Header: FC = (): JSX.Element => {
         return () => setSearchInput(val);
     }, []);
 
-    const handleBlackAndWhite = useCallback((val: boolean) => {
-        return () => dispatch(setBAndW(val));
-    }, []);
-
-    const handleBigFont = useCallback((val: boolean) => {
-        return () => dispatch(setBigFont(val));
-    }, []);
-
-    const handleSettingView = useCallback(() => {
-        return setSettingView(prev => !prev);
-    }, []);
-
-
     const menuVal = useCallback((val: typeof menu) => {
         return val && val[hoverValue ? hoverValue - 1 : 0];
     }, [hoverValue]);
 
-
-    useEffect(() => {
-        document.addEventListener("click", (ev: any) => {
-            if (!ev.target.dataset.setview) setSettingView(false);
-        });
+    const handleSettingView = useCallback(() => {
+        // @ts-ignore
+        return setSettingView(prev => !prev);
     }, []);
+
 
     return <header className={`${s.header} ${bigFont ? s.bigFont : ""}`}>
         <Container>
@@ -114,30 +95,7 @@ export const Header: FC = (): JSX.Element => {
                         })
                     }
 
-                    <div className={s.setting} data-setview={"setting_view"}>
-                        <Image data-setview={"setting_view"} src={"/images/header/eye.svg"} width={18} height={12} alt="eye"
-                            onClick={handleSettingView} />
-
-                        {settingView && <div className={s.s_inner} data-setview={"setting_view"}>
-                            <div className={s.s_item} data-setview={"setting_view"}>
-                                <p data-setview={"setting_view_title"} className={s.s_item_title}>Вид</p>
-                                <div className={`${s.s_item_inner} ${s.s_item_inner_color}`} data-setview={"setting_view_box"}>
-                                    <div className={!bAndw ? s.active : ""} onClick={handleBlackAndWhite(false)} data-setview={"setting_view"}>A</div>
-                                    <div className={bAndw ? s.active : ""} onClick={handleBlackAndWhite(true)} data-setview={"setting_view"}>A</div>
-                                </div>
-                            </div>
-
-                            <div className={s.s_item_inner_border}></div>
-                            <div className={s.s_item} data-setview={"setting_view"}>
-                                <p data-setview={"setting_view_title"} className={s.s_item_title}>Размер шрифта</p>
-                                <div className={`${s.s_item_inner} ${s.s_item_inner_font}`} data-setview={"setting_view_box"}>
-                                    <div className={!bigFont ? s.active : ""} onClick={handleBigFont(false)} data-setview={"setting_view"}>A</div>
-                                    <div className={bigFont ? s.active : ""} onClick={handleBigFont(true)} data-setview={"setting_view"}>A</div>
-                                </div>
-                            </div>
-                        </div>
-                        }
-                    </div>
+                    <ViewSelect />
 
                     <Language />
                 </div>
@@ -147,26 +105,7 @@ export const Header: FC = (): JSX.Element => {
                         <div className={s.setting} data-setview={"setting_view"}>
                             <Image data-setview={"setting_view"} src={"/images/header/eye.svg"} width={18} height={12} alt="eye"
                                 onClick={handleSettingView} />
-
-                            {settingView && <div className={s.s_inner} data-setview={"setting_view"}>
-                                <div className={s.s_item} data-setview={"setting_view"}>
-                                    <p data-setview={"setting_view_title"} className={s.s_item_title}>Вид</p>
-                                    <div className={`${s.s_item_inner} ${s.s_item_inner_color}`} data-setview={"setting_view_box"}>
-                                        <div className={!bAndw ? s.active : ""} onClick={handleBlackAndWhite(false)} data-setview={"setting_view"}>A</div>
-                                        <div className={bAndw ? s.active : ""} onClick={handleBlackAndWhite(true)} data-setview={"setting_view"}>A</div>
-                                    </div>
-                                </div>
-
-                                <div className={s.s_item_inner_border}></div>
-                                <div className={`${s.s_item} ${s.s_item_sec}`} data-setview={"setting_view"}>
-                                    <p data-setview={"setting_view_title"} className={s.s_item_title}>Размер шрифта</p>
-                                    <div className={`${s.s_item_inner} ${s.s_item_inner_font}`} data-setview={"setting_view_box"}>
-                                        <div className={!bigFont ? s.active : ""} onClick={handleBigFont(false)} data-setview={"setting_view"}>A</div>
-                                        <div className={bigFont ? s.active : ""} onClick={handleBigFont(true)} data-setview={"setting_view"}>A</div>
-                                    </div>
-                                </div>
-                            </div>
-                            }
+                            <ViewSelect />
                         </div>
 
                     </div>

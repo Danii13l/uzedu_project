@@ -33,7 +33,7 @@ export const Footer: FC = (): JSX.Element => {
                     <p className={s.ministry}>{t("footer:ministryeducation")}</p>
                     <p>{t("footer:allsitematerials")}</p>
                     <div className={s.social}>
-                        <Link href={"https://www.facebook.com/uzedu/"} className={s.social_item}>
+                        <Link href={"https://www.facebook.com/buxorovxtb"} className={s.social_item}>
                             <a className={s.social_item}>
                                 <svg width="16" height="16" viewBox="0 0 18 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@ export const Footer: FC = (): JSX.Element => {
                                 </svg>
                             </a>
                         </Link>
-                        <Link href={"https://www.instagram.com/uzedu.uz"}>
+                        <Link href={"https://www.instagram.com/bvxtb/"}>
                             <a className={s.social_item}>
                                 <svg width="16" height="16" viewBox="0 0 18 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@ export const Footer: FC = (): JSX.Element => {
                                 </svg>
                             </a>
                         </Link>
-                        <Link href={"https://t.me/uzedu/"}>
+                        <Link href={"https://t.me/bvxtb"}>
                             <a className={s.social_item}>
                                 <svg width="17" height="15" viewBox="0 0 18 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">

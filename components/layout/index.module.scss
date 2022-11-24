@@ -1,4 +1,10 @@
 .layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 100vh;
+
   &.black {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
