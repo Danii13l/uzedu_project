@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport(
     },
   },
   {
-    from: `Onside Asia <${process.env.MAIL_FROM}>`,
+    from: `Bukhara <${process.env.MAIL_FROM}>`,
   }
 );
 
