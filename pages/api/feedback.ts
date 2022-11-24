@@ -9,6 +9,7 @@ handler.post(async (req, res) => {
         const { name, phone, email,comment } = req.body;
         const emailMessage = message(name, phone, email,comment);
         mailer(emailMessage);
+        res.status(200).json({"message":"succesfuly"});
     } catch (error) {
         res.status(500).json({ message: error });
         return;
