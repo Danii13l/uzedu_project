@@ -13,7 +13,7 @@ export const SearchComp = ({ data }: any) => {
 
                     return <div className={s.item} key={item.id}>
                         <div className={s.img_wr}>
-                            <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} alt="person" layout="fill" objectFit="cover" unoptimized />
+                            <Image src={!item?.url || item?.url?.length === 0 ? "/images/common/default_photo" : `${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} alt="search" layout="fill" objectFit="cover" unoptimized />
                         </div>
                         <div className={s.content} >
                             <p>{item.title}</p>

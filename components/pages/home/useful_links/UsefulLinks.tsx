@@ -34,7 +34,7 @@ export const UsefulLinks: FC<{ data: UsefulLinks[] }> = ({ data }): JSX.Element 
                             return <div className={s.item} key={item.id}>
                                 <div className={s.item_content}>
                                     <div className={s.item_img_wrapper}>
-                                        <Image loader={myLoader} src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} layout={"fill"} objectFit={"cover"} quality={100} unoptimized alt="link" />
+                                        <Image loader={myLoader} src={!item?.url || item?.url?.length === 0 ? "/images/common/default_photo.jpg" : `${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} layout={"fill"} objectFit={"cover"} quality={100} unoptimized alt="link" />
                                     </div>
                                     <p className={s.item_text}>{item.title}</p>
                                 </div>

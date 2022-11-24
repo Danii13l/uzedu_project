@@ -56,7 +56,7 @@ export const TopSelections: FC<{ data: SliderInt[] }> = ({ data }): JSX.Element 
                                     return <SwiperSlide key={item.id}>
                                         <div className={"topSelections__slide"}>
                                             <div className={"topSelections__slide_img_wrap"}>
-                                                <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} layout={"fill"} alt="slider" unoptimized />
+                                                <Image src={!item?.url || item?.url?.length === 0 ? "/images/common/default_photo.jpg" : `${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} layout={"fill"} alt="slider" unoptimized />
                                             </div>
                                             <div className={"topSelections__slide_content"}>
                                                 <p>{item.title}</p>

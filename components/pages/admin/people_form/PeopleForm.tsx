@@ -100,11 +100,11 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
                             } else if (key === "duty") {
                                 formData.append(key, JSON.stringify(val[key]));
                             } else {
-                                     // @ts-ignore
+                                // @ts-ignore
                                 formData.append(key, val[key]);
                             }
                         }
-         
+
 
 
                         dataOut?.id ? await myAxios.put("/api/dashboard/people", formData) : await myAxios.post("/api/dashboard/people", formData);
@@ -129,10 +129,7 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
                         <InputsWrapper title={"Телеграм"}> <InputsFormik name={`tg`} label={""} /></InputsWrapper>
 
 
-                        <InputsWrapper title={"Биография"}>
-                            <InputsFormik name={`biography`} label={""} textarea={true} />
-                        </InputsWrapper>
-
+                        <InputsBlockMain title={"Биография"} arr={["biographyRu", "biographyUz", "biography"]} />
                         <InputsWrapper title={"Трудовая Деятельность"}>
                             <FieldArray
                                 name="workHistory"

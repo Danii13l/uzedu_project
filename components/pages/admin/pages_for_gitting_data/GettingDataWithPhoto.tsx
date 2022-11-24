@@ -72,9 +72,9 @@ export const GettingDataWithPhoto: FC<{ linkToForm: string, createItem: string }
               return (
                 <div className={s.item} key={item.id}>
                   <div className={s.img_wr}>
-                    {item.url && (
+                    {item?.url && (
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.url}`}
+                        src={item?.url?.length === 0 ? "/images/common/def_person.jpg" : `${process.env.NEXT_PUBLIC_BASE_URL}${item.url}`}
                         alt={"image"}
                         layout="fill"
                         unoptimized
@@ -84,7 +84,7 @@ export const GettingDataWithPhoto: FC<{ linkToForm: string, createItem: string }
 
                     {
                       item?.images && <Image
-                        src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.images[0]?.url}`}
+                        src={!item?.images[0]?.url || item?.images[0]?.url?.length === 0 ? "/images/common/default_photo.jpg" : `${process.env.NEXT_PUBLIC_BASE_URL}${item?.images[0]?.url}`}
                         alt={"image"}
                         layout="fill"
                         unoptimized

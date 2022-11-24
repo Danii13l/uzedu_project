@@ -20,7 +20,7 @@ export const PeopleWr: FC<{ data: any }> = ({ data }): JSX.Element => {
                         return <div className={s.isBoss_wr} key={item.id}>
                             <div className={s.item} key={item.id}>
                                 <div className={s.img_wr}>
-                                    <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} alt="person" layout="fill" objectFit="cover" unoptimized />
+                                    <Image src={!item?.url || item?.url?.length === 0 ? "/images/common/def_person.jpg" : `${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} alt="person" layout="fill" objectFit="cover" unoptimized />
                                 </div>
                                 <div className={s.content} >
                                     <p>{item.name}</p>
@@ -54,7 +54,7 @@ export const PeopleWr: FC<{ data: any }> = ({ data }): JSX.Element => {
                         if (item?.isBoss === 0) {
                             return <div className={s.item} key={item.id}>
                                 <div className={s.img_wr}>
-                                    <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} alt="person" layout="fill" objectFit="cover" unoptimized />
+                                    <Image src={!item?.url || item?.url?.length === 0 ? "/images/common/def_person.jpg" : `${process.env.NEXT_PUBLIC_BASE_URL}${item?.url}`} alt="person" layout="fill" objectFit="cover" unoptimized />
                                 </div>
                                 <div className={s.content} >
                                     <p>{item.name}</p>

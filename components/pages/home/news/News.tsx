@@ -17,8 +17,8 @@ import { RootState } from "assets/redux/store";
 
 
 const offers = [
-    { id: 1, title: "home:appeals", text: "home:appealstext", link: "#", img: "/images/home/offer_1.svg" },
-    { id: 2, title: "home:giveidea", text: "home:appealstext", link: "https://idea.uzedu.uz/uz", img: "/images/home/offer_2.svg" },
+    { id: 1, title: "home:appeals", text: "home:appealstext", link: "https://uzedu.uz/ru/static/request", img: "/images/home/offer_1.svg" },
+    { id: 2, title: "home:giveidea", text: "home:appealstextidea", link: "https://idea.uzedu.uz/uz", img: "/images/home/offer_2.svg" },
     { id: 3, title: "home:receptionschedule", text: "home:receptiontext", link: "#", img: "/images/home/offers_3.svg" },
 ];
 
@@ -81,7 +81,7 @@ export const News: FC<{ data: NewsItn }> = ({ data }): JSX.Element => {
                                 offers.map((item, index: number) => {
                                     return <div key={item.id} className={s.offer_item}>
                                         <div className={s.o_item_top}>
-                                            <Image src={item.img} width={48} height={48} alt="icon" />
+                                            <Image src={!item?.img || item?.img?.length === 0 ? "/images/common/default_photo.jpg" : item.img} width={48} height={48} alt="icon" />
                                             <h5>{t(item.title)}</h5>
                                         </div>
 

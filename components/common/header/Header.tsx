@@ -28,6 +28,7 @@ export const Header: FC = (): JSX.Element => {
 
     const { push } = useRouter();
 
+
     const [hoverValue, setHoverValue] = useState<number | undefined>(undefined);
     const [activeMenu, setActiveMenu] = useState<boolean>(false);
     const [searchInput, setSearchInput] = useState(false);
@@ -107,8 +108,8 @@ export const Header: FC = (): JSX.Element => {
                 <div className={s.h_top}>
                     {
                         headerTopLinks.map(({ id, text, link }) => {
-                            return id === 5 ? <a href={link} className={s.h_top_links}>{t(text)}</a> : <Link href={link} key={id}>
-                                <a className={s.h_top_links}>{t(text)}</a>
+                            return id === 5 ? <a href={link} className={s.h_top_links} key={id}>{t(text)}</a> : <Link href={link} key={id}>
+                                <a className={s.h_top_links} >{t(text)}</a>
                             </Link>;
                         })
                     }
@@ -201,7 +202,7 @@ export const Header: FC = (): JSX.Element => {
                                     }
 
                                     {
-                                        item.id === 2 && <a className={s.h_bot_main_link} href="https://www.uzedu.uz/ru/documents/categories">{t(`header:${item.name}`)}</a>
+                                        item.id === 2 && <a key={item.id} className={s.h_bot_main_link} href="https://www.uzedu.uz/ru/documents/categories">{t(`header:${item.name}`)}</a>
 
                                     }
                                 </div>;

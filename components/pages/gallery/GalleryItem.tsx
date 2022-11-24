@@ -36,7 +36,7 @@ export const GalleryItem: FC<{ data: GalleryInt[], isVideo?: boolean }> = ({ dat
                             {
                                 isVideo ?
                                     <div onClick={handleToggleVid(true, indMain)}>
-                                        <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.url}`} alt={item.title} unoptimized layout="fill" objectFit="cover" />
+                                        <Image src={!item?.url || item?.url?.length === 0 ? "/images/common/default_photo.jpg" : `${process.env.NEXT_PUBLIC_BASE_URL}${item.url}`} alt={item.title} unoptimized layout="fill" objectFit="cover" />
                                     </div>
                                     :
                                     <>

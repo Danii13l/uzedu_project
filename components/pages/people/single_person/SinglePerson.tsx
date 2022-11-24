@@ -17,7 +17,7 @@ export const SinglePerson = ({ data }: any) => {
 
                 <div className={s.who_wr}>
                     <div className={s.img_wr}>
-                        <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${data?.url}`} alt="person" layout="fill" objectFit="cover" unoptimized />
+                        <Image src={!data?.url || data?.url?.length === 0 ? "/images/common/def_person.jpg" : `${process.env.NEXT_PUBLIC_BASE_URL}${data?.url}`} alt="person" layout="fill" objectFit="cover" unoptimized />
                     </div>
                     <div className={s.who_info}>
                         <div className={s.who_info_top}>
