@@ -25,7 +25,7 @@ export const ContactUs: FC = (): JSX.Element => {
 
     const formik: FormikProps<ContactUsInt> = useFormik<ContactUsInt>({
         initialValues: {
-            name: "",
+            username: "",
             phone: "",
             email: "",
             question: ""
@@ -35,11 +35,10 @@ export const ContactUs: FC = (): JSX.Element => {
 
             try {
                 await myAxios.post("/api/feedback", values);
-
                 setSended(true);
                 resetForm({
                     values: {
-                        name: "",
+                        username: "",
                         phone: "",
                         email: "",
                         question: ""
@@ -47,7 +46,7 @@ export const ContactUs: FC = (): JSX.Element => {
                 });
                 setTimeout(() => setSended(false), 2000);
             } catch (err) {
-                formik.setErrors({ "name": " ", "phone": " ", "email": " ", "question": " " });
+                formik.setErrors({ "username": " ", "phone": " ", "email": " ", "question": " " });
             }
 
         },
@@ -68,9 +67,9 @@ export const ContactUs: FC = (): JSX.Element => {
                         name="username"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        isError={formik.errors.name}
-                        isTouched={formik.touched.name}
-                        value={formik.values.name}
+                        isError={formik.errors.username}
+                        isTouched={formik.touched.username}
+                        value={formik.values.username}
                         place={t("common:howcallyou")}
                     />
                     <div className={s.email_phone_wr}>

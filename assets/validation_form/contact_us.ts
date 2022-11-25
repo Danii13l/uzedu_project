@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export interface ContactUsInt {
-    name: string,
+    username: string,
     phone: string,
     email: string,
     question: string

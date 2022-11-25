@@ -6,8 +6,8 @@ import { message } from 'src/utils/email';
 const handler = nc<NextApiRequest, NextApiResponse>();
 handler.post(async (req, res) => {
     try {
-        const { name, phone, email, question } = req.body;
-        const emailMessage = message(name, phone, email, question);
+        const { username, phone, email, question } = req.body;
+        const emailMessage = message(username, phone, email, question);
         mailer(emailMessage);
         res.status(200).json({ "message": "succesfuly" });
     } catch (error) {
