@@ -66,7 +66,7 @@ const Home: NextPage = ({ data }: any): JSX.Element => {
     const { t } = useTranslation();
 
     return (
-        <Layout title={t("header:main")} contentDesc={"home"}>
+        <Layout title={"Buxoro viloyati xalq ta’limi boshqarmasi"} contentDesc={"Buxoro viloyati xalq ta’limi boshqarmasi"}>
             <Banner data={data.banner} />
             <Selection data={data.slider} />
             <News data={data.news} />

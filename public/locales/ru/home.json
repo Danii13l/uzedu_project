@@ -4,7 +4,7 @@
   "teachers": "Преподователей",
   "barkamloSchools": "Школ",
   "citizen": "Обращения граждан",
-  "checkedaddres": " Рассмотрено обращений",
+  "checkedaddres": "Рассмотрено обращений",
   "helpline": "Телефон доверия",
   "forstudents": "Ученикам",
   "tutorials": "Учебники,",
@@ -75,5 +75,7 @@
   "director": "Директор",
   "contacts": "Контакты",
   "address": "Адрес",
-  "roadmap": "Карта проезда"
+  "roadmap": "Карта проезда",
+  "sended": "Отправлено",
+  "regions": "Регионы"
 }

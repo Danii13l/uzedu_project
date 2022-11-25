@@ -60,7 +60,7 @@
   .email_phone_wr {
     margin: 16px 0;
     display: grid;
-    grid-template-columns:  1fr;
+    grid-template-columns: 1fr;
     grid-gap: 16px;
   }
 }
@@ -77,7 +77,23 @@
     margin-bottom: 16px;
   }
 
-  .submit{
+  .submit {
     width: 80%;
+  }
+}
+
+.modul_succes {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  @include fs_lh_fw_fcolor(20px, 24px, 400, #fff);
+  background: rgba(96, 192, 61, 0.926);
+  padding: 20px;
+  border-radius: 10px 0 0 10px;
+  transition: .7s;
+  transform: translateX(100%);
+
+  &.active {
+    transform: translateX(0);
   }
 }

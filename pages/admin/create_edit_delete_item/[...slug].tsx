@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 const EditDeleteItem: NextPage = (): JSX.Element => {
     const { query: { slug } } = useRouter();
-    console.log(slug);
+
 
     const { t } = useTranslation();
     return (

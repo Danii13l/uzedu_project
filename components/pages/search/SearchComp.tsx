@@ -17,7 +17,7 @@ export const SearchComp = ({ data }: any) => {
                         </div>
                         <div className={s.content} >
                             <p>{item.title}</p>
-                            <p>{item.description}</p>
+                            <div dangerouslySetInnerHTML={{ __html: item.description }}></div>
                         </div>
                         <Link href={`/info_page/single_info/search/${item.type?.toLowerCase()}/${item.id}`}>
                             <a className={s.link}></a>

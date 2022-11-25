@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport(
     },
   },
   {
-    from: `info@bvxtb.uz`,
+    from: `send.site@bvxtb.uz`,
   }
 );
 

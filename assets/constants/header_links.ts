@@ -5,11 +5,6 @@ export const headerTopLinks = [
         link: "/sub_pages_top/vacancies/1"
     },
     {
-        id: 2,
-        text: "header:projects",
-        link: "/sub_pages_top/projects/2"
-    },
-    {
         id: 3,
         text: "header:faqs",
         link: "/sub_pages_top/faqs/3"

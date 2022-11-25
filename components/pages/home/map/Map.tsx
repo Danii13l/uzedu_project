@@ -75,7 +75,7 @@ export const Map = () => {
                     </div>
 
                     <div className={s.map_inner}>
-                        <span className={s.list_control} onClick={handleToggleList()}>Районы</span>
+                        <span className={s.list_control} onClick={handleToggleList()}>{t("home:regions")}</span>
                         <ul className={`${s.map_inner_left} ${toggleList ? s.active : ""}`}>
                             {
                                 mapData.map((item, index) => {

@@ -64,6 +64,8 @@ export const Footer: FC = (): JSX.Element => {
                             </a>
                         </Link>
                     </div>
+
+                    <a href="https://bmedia.uz/" className={s.bmedia}>Сайт разработан bmedia.uz</a>
                 </div>
 
                 <div className={`${s.f_items} ${s.f_items_second}`}>

@@ -32,7 +32,7 @@ export const AdminLayout: FC<{ children: React.ReactNode; namePage: string; subN
     return (
         <>
             <Head>
-                <title>{"hello"}</title>
+                <title>{"Админ Панель"}</title>
             </Head>
 
 

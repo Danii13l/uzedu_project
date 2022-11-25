@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 import s from "./index.module.scss";
 
@@ -21,6 +21,8 @@ export const ContactUs: FC = (): JSX.Element => {
 
     const { t } = useTranslation();
 
+    const [sended, setSended] = useState(false);
+
     const formik: FormikProps<ContactUsInt> = useFormik<ContactUsInt>({
         initialValues: {
             username: "",
@@ -29,12 +31,23 @@ export const ContactUs: FC = (): JSX.Element => {
             question: ""
         },
         validationSchema: ContactUsSchema,
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
+
             try {
                 await myAxios.post("/api/feedback", values);
-            } catch (err) {
-                console.log(err);
 
+                setSended(true);
+                resetForm({
+                    values: {
+                        username: "",
+                        phone: "",
+                        email: "",
+                        question: ""
+                    }
+                });
+                setTimeout(() => setSended(false), 2000);
+            } catch (err) {
+                formik.setErrors({ "username": " ", "phone": " ", "email": " ", "question": " " });
             }
 
         },
@@ -100,7 +113,9 @@ export const ContactUs: FC = (): JSX.Element => {
                         </div>
                     </div>
 
-
+                    <div className={`${s.modul_succes} ${sended ? s.active : ""}`}>
+                        {t("home:sended")} !
+                    </div>
                 </form>
             </Container>
         </SectionWrapper>
