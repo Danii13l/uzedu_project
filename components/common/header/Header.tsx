@@ -96,18 +96,12 @@ export const Header: FC = (): JSX.Element => {
                     }
 
                     <ViewSelect />
-
                     <Language />
                 </div>
                 <div className={s.h_bottom}>
                     <div className={s.setting_language_res}>
                         <Language />
-                        <div className={s.setting} data-setview={"setting_view"}>
-                            <Image data-setview={"setting_view"} src={"/images/header/eye.svg"} width={18} height={12} alt="eye"
-                                onClick={handleSettingView} />
-                            <ViewSelect />
-                        </div>
-
+                        <ViewSelect />
                     </div>
 
 
