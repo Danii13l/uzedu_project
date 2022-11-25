@@ -3,9 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import s from "./index.module.scss";
+import { cutText } from 'assets/function/cutText';
 
 
 export const SearchComp = ({ data }: any) => {
+
+
+
     return <div className={s.wr}>
         {data && Array.isArray(data) && <div className={s.inner}>
             {
@@ -17,7 +21,7 @@ export const SearchComp = ({ data }: any) => {
                         </div>
                         <div className={s.content} >
                             <p>{item.title}</p>
-                            <div dangerouslySetInnerHTML={{ __html: item.description }}></div>
+                            <div dangerouslySetInnerHTML={{ __html: cutText(item.description, 80) + "..." }}></div>
                         </div>
                         <Link href={`/info_page/single_info/search/${item.type?.toLowerCase()}/${item.id}`}>
                             <a className={s.link}></a>

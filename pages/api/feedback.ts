@@ -6,10 +6,10 @@ import { message } from 'src/utils/email';
 const handler = nc<NextApiRequest, NextApiResponse>();
 handler.post(async (req, res) => {
     try {
-        const { name, phone, email,comment } = req.body;
-        const emailMessage = message(name, phone, email,comment);
+        const { name, phone, email, question } = req.body;
+        const emailMessage = message(name, phone, email, question);
         mailer(emailMessage);
-        res.status(200).json({"message":"succesfuly"});
+        res.status(200).json({ "message": "succesfuly" });
     } catch (error) {
         res.status(500).json({ message: error });
         return;

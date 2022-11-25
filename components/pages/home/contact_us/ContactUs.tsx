@@ -25,7 +25,7 @@ export const ContactUs: FC = (): JSX.Element => {
 
     const formik: FormikProps<ContactUsInt> = useFormik<ContactUsInt>({
         initialValues: {
-            username: "",
+            name: "",
             phone: "",
             email: "",
             question: ""
@@ -39,7 +39,7 @@ export const ContactUs: FC = (): JSX.Element => {
                 setSended(true);
                 resetForm({
                     values: {
-                        username: "",
+                        name: "",
                         phone: "",
                         email: "",
                         question: ""
@@ -47,7 +47,7 @@ export const ContactUs: FC = (): JSX.Element => {
                 });
                 setTimeout(() => setSended(false), 2000);
             } catch (err) {
-                formik.setErrors({ "username": " ", "phone": " ", "email": " ", "question": " " });
+                formik.setErrors({ "name": " ", "phone": " ", "email": " ", "question": " " });
             }
 
         },
@@ -68,9 +68,9 @@ export const ContactUs: FC = (): JSX.Element => {
                         name="username"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        isError={formik.errors.username}
-                        isTouched={formik.touched.username}
-                        value={formik.values.username}
+                        isError={formik.errors.name}
+                        isTouched={formik.touched.name}
+                        value={formik.values.name}
                         place={t("common:howcallyou")}
                     />
                     <div className={s.email_phone_wr}>
