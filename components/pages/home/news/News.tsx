@@ -43,7 +43,7 @@ export const News: FC<{ data: NewsItn }> = ({ data }): JSX.Element => {
                         <div className={s.n_section_top}>
                             <Title title={t("common:news")} />
 
-                            <Link href={"/info_page/informationService/5/ministrynews/32"}>
+                            <Link href={"/info_page/informationService/5/ministrynews/32/1"}>
                                 <a className={s.all_news}>{t("buttons:allnews")}</a>
                             </Link>
                         </div>

@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -32,7 +32,6 @@ export const Header: FC = (): JSX.Element => {
     const [hoverValue, setHoverValue] = useState<number | undefined>(undefined);
     const [activeMenu, setActiveMenu] = useState<boolean>(false);
     const [searchInput, setSearchInput] = useState(false);
-    const [setSettingView] = useState(false);
     const [blockLink, setBlockLink] = useState<number | null>(null);
 
     const { bigFont } = useSelector(({ bigFont }: RootState) => bigFont);
@@ -77,10 +76,6 @@ export const Header: FC = (): JSX.Element => {
         return val && val[hoverValue ? hoverValue - 1 : 0];
     }, [hoverValue]);
 
-    const handleSettingView = useCallback(() => {
-        // @ts-ignore
-        return setSettingView(prev => !prev);
-    }, []);
 
 
     return <header className={`${s.header} ${bigFont ? s.bigFont : ""}`}>
@@ -97,6 +92,8 @@ export const Header: FC = (): JSX.Element => {
 
                     <ViewSelect />
                     <Language />
+
+
                 </div>
                 <div className={s.h_bottom}>
                     <div className={s.setting_language_res}>

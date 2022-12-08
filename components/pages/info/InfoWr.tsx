@@ -17,6 +17,8 @@ export const InfoWr: FC<{ data: any }> = ({ data }): JSX.Element => {
 
     const { t } = useTranslation();
 
+
+
     return <div className={s.wr}>
         {data?.data && Array.isArray(data?.data) && <div className={s.inner}>
             {
@@ -39,6 +41,6 @@ export const InfoWr: FC<{ data: any }> = ({ data }): JSX.Element => {
         </div>}
 
 
-        <Pagination pageCount={data.totalPages} curPage={data.currentPage} />
+        <Pagination pageCount={data?.totalPages} curPage={data?.currentPage} />
     </div>;
 };
