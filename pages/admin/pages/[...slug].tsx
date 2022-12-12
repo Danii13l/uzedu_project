@@ -7,7 +7,7 @@ import { AdminLayout } from "@/components/pages/admin/admin_layout/AdminLayout";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { myAxios } from "assets/axios/myAxios";
+import { getAuthorizationHeader, myAxios } from "assets/axios/myAxios";
 
 import { useTranslation } from "next-i18next";
 import { VideoGallery } from "@/components/pages/admin/video_gallery_form/VideoGallery";
@@ -46,7 +46,11 @@ const AdminPages: NextPage = (): JSX.Element => {
         const fetcher = async () => {
             try {
                 if (slug && slug[0] === "home_page") return;
-                const { data } = await myAxios(`/api/dashboard/page?menuId=${slug ? slug[1] : 1}&subMenuId=${slug ? slug[3] : 1}`);
+                const { data } = await myAxios(`/api/dashboard/page?menuId=${slug ? slug[1] : 1}&subMenuId=${slug ? slug[3] : 1}`, {
+                    headers: {
+                        'Authorization': getAuthorizationHeader()
+                    }
+                });
                 setData(data.page);
             } catch (err) {
                 setData(null);

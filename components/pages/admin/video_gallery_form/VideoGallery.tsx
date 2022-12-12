@@ -8,7 +8,7 @@ import { Button } from "@/components/common/button/Button";
 import { InputsFormik } from "@/components/common/input/InputsFormik";
 import { InputsWrapper } from "@/components/pages/admin/form_items/InputsWrapper";
 
-import { myAxios } from 'assets/axios/myAxios';
+import { getAuthorizationHeader, myAxios } from 'assets/axios/myAxios';
 import { FC, useEffect, useState } from "react";
 import { FormActions } from './../form_items/FormActions';
 import { PreviewImage } from '@/components/pages/admin/form_items/PreviewImage';
@@ -31,7 +31,11 @@ export const VideoGallery: FC<{ id?: string }> = ({ id }) => {
         (async function () {
             try {
                 if (id) {
-                    const { data } = await myAxios(`/api/dashboard/video/${id}`);
+                    const { data } = await myAxios(`/api/dashboard/video/${id}`, {
+                        headers: {
+                            'Authorization': getAuthorizationHeader()
+                        }
+                    });
                     setData(data);
                 }
 
@@ -59,7 +63,15 @@ export const VideoGallery: FC<{ id?: string }> = ({ id }) => {
                     for (let key in val) formData.append(key, val[key]);
                     dataOut?.id && formData.append("id", dataOut?.id as any);
 
-                    dataOut?.id ? await myAxios.put("/api/dashboard/video", formData) : await myAxios.post("/api/dashboard/video", formData);
+                    dataOut?.id ? await myAxios.put("/api/dashboard/video", formData, {
+                        headers: {
+                            'Authorization': getAuthorizationHeader()
+                        }
+                    }) : await myAxios.post("/api/dashboard/video", formData, {
+                        headers: {
+                            'Authorization': getAuthorizationHeader()
+                        }
+                    });
                     await push("/admin/pages/informationService/5/videogallery/38/VIDEOS");
                 } catch (err) {
                     console.log(err);
@@ -71,8 +83,8 @@ export const VideoGallery: FC<{ id?: string }> = ({ id }) => {
                     <InputsBlockMain title={"Заголовок"} arr={["titleRu", "titleUz", "title"]} />
 
                     <InputsWrapper title={"Ссылка"}>
-                            <InputsFormik name={`link`} label={""}  />
-                        </InputsWrapper>
+                        <InputsFormik name={`link`} label={""} />
+                    </InputsWrapper>
 
                     <InputsWrapper title={"Фотография"}>
                         <PreviewImage condit={values?.image}

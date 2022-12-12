@@ -12,7 +12,7 @@ import { Button } from "@/components/common/button/Button";
 import { PreviewImage } from "@/components/pages/admin/form_items/PreviewImage";
 
 import { FormWrapper } from "@/components/pages/admin/form_items/FormWrapper";
-import { myAxios } from 'assets/axios/myAxios';
+import { getAuthorizationHeader, myAxios } from 'assets/axios/myAxios';
 import { useTranslation } from 'next-i18next';
 
 export const InfoForm: FC<{ id?: string; type?: string }> = ({ id, type }): JSX.Element => {
@@ -36,7 +36,11 @@ export const InfoForm: FC<{ id?: string; type?: string }> = ({ id, type }): JSX.
     useEffect(() => {
         (async function () {
             try {
-                const { data } = await myAxios(`/api/dashboard/information/${id}`);
+                const { data } = await myAxios(`/api/dashboard/information/${id}`, {
+                    headers: {
+                        Authorization: getAuthorizationHeader()
+                    }
+                });
                 setDataOut(data);
             } catch (err) {
             }
@@ -66,7 +70,15 @@ export const InfoForm: FC<{ id?: string; type?: string }> = ({ id, type }): JSX.
                         dataOut?.id && formData.append("id", dataOut?.id as any);
                         // @ts-ignore
                         for (let key in val) formData.append(key, val[key]);
-                        dataOut?.id ? await myAxios.put("/api/dashboard/information", formData) : await myAxios.post("/api/dashboard/information", formData);
+                        dataOut?.id ? await myAxios.put("/api/dashboard/information", formData, {
+                            headers: {
+                                Authorization: getAuthorizationHeader()
+                            }
+                        }) : await myAxios.post("/api/dashboard/information", formData, {
+                            headers: {
+                                Authorization: getAuthorizationHeader()
+                            }
+                        });
                         push("/admin");
                     } catch (err) {
                         console.log(err);

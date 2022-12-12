@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import s from "./index.module.scss";
 
-import { myAxios } from "assets/axios/myAxios";
+import { getAuthorizationHeader, myAxios } from "assets/axios/myAxios";
 
 import { useRouter } from "next/router";
 
@@ -27,7 +27,11 @@ export const FormActions: FC<{ isDelete: boolean; data?: any; typeOfPage: string
 
     const handleDeletePage = async () => {
         try {
-            await myAxios.delete(`/api/${deleteFetch}/${data?.id}`);
+            await myAxios.delete(`/api/${deleteFetch}/${data?.id}`, {
+                headers: {
+                    Authorization: getAuthorizationHeader()
+                }
+            });
             pushTo && await push(pushTo);
         } catch (err) {
         }

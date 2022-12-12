@@ -12,7 +12,7 @@ import { InputsBlockMain } from "../form_items/InputsBlockMain";
 import { InputsWrapper } from "../form_items/InputsWrapper";
 import { PreviewImage } from "../form_items/PreviewImage";
 
-import { myAxios } from 'assets/axios/myAxios';
+import { getAuthorizationHeader, myAxios } from 'assets/axios/myAxios';
 
 
 
@@ -30,7 +30,11 @@ export const HomeUsefulLinks: FC<{ id?: string }> = ({ id }): JSX.Element => {
     useEffect(() => {
         (async function () {
             try {
-                const { data } = await myAxios(`/api/dashboard/multipart/${id}`);
+                const { data } = await myAxios(`/api/dashboard/multipart/${id}`, {
+                    headers: {
+                        Authorization: getAuthorizationHeader()
+                    }
+                });
                 setDataOut(data);
             } catch (err) {
                 console.log(err);
@@ -57,7 +61,15 @@ export const HomeUsefulLinks: FC<{ id?: string }> = ({ id }): JSX.Element => {
                         // @ts-ignore
                         for (let key in val) formData.append(key, val[key]);
                         id && formData.append("id", id);
-                        id ? await myAxios.patch("/api/dashboard/multipart", formData) : await myAxios.post("/api/dashboard/multipart", formData);
+                        id ? await myAxios.patch("/api/dashboard/multipart", formData, {
+                            headers: {
+                                Authorization: getAuthorizationHeader()
+                            }
+                        }) : await myAxios.post("/api/dashboard/multipart", formData, {
+                            headers: {
+                                Authorization: getAuthorizationHeader()
+                            }
+                        });
                         await push("/admin/pages/home_page/0/homelinks/4/HOMELINKS");
 
                     } catch (err) {

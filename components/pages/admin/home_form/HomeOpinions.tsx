@@ -6,7 +6,7 @@ import { FC, useEffect, useState } from "react";
 import { FormWrapper } from "../form_items/FormWrapper";
 import { InputsBlockMain } from "../form_items/InputsBlockMain";
 
-import { myAxios } from 'assets/axios/myAxios';
+import { getAuthorizationHeader, myAxios } from 'assets/axios/myAxios';
 import { useRouter } from 'next/router';
 import { FormActions } from '@/components/pages/admin/form_items/FormActions';
 
@@ -29,7 +29,11 @@ export const HomeOpinions: FC<{ id?: string }> = ({ id }): JSX.Element => {
     useEffect(() => {
         (async function () {
             try {
-                const { data } = await myAxios(`/api/dashboard/opinion/${id}`);
+                const { data } = await myAxios(`/api/dashboard/opinion/${id}`, {
+                    headers: {
+                        Authorization: getAuthorizationHeader()
+                    }
+                });
                 setDataOut(data);
             } catch (err) {
                 console.log(err);
@@ -57,10 +61,18 @@ export const HomeOpinions: FC<{ id?: string }> = ({ id }): JSX.Element => {
                 enableReinitialize={true}
                 onSubmit={async (val) => {
                     try {
-                        id ? await myAxios.patch("/api/dashboard/opinion", { ...val, id: dataOut?.id }) : await myAxios.post("/api/dashboard/opinion", val);
+                        id ? await myAxios.patch("/api/dashboard/opinion", { ...val, id: dataOut?.id }, {
+                            headers: {
+                                Authorization: getAuthorizationHeader()
+                            }
+                        }) : await myAxios.post("/api/dashboard/opinion", val, {
+                            headers: {
+                                Authorization: getAuthorizationHeader()
+                            }
+                        });
                         await push("/admin/pages/home_page/0/homeopinions/2/HOMEOPINIONS");
                     } catch (err) {
-                        console.log(err)
+                        console.log(err);
                     }
                 }}
             >

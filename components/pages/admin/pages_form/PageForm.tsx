@@ -14,7 +14,7 @@ import { InputsWrapper } from "@/components/pages/admin/form_items/InputsWrapper
 import { FieldArrayWrapper } from "@/components/pages/admin/form_items/FieldArrayWrapper";
 import { FormActions } from "@/components/pages/admin/form_items/FormActions";
 import { PreviewImage } from "@/components/pages/admin/form_items/PreviewImage";
-import { myAxios } from "assets/axios/myAxios";
+import { getAuthorizationHeader, myAxios } from "assets/axios/myAxios";
 import { FormWrapper } from "@/components/pages/admin/form_items/FormWrapper";
 
 
@@ -35,11 +35,16 @@ export const PageForm: FC<{ data: initialValuesIint | null }> = ({ data }): JSX.
                     if (!data) {
                         await myAxios.post("/api/dashboard/page", JSON.stringify(val), {
                             headers: {
-                                'Content-Type': 'application/json'
+                                'Content-Type': 'application/json',
+                                'Authorization': getAuthorizationHeader()
                             }
                         });
                     } else {
-                        await myAxios.put(`/api/dashboard/page?id=${data?.id}`, { ...val, id: data?.id });
+                        await myAxios.put(`/api/dashboard/page?id=${data?.id}`, { ...val, id: data?.id }, {
+                            headers: {
+                                'Authorization': getAuthorizationHeader()
+                            }
+                        });
                     }
                     await push("/admin");
                 } catch (err) {

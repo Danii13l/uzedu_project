@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 
-import { myAxios } from "assets/axios/myAxios";
+import { getAuthorizationHeader, myAxios } from "assets/axios/myAxios";
 
 import { Field, Form, Formik } from "formik";
 
@@ -45,7 +45,11 @@ export const HomeBanner: FC = (): JSX.Element => {
     useEffect(() => {
         (async function () {
             try {
-                const { data } = await myAxios("/api/dashboard/multipart?type=BANNER");
+                const { data } = await myAxios("/api/dashboard/multipart?type=BANNER", {
+                    headers: {
+                        Authorization: getAuthorizationHeader()
+                    }
+                });
                 setData(data.data[0]);
             } catch (err) {
                 console.log(err);
@@ -81,7 +85,15 @@ export const HomeBanner: FC = (): JSX.Element => {
                         // @ts-ignore
                         for (let key in val) formData.append(key, val[key]);
                         dataOut?.id && formData.append("id", dataOut?.id as any);
-                        dataOut ? await myAxios.patch("/api/dashboard/multipart", formData) : await myAxios.post("/api/dashboard/multipart", formData);
+                        dataOut ? await myAxios.patch("/api/dashboard/multipart", formData, {
+                            headers: {
+                                Authorization: getAuthorizationHeader()
+                            }
+                        }) : await myAxios.post("/api/dashboard/multipart", formData, {
+                            headers: {
+                                Authorization: getAuthorizationHeader()
+                            }
+                        });
                         await push("/admin");
                     } catch (err) {
                         console.log(err);

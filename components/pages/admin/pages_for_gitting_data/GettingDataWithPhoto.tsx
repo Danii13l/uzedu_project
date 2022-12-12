@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { myAxios } from "assets/axios/myAxios";
+import { getAuthorizationHeader, myAxios } from "assets/axios/myAxios";
 import Image from "next/image";
 
 import s from "./index.module.scss";
@@ -24,31 +24,55 @@ export const GettingDataWithPhoto: FC<{ linkToForm: string, createItem: string }
     (async function () {
       try {
         if (slug && (slug[4] === "HOMESLIDER" || slug[4] === "HOMELINKS")) {
-          const { data } = await myAxios(`/api/dashboard/multipart?type=${homeFetching[slug[4]]}&lang=ru`);
+          const { data } = await myAxios(`/api/dashboard/multipart?type=${homeFetching[slug[4]]}&lang=ru`, {
+            headers: {
+              Authorization: getAuthorizationHeader()
+            }
+          });
           setDataOut(data.data);
         }
         if (slug && slug[4] === "HOMEOPINIONS") {
-          const { data } = await myAxios(`/api/dashboard/opinion?lang=ru`);
+          const { data } = await myAxios(`/api/dashboard/opinion?lang=ru`, {
+            headers: {
+              Authorization: getAuthorizationHeader()
+            }
+          });
           setDataOut(data.data);
         }
 
         if (slug && slug[4] === "PHOTOS") {
-          const { data } = await myAxios(`/api/gallery?lang=ru`);
+          const { data } = await myAxios(`/api/gallery?lang=ru`, {
+            headers: {
+              Authorization: getAuthorizationHeader()
+            }
+          });
           setDataOut(data);
         }
 
         if (slug && slug[4] === "VIDEOS") {
-          const { data } = await myAxios(`/api/video?lang=ru`);
+          const { data } = await myAxios(`/api/video?lang=ru`, {
+            headers: {
+              Authorization: getAuthorizationHeader()
+            }
+          });
           setDataOut(data?.data);
         }
 
         if (slug && slug[4] === "INFO") {
-          const { data } = await myAxios(`/api/information?type=${slug && slug[2]}&lang=ru`);
+          const { data } = await myAxios(`/api/information?type=${slug && slug[2]}&lang=ru`, {
+            headers: {
+              Authorization: getAuthorizationHeader()
+            }
+          });
           setDataOut(data?.data);
         }
 
         if (slug && slug[4] === "PEOPLE") {
-          const { data } = await myAxios(`/api/dashboard/people?type=${slug && slug[2]}&lang=ru`);
+          const { data } = await myAxios(`/api/dashboard/people?type=${slug && slug[2]}&lang=ru`, {
+            headers: {
+              Authorization: getAuthorizationHeader()
+            }
+          });
           setDataOut(data?.pages);
         }
 

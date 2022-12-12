@@ -5,7 +5,7 @@ import {
   statisticNumberTitles,
 } from "assets/constants/homeForm";
 
-import { myAxios } from "assets/axios/myAxios";
+import { getAuthorizationHeader, myAxios } from "assets/axios/myAxios";
 import { Field, Form, Formik } from "formik";
 import { useTranslation } from "next-i18next";
 
@@ -36,7 +36,11 @@ export const HomeStatistic: FC = (): JSX.Element => {
   useEffect(() => {
     (async function () {
       try {
-        const { data } = await myAxios("/api/dashboard/statistic");
+        const { data } = await myAxios("/api/dashboard/statistic", {
+          headers: {
+            Authorization: getAuthorizationHeader()
+          }
+        });
         setDataOut(data.data[0]);
       } catch (err) { console.log(err); }
     })();
@@ -59,7 +63,15 @@ export const HomeStatistic: FC = (): JSX.Element => {
         enableReinitialize={true}
         onSubmit={async (val) => {
           try {
-            dataOut ? await myAxios.patch("/api/dashboard/statistic", { ...val, id: dataOut?.id }) : await myAxios.post("/api/dashboard/statistic", val);
+            dataOut ? await myAxios.patch("/api/dashboard/statistic", { ...val, id: dataOut?.id }, {
+              headers: {
+                Authorization: getAuthorizationHeader()
+              }
+            }) : await myAxios.post("/api/dashboard/statistic", val, {
+              headers: {
+                Authorization: getAuthorizationHeader()
+              }
+            });
             await push("/admin");
           } catch (err) {
             console.log(err);

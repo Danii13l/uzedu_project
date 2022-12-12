@@ -6,7 +6,7 @@ import s from "./index.module.scss";
 
 import { FileInput } from "@/components/common/input/FileInput";
 
-import { myAxios } from "assets/axios/myAxios";
+import { getAuthorizationHeader, myAxios } from "assets/axios/myAxios";
 
 import FormData from "form-data";
 
@@ -41,7 +41,11 @@ export const PreviewImage: FC<PreviewImage> = ({
                 }
 
                 formData.append(`image`, ev.target.files[0] as string);
-                const { data } = await myAxios.post("/api/dashboard/upload", formData);
+                const { data } = await myAxios.post("/api/dashboard/upload", formData, {
+                    headers: {
+                        Authorization: getAuthorizationHeader()
+                    }
+                });
                 await clb(value, data?.url);
             } catch (err) {
                 console.log(err);
@@ -56,7 +60,11 @@ export const PreviewImage: FC<PreviewImage> = ({
                     return clb(value, null);
                 }
                 formData.append(`url`, "public/" + valueDel);
-                await myAxios.put(`/api/dashboard/upload`, formData);
+                await myAxios.put(`/api/dashboard/upload`, formData, {
+                    headers: {
+                        Authorization: getAuthorizationHeader()
+                    }
+                });
                 await clb(value, null);
             } catch (err) {
                 console.log(err);

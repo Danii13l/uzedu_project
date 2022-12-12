@@ -15,7 +15,7 @@ import { Button } from "@/components/common/button/Button";
 import { PreviewImage } from "@/components/pages/admin/form_items/PreviewImage";
 import { InputsFormik } from "@/components/common/input/InputsFormik";
 import { FormWrapper } from "@/components/pages/admin/form_items/FormWrapper";
-import { myAxios } from 'assets/axios/myAxios';
+import { getAuthorizationHeader, myAxios } from 'assets/axios/myAxios';
 import { useTranslation } from "next-i18next";
 
 export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JSX.Element => {
@@ -53,7 +53,11 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
 
         (async function () {
             try {
-                const { data } = await myAxios(`/api/dashboard/people/${id}?lang=ru`);
+                const { data } = await myAxios(`/api/dashboard/people/${id}?lang=ru`, {
+                    headers: {
+                        'Authorization': getAuthorizationHeader()
+                    }
+                });
                 setDataOut(data);
             } catch (err) {
             }
@@ -111,7 +115,15 @@ export const PeopleForm: FC<{ id?: string; type?: string }> = ({ id, type }): JS
 
 
 
-                        dataOut?.id ? await myAxios.put("/api/dashboard/people", formData) : await myAxios.post("/api/dashboard/people", formData);
+                        dataOut?.id ? await myAxios.put("/api/dashboard/people", formData, {
+                            headers: {
+                                'Authorization': getAuthorizationHeader()
+                            }
+                        }) : await myAxios.post("/api/dashboard/people", formData, {
+                            headers: {
+                                'Authorization': getAuthorizationHeader()
+                            }
+                        });
 
                         push("/admin");
                     } catch (err) { }

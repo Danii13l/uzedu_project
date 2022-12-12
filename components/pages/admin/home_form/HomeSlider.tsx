@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import { myAxios } from "assets/axios/myAxios";
+import { getAuthorizationHeader, myAxios } from "assets/axios/myAxios";
 
 import { Form, Formik } from "formik";
 
@@ -31,7 +31,11 @@ export const HomeSlider: FC<{ id?: string }> = ({ id }): JSX.Element => {
     useEffect(() => {
         (async function () {
             try {
-                const { data } = await myAxios(`/api/dashboard/multipart/${id}`);
+                const { data } = await myAxios(`/api/dashboard/multipart/${id}`, {
+                    headers: {
+                        Authorization: getAuthorizationHeader()
+                    }
+                });
                 setDataOut(data);
             } catch (err) {
                 console.log(err);
@@ -61,7 +65,15 @@ export const HomeSlider: FC<{ id?: string }> = ({ id }): JSX.Element => {
                         // @ts-ignore
                         for (let key in val) formData.append(key, val[key]);
                         id && formData.append("id", id);
-                        id ? await myAxios.patch("/api/dashboard/multipart", formData) : await myAxios.post("/api/dashboard/multipart", formData);
+                        id ? await myAxios.patch("/api/dashboard/multipart", formData, {
+                            headers: {
+                                Authorization: getAuthorizationHeader()
+                            }
+                        }) : await myAxios.post("/api/dashboard/multipart", formData, {
+                            headers: {
+                                Authorization: getAuthorizationHeader()
+                            }
+                        });
                         await push("/admin/pages/home_page/0/homeslider/1/HOMESLIDER");
                     } catch (err) {
                         console.log(err);

@@ -8,7 +8,7 @@ import { InputsBlockMain } from "@/components/pages/admin/form_items/InputsBlock
 import Image from "next/image";
 
 import { useImagesToServer } from "assets/hooks/useImagesToServer";
-import { myAxios } from "assets/axios/myAxios";
+import { getAuthorizationHeader, myAxios } from "assets/axios/myAxios";
 import { FormWrapper } from "@/components/pages/admin/form_items/FormWrapper";
 import { FC, useEffect, useState } from "react";
 import { FormActions } from './../form_items/FormActions';
@@ -29,7 +29,11 @@ export const GalleryForm: FC<{ id?: string }> = ({ id }) => {
         (async function () {
             try {
                 if (id) {
-                    const { data } = await myAxios(`/api/dashboard/gallery/${id}`);
+                    const { data } = await myAxios(`/api/dashboard/gallery/${id}`, {
+                        headers: {
+                            'Authorization': getAuthorizationHeader()
+                        }
+                    });
                     setData(data);
                     setImagesServer(data.images);
                 }
@@ -84,7 +88,8 @@ export const GalleryForm: FC<{ id?: string }> = ({ id }) => {
 
                     await myAxios[dataOut?.id ? "put" : "post"]("/api/dashboard/gallery", formData, {
                         headers: {
-                            'Content-Type': "multipart/form-data"
+                            'Content-Type': "multipart/form-data",
+                            'Authorization': getAuthorizationHeader()
                         }
                     });
                     await push("/admin/pages/informationService/5/gallery/37/PHOTOS");
