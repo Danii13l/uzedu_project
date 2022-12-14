@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { query: { slug } } = context;
 
     try {
-        const { data } = await myAxios(`/api/information?type=${slug && slug[2]}&lang=ru&page=${slug && slug[4]}&limit=9`);
+        const { data } = await myAxios(`/api/information?type=${slug && slug[2]}&lang=${locale}&page=${slug && slug[4]}&limit=9`);
 
         return {
             props: {

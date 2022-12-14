@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/search?lang=ru&text=${text}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/search?lang=${locale}&text=${text}`);
         const data = await res.json();
 
         return {

@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { query: { slug } } = context;
 
     try {
-        const { data } = await myAxios(`/api/people?type=${slug && slug[2]}&lang=ru`);
+        const { data } = await myAxios(`/api/people?type=${slug && slug[2]}&lang=${locale}`);
 
         return {
             props: {
@@ -45,8 +45,6 @@ const PeoplePage: NextPage<{ data: PeoplePageInt[] }> = ({ data }): JSX.Element 
     const { t } = useTranslation();
 
     const { query: { slug } } = useRouter();
-
-
 
 
     return <Layout title={`${t(`header:${slug && slug[0]}`)}, ${t(`header:${slug && slug[2]}`)}`} contentDesc={'a'}>
